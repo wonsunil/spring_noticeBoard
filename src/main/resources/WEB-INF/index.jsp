@@ -5,6 +5,7 @@
   <title>Title</title>
 </head>
 <body>
-    Hello, worldasdfasdfadf
+    hello, world!
+    test: ${test}
 </body>
 </html>
