@@ -13,39 +13,38 @@
     String driver = "oracle.jdbc.driver.OracleDriver";
     String url = "jdbc:oracle:thin:@localhost:7997:orcl";
 
-    try{
-        Class.forName(driver);
-        conn = DriverManager.getConnection(url, "sunil", "1234");
+    Class.forName(driver);
+    conn = DriverManager.getConnection(url, "sunil", "1234");
 
-    }catch(Exception e) {
-        e.printStackTrace();
-    };
-
-    String sql = String.format("SELECT * FROM USERS");
+    String sql = "SELECT * FROM USERS";
 
     PreparedStatement pstmt = null;
+    pstmt = conn != null ? conn.prepareStatement(sql) : null;
 
-    try {
-        pstmt = conn != null ? conn.prepareStatement(sql) : null;
-    } catch (SQLException throwables) {
-        throwables.printStackTrace();
-    }
     ResultSet rs = null;
 
-    try{
-        try {
-            if (pstmt != null) {
-                rs = pstmt.executeQuery();
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }catch(NullPointerException e) {
-            e.printStackTrace();
+    rs = pstmt.executeQuery();
+//    try{
+//        try {
+//            if (pstmt != null) {
+//            }
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
+//    }catch(NullPointerException e) {
+//            e.printStackTrace();
+//    };
+
+    String[] arr = new String[50];
+
+    int i = 0;
+
+    while(rs.next()) {
+        i++;
+        out.print(rs.getString(i) +  "/");
     };
 
     if(rs != null) {
-        out.print(rs);
     }else out.print("error");
 
 %>
