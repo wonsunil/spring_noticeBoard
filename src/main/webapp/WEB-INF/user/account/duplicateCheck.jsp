@@ -1,4 +1,3 @@
-<%@ page import="java.rmi.server.ExportException" %>
 <%@ page import="java.sql.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -7,44 +6,53 @@
 
     if (method.equals("GET")) response.sendRedirect("../../main");
 
-    String email = request.getParameter("email");
-
     Connection conn = null;
     String driver = "oracle.jdbc.driver.OracleDriver";
     String url = "jdbc:oracle:thin:@localhost:7997:orcl";
 
-    Class.forName(driver);
-    conn = DriverManager.getConnection(url, "sunil", "1234");
+    try {
+        Class.forName(driver);
+    } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+    }
+    try {
+        conn = DriverManager.getConnection(url, "sunil", "1234");
+    } catch (SQLException throwables) {
+        throwables.printStackTrace();
+    }
 
     String sql = "SELECT * FROM USERS";
 
     PreparedStatement pstmt = null;
-    pstmt = conn != null ? conn.prepareStatement(sql) : null;
+    try {
+        pstmt = conn != null ? conn.prepareStatement(sql) : null;
+    } catch (SQLException throwables) {
+        throwables.printStackTrace();
+    }
 
     ResultSet rs = null;
 
-    rs = pstmt.executeQuery();
-//    try{
-//        try {
-//            if (pstmt != null) {
-//            }
-//        } catch (SQLException throwables) {
-//            throwables.printStackTrace();
-//        }
-//    }catch(NullPointerException e) {
-//            e.printStackTrace();
-//    };
-
-    String[] arr = new String[50];
+    try {
+        assert pstmt != null;
+        rs = pstmt.executeQuery();
+    } catch (SQLException throwables) {
+        throwables.printStackTrace();
+    }
 
     int i = 0;
 
-    while(rs.next()) {
+    while(true) {
+        assert rs != null;
+        try {
+            if (!rs.next()) break;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         i++;
-        out.print(rs.getString(i) +  "/");
+        try {
+            out.print(rs.getString(i) +  "/");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     };
-
-    if(rs != null) {
-    }else out.print("error");
-
 %>
