@@ -29,7 +29,15 @@ public class OracleConnection {
         System.out.println(text);
     };
 
-    public void setPstmt(String sql, String values) throws SQLException {
+    public void setPstmt(String sql, String kind) throws SQLException {
+        if(kind.equals("kind")) {
+            pstmt = conn.prepareStatement(sql);
+
+            this.rs = pstmt.executeQuery();
+            conn.close();
+        };
+    };
+    public void setPstmt(String sql, String kind, String values) throws SQLException {
         values = values.replace("[", "");
         values = values.replace("]", "");
         String[] valueArray = values.replace(" ", "").split(",");
