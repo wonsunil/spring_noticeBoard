@@ -1,1 +1,3 @@
-# simple notice_board with spring boot
+# simple notice board with spring boot
+
+## Maven + Spring boot project
