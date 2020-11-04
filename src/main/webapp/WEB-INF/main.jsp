@@ -8,7 +8,7 @@
     <div id="wrap">
         <div id="info">
             <div id="user-data">
-                <li id="name">이름 : <a href="/user/profile">이름</a></li>
+                <li id="name">이름 : <a href="/user/profile">{userEmail}</a></li>
                 <li id="rank">등급 : 등급</li>
 <%--                전체 게시글 수 + 전체 댓글 수 + 전체 추천 수--%>
             </div>
