@@ -36,7 +36,7 @@
         OracleConnection orclConn = new OracleConnection();
         String[] arr = {email, name, pw, phone, "Noamal"};
 
-        orclConn.setPstmt("INSERT INTO USERS values (?, ?, ?, ?, ?)", Arrays.toString(arr));
+        orclConn.setPstmt("INSERT INTO USERS values (?, ?, ?, ?, ?)", "insert", Arrays.toString(arr));
 
         if(orclConn.getResult() != null) {
             response.sendRedirect("/main");
