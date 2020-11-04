@@ -8,17 +8,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UserController {
 
     @GetMapping("/user/account/login")
-    public String goToLoginPage() {
+    public String goToLoginPageGet() {
+        return "user/account/login";
+    };
+
+    @PostMapping("/user/account/login")
+    public String goToLoginPagePost() {
         return "user/account/login";
     };
 
     @GetMapping("/user/account/register")
-    public String goToRegisterPage() {
+    public String goToRegisterPageGet() {
         return "user/account/register";
     };
 
     @PostMapping("/user/account/register")
-    public String goToRegisterPage2() {
+    public String goToRegisterPagePost() {
         return "user/account/register";
     };
 
