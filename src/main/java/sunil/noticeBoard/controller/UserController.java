@@ -17,6 +17,11 @@ public class UserController {
         return "user/account/register";
     };
 
+    @PostMapping("/user/account/register")
+    public String goToRegisterPage2() {
+        return "user/account/register";
+    };
+
     @GetMapping("/user/profile")
     public String goToProfilePage() {
         return "user/profile";
