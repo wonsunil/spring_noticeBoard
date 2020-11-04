@@ -11,36 +11,52 @@ window.onload = function() {
 
         if(key === "Enter" || key === "Tab") {
             event.preventDefault();
+            let check = true;
 
             if(!emailTypeCheck(target.value)) {
                 $check.innerHTML = "이메일 형식이 잘못되었습니다";
 
+                check = false;
                 return $email.focus();
             };
 
             emailDuplicateCheck(target.value, data => {
                 if(data) $email.focus();
-
+                check = false;
                 return $check.innerHTML = data;
             });
 
             $check.innerHTML = "";
 
-            return $name.focus();
+            if(check) $name.focus();
         };
     });
-    $name.addEventListener("focusout", function({ target }) {
-        if(target.value === "") return alert("이름칸이 비었습니다");
+    $name.addEventListener("keydown", function(event) {
+        const { target, key } = event;
+
+        if(key === "Enter" || key === "Tab") {
+            event.preventDefault();
+
+            if(target.value === "") {
+                alert("이름칸이 비었습니다");
+
+                return target.focus();
+            };
+            
+            $password.focus();
+        };
     });
     $passwordCheck.addEventListener("focusout", function({ target }) {
         const password = $password.value;
         const passwordCheck = target.value;
 
-        return (password === passwordCheck) ? true : function () {
+        if(password !== passwordCheck) {
             $check.innerHTML = ("비밀번호가 일치하지 않습니다");
 
-            $passwordCheck.focus();
+            return $passwordCheck.focus();
         };
+
+        return true;
     });
     $phone.addEventListener("focusout", function({ target }) {
         if(!phoneFormCheck(target.value)) {
