@@ -1,6 +1,7 @@
 package sunil.noticeBoard.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -12,7 +13,11 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String goToMainPage() {
+    public String goToMainPage(Model model, String userEmail) {
+        if(userEmail != null) {
+            model.addAttribute("userEmail", userEmail);
+        };
+
         return "main";
     }
 }
