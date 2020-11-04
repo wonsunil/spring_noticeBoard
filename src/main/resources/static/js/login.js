@@ -26,6 +26,6 @@ window.onload = function() {
     document.forms[0].addEventListener("submit", function(event) {
         event.preventDefault();
 
-        if($check.innerHTML !== "") this.submit();
+        if($check.innerHTML === "") this.submit();
     });
 };
