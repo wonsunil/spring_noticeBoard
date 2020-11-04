@@ -6,6 +6,8 @@
 
     if (method.equals("GET")) response.sendRedirect("../../main");
 
+    String email = request.getParameter("email");
+
     Connection conn = null;
     String driver = "oracle.jdbc.driver.OracleDriver";
     String url = "jdbc:oracle:thin:@localhost:7997:orcl";
@@ -21,11 +23,9 @@
         throwables.printStackTrace();
     }
 
-    String sql = "SELECT * FROM USERS";
-
     PreparedStatement pstmt = null;
     try {
-        pstmt = conn != null ? conn.prepareStatement(sql) : null;
+        pstmt = conn != null ? conn.prepareStatement("select * from users") : null;
     } catch (SQLException throwables) {
         throwables.printStackTrace();
     }
@@ -39,7 +39,7 @@
         throwables.printStackTrace();
     }
 
-    int i = 0;
+    int i = 1;
 
     while(true) {
         assert rs != null;
@@ -47,12 +47,16 @@
             if (!rs.next()) break;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }
-        i++;
+        };
         try {
-            out.print(rs.getString(i) +  "/");
+            if(rs.getString("Email").equals(email)) {
+                out.print("중복된 이메일입니다.");
+
+                break;
+            };
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }
+        };
+        i++;
     };
 %>
