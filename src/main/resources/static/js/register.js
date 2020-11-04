@@ -42,7 +42,7 @@ window.onload = function() {
 
                 return target.focus();
             };
-            
+
             $password.focus();
         };
     });
