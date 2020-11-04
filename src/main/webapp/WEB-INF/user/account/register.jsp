@@ -8,6 +8,7 @@
     <head>
         <meta charset="UTF-8">
         <title>register-page</title>
+        <script src="/js/functions.js"></script>
         <script src="/js/register.js"></script>
     </head>
     <body>
