@@ -13,16 +13,13 @@
     String[] commentWriterList = new String[0];
     String[] likeContentsList = new String[0];
 
-    if(method.equals("GET")) {
-        String email = (String) session.getAttribute("email");
+    String email = (String) session.getAttribute("email");
 
-        if(email == null) response.sendRedirect("/user/account/login");
-
+    if(method.equals("GET") || email != null) {
         String sql = "select writer from content where writer='"+email+"'";
 
         oracleConn.setPstmt(sql, "select");
         ResultSet rs = oracleConn.getResult();
-
         contentWriterList = oracleConn.getResultArray(rs, contentWriterList);
         rs.close();
 
@@ -55,10 +52,26 @@
                 <li>댓글 수 :  <%=commentWriterList.length%>개</li>
                 <li>좋아요 수 : <%=likeContentsList.length%>개</li>
                 <%--전체 게시글 수 + 전체 댓글 수 + 전체 추천 수--%>
-            </div>
-            <div id="info_btn">
-                <button id="login"><a href="/user/account/login">로그인</a></button>
-                <button id="register"><a href="user/account/register">회원가입</a></button>
+
+                <%
+                    if(session.getAttribute("id") == null) {
+                %>
+                    <div id="user-btn">
+                    <button id="login"><a href="/user/account/login">로그인</a></button>
+                    <button id="register"><a href="user/account/register">회원가입</a></button>
+                    </div>
+                <%
+                    };
+                %>
+                <%
+                    if(session.getAttribute("id") != null) {
+                %>
+                <div id="user-btn">
+                    <button id="logout"><a href="/user/account/logout">로그아웃</a></button>
+                </div>
+                <%
+                    };
+                %>
             </div>
         </div>
     </div>
