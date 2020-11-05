@@ -8,8 +8,8 @@
     <div id="wrap">
         <div id="info">
             <div id="user-data">
-                <li id="name">이름 : <a href="/user/profile">{userEmail}</a></li>
-                <li id="rank">등급 : 등급</li>
+                <li id="name">이름 : <a href="/user/profile"><%=session.getAttribute("name")%></a></li>
+                <li id="rank">등급 : <%=session.getAttribute("rank")%></li>
 <%--                전체 게시글 수 + 전체 댓글 수 + 전체 추천 수--%>
             </div>
             <div id="info_btn">
