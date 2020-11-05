@@ -1,4 +1,47 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="sunil.OracleConnection" %>
+<%@ page import="sunil.Console" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.util.Arrays" %>
+
+<%
+    OracleConnection orclConn = new OracleConnection();
+    Console console = new Console();
+
+    String method = request.getMethod();
+
+    String[] contentWriterList = new String[0];
+    String[] commentWriterList = new String[0];
+    String[] likeContentsList = new String[0];
+
+    if(method.equals("GET")) {
+        String email = (String) session.getAttribute("email");
+
+        if(email == null) response.sendRedirect("/user/account/login");
+
+        String sql = "select writer from content where writer='"+email+"'";
+
+        orclConn.setPstmt(sql, "select");
+        ResultSet rs = orclConn.getResult();
+
+        contentWriterList = orclConn.getResultArray(rs, contentWriterList);
+        rs.close();
+
+        String sql2 = "select id from comments where id='"+email+"'";
+        orclConn.setPstmt(sql2, "select");
+        ResultSet rs2 = orclConn.getResult();
+        commentWriterList = orclConn.getResultArray(rs, commentWriterList);
+        rs2.close();
+
+        String sql3 = "select id from likes where id='"+email+"'";
+        orclConn.setPstmt(sql3, "select");
+        ResultSet rs3 = orclConn.getResult();
+        likeContentsList = orclConn.getResultArray(rs, likeContentsList);
+        rs3.close();
+    };
+%>
+
 <html>
 <head>
     <title>Main Page</title>
@@ -10,7 +53,10 @@
             <div id="user-data">
                 <li id="name">이름 : <a href="/user/profile"><%=session.getAttribute("name")%></a></li>
                 <li id="rank">등급 : <%=session.getAttribute("rank")%></li>
-<%--                전체 게시글 수 + 전체 댓글 수 + 전체 추천 수--%>
+                <li>게시글 수 : <%=contentWriterList.length%>개</li>
+                <li>댓글 수 :  <%=commentWriterList.length%>개</li>
+                <li>좋아요 수 : <%=likeContentsList.length%>개</li>
+                <%--전체 게시글 수 + 전체 댓글 수 + 전체 추천 수--%>
             </div>
             <div id="info_btn">
                 <button id="login"><a href="/user/account/login">로그인</a></button>
