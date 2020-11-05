@@ -3,6 +3,8 @@ package sunil;
 import java.sql.*;
 
 public class OracleConnection {
+    Console console = new Console();
+
     private ResultSet rs = null;
     private final String url = "jdbc:oracle:thin:@localhost:7997:orcl";
     private final Connection conn = DriverManager.getConnection(url, "sunil", "1234");;
@@ -28,7 +30,6 @@ public class OracleConnection {
     public void setPstmt(String sql, String kind) throws SQLException {
         if(kind != null) {
             try{
-                console(sql);
                 pstmt = conn.prepareStatement(sql);
 
                 rs = pstmt.executeQuery();
@@ -70,9 +71,29 @@ public class OracleConnection {
         } catch (SQLSyntaxErrorException ignored) {
 
         };
-    }
+    };
 
     public ResultSet getResult() throws SQLException {
         return this.rs;
     };
-}
+
+    public String[] getResultArray(ResultSet rs, String[] originalArr) {
+        int i = 0;
+
+        try{
+            while(rs.next()) {
+                String[] newArr = new String[i+1];
+                newArr[i] = rs.getString("writer");
+
+                System.arraycopy(originalArr, 0, newArr, 0, originalArr.length);
+
+                originalArr = newArr;
+                i++;
+            };
+        } catch (ArrayIndexOutOfBoundsException | SQLException ignored) {
+
+        };
+
+        return originalArr;
+    };
+};
