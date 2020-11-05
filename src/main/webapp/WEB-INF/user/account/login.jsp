@@ -36,16 +36,20 @@
             throwables.printStackTrace();
         };
 
-        if(oracleConn.getResult() != null) {
-            oracleConn.getResult().next();
-            String resultemail = oracleConn.getResult().getString("email");
-            String resultname = oracleConn.getResult().getString("name");
-            String resultrank = oracleConn.getResult().getString("rank");
+        ResultSet rs = oracleConn.getResult();
+
+        if(rs != null) {
+            rs.next();
+            String resultemail = rs.getString("email");
+            String resultname = rs.getString("name");
+            String resultrank = rs.getString("rank");
 
             session.setAttribute("email", resultemail);
             session.setAttribute("name", resultname);
             session.setAttribute("rank", resultrank);
             response.sendRedirect("/main");
+
+            rs.close();
         };
     };
 %>
