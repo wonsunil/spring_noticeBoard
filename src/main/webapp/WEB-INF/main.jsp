@@ -1,12 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="sunil.OracleConnection" %>
 <%@ page import="sunil.Console" %>
 <%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.SQLException" %>
-<%@ page import="java.util.Arrays" %>
 
 <%
-    OracleConnection orclConn = new OracleConnection();
+    OracleConnection oracleConn = new OracleConnection();
     Console console = new Console();
 
     String method = request.getMethod();
@@ -22,22 +20,22 @@
 
         String sql = "select writer from content where writer='"+email+"'";
 
-        orclConn.setPstmt(sql, "select");
-        ResultSet rs = orclConn.getResult();
+        oracleConn.setPstmt(sql, "select");
+        ResultSet rs = oracleConn.getResult();
 
-        contentWriterList = orclConn.getResultArray(rs, contentWriterList);
+        contentWriterList = oracleConn.getResultArray(rs, contentWriterList);
         rs.close();
 
         String sql2 = "select id from comments where id='"+email+"'";
-        orclConn.setPstmt(sql2, "select");
-        ResultSet rs2 = orclConn.getResult();
-        commentWriterList = orclConn.getResultArray(rs, commentWriterList);
+        oracleConn.setPstmt(sql2, "select");
+        ResultSet rs2 = oracleConn.getResult();
+        commentWriterList = oracleConn.getResultArray(rs, commentWriterList);
         rs2.close();
 
         String sql3 = "select id from likes where id='"+email+"'";
-        orclConn.setPstmt(sql3, "select");
-        ResultSet rs3 = orclConn.getResult();
-        likeContentsList = orclConn.getResultArray(rs, likeContentsList);
+        oracleConn.setPstmt(sql3, "select");
+        ResultSet rs3 = oracleConn.getResult();
+        likeContentsList = oracleConn.getResultArray(rs, likeContentsList);
         rs3.close();
     };
 %>

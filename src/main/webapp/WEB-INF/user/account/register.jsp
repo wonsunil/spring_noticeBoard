@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ page import="sunil.OracleConnection" %>
 <%@ page import="java.util.Arrays" %>
@@ -33,12 +33,12 @@
         String pw = request.getParameter("Password");
         String phone = request.getParameter("Phone");
 
-        OracleConnection orclConn = new OracleConnection();
+        OracleConnection oracleConn = new OracleConnection();
         String[] arr = {email, name, pw, phone, "Noamal"};
 
-        orclConn.setPstmt("INSERT INTO USERS values (?, ?, ?, ?, ?)", "insert", Arrays.toString(arr));
+        oracleConn.setPstmt("INSERT INTO USERS values (?, ?, ?, ?, ?)", "insert", Arrays.toString(arr));
 
-        if(orclConn.getResult() != null) {
+        if(oracleConn.getResult() != null) {
             response.sendRedirect("/main");
         };
     };

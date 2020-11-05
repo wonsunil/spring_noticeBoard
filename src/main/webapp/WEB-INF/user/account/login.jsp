@@ -28,19 +28,19 @@
         String pw = request.getParameter("password");
         String kind = "select";
 
-        OracleConnection orclConn = new OracleConnection();
+        OracleConnection oracleConn = new OracleConnection();
 
         try {
-            orclConn.setPstmt("SELECT email, name, rank FROM USERS where email='"+email+"' and password='"+pw+"'", kind);
+            oracleConn.setPstmt("SELECT email, name, rank FROM USERS where email='"+email+"' and password='"+pw+"'", kind);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         };
 
-        if(orclConn.getResult() != null) {
-            orclConn.getResult().next();
-            String resultemail = orclConn.getResult().getString("email");
-            String resultname = orclConn.getResult().getString("name");
-            String resultrank = orclConn.getResult().getString("rank");
+        if(oracleConn.getResult() != null) {
+            oracleConn.getResult().next();
+            String resultemail = oracleConn.getResult().getString("email");
+            String resultname = oracleConn.getResult().getString("name");
+            String resultrank = oracleConn.getResult().getString("rank");
 
             session.setAttribute("email", resultemail);
             session.setAttribute("name", resultname);
