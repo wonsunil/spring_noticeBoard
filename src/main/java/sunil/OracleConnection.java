@@ -19,22 +19,22 @@ public class OracleConnection {
         } catch (ClassNotFoundException ignored) {
 
         }
-    }
-
-    public Connection getConnection() {
-        return this.conn;
-    }
+    };
 
     public <any> void console(any text) {
         System.out.println(text);
     };
 
     public void setPstmt(String sql, String kind) throws SQLException {
-        if(kind.equals("kind")) {
-            pstmt = conn.prepareStatement(sql);
+        if(kind != null) {
+            try{
+                console(sql);
+                pstmt = conn.prepareStatement(sql);
 
-            this.rs = pstmt.executeQuery();
-            conn.close();
+                rs = pstmt.executeQuery();
+            } catch (SQLSyntaxErrorException ignored) {
+                ignored.printStackTrace();
+            };
         };
     };
     public void setPstmt(String sql, String kind, String values) throws SQLException {
@@ -52,12 +52,11 @@ public class OracleConnection {
 
         try{
             pstmt = conn.prepareStatement(sql);
-
-            this.rs = pstmt.executeQuery();
+            rs = pstmt.executeQuery();
 
             pstmt = conn.prepareStatement("commit");
             pstmt.executeQuery();
-            conn.close();
+            pstmt.close();
         } catch (NullPointerException ignored) {
             console("Null Pointer Exception!");
 
@@ -68,10 +67,12 @@ public class OracleConnection {
             if(this.rs == null) {
                 console("Result is null!");
             };
-        }
+        } catch (SQLSyntaxErrorException ignored) {
+
+        };
     }
 
-    public ResultSet getResult() {
+    public ResultSet getResult() throws SQLException {
         return this.rs;
     };
 }
