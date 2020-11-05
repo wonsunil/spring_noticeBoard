@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="sunil.OracleConnection" %>
 <%@ page import="java.sql.SQLException" %>
+<%@ page import="java.util.Arrays" %>
+<%@ page import="java.sql.ResultSet" %>
 
 <html>
 <head>
@@ -9,7 +11,7 @@
     <script src="/js/login.js"></script>
 </head>
 <body>
-    <form action="#" method="POST">
+    <form action="/user/account/login" method="POST">
         <input type="text" id="email" name="email">
         <input type="password" id="password" name="password">
         <input type="submit">
@@ -29,13 +31,17 @@
         OracleConnection orclConn = new OracleConnection();
 
         try {
-            orclConn.setPstmt("SELECT FROM USERS where email='"+email+"' and password='"+pw+"'", kind);
+            orclConn.setPstmt("SELECT name, rank FROM USERS where email='"+email+"' and password='"+pw+"'", kind);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         };
 
         if(orclConn.getResult() != null) {
-
+            orclConn.getResult().next();
+            String resultname = orclConn.getResult().getString("name");
+            String resultrank = orclConn.getResult().getString("rank");
+            session.setAttribute("name", resultname);
+            session.setAttribute("rank", resultrank);
             response.sendRedirect("/main");
         };
     };
