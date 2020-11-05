@@ -31,15 +31,18 @@
         OracleConnection orclConn = new OracleConnection();
 
         try {
-            orclConn.setPstmt("SELECT name, rank FROM USERS where email='"+email+"' and password='"+pw+"'", kind);
+            orclConn.setPstmt("SELECT email, name, rank FROM USERS where email='"+email+"' and password='"+pw+"'", kind);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         };
 
         if(orclConn.getResult() != null) {
             orclConn.getResult().next();
+            String resultemail = orclConn.getResult().getString("email");
             String resultname = orclConn.getResult().getString("name");
             String resultrank = orclConn.getResult().getString("rank");
+
+            session.setAttribute("email", resultemail);
             session.setAttribute("name", resultname);
             session.setAttribute("rank", resultrank);
             response.sendRedirect("/main");
