@@ -1,7 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ page import="sunil.OracleConnection" %>
 <%@ page import="sunil.Console" %>
-<%@ page import="java.sql.ResultSet" %>
 <%@ page import="sunil.noticeBoard.DataList" %>
 <%@ page import="java.util.Arrays" %>
 
@@ -9,27 +7,8 @@
     DataList dataList = new DataList();
     Console console = new Console();
 
-    String method = request.getMethod();
-
     String[][] allContentList = new String[0][0];
-    String[] contentWriterList = new String[0];
-    String[] commentWriterList = new String[0];
-    String[] likeContentsList = new String[0];
-
     allContentList = dataList.getList("select * from content", allContentList);
-
-    String email = (String) session.getAttribute("email");
-
-    if(method.equals("GET") || email != null) {
-        String sql = "select writer from content where writer='"+email+"'";
-        contentWriterList = dataList.getList(sql, contentWriterList);
-
-        String sql2 = "select id from comments where id='"+email+"'";
-        commentWriterList = dataList.getList(sql2, commentWriterList);
-
-        String sql3 = "select id from likes where id='"+email+"'";
-        likeContentsList = dataList.getList(sql3, likeContentsList);
-    };
 %>
 
 <html>
@@ -54,15 +33,15 @@
                 <%
                     if(session.getAttribute("email") != null) {
                 %>
-                <li id="name">이름 : <a href="/user/profile"><%=session.getAttribute("name")%></a></li>
-                <li id="rank">등급 : <%=session.getAttribute("rank")%></li>
-                <li>게시글 수 : <%=contentWriterList.length%>개</li>
-                <li>댓글 수 :  <%=commentWriterList.length%>개</li>
-                <li>좋아요 수 : <%=likeContentsList.length%>개</li>
-                <br>
-                <div id="user-btn">
-                    <button id="logout"><a href="/user/account/logout">로그아웃</a></button>
-                </div>
+<%--                <li id="name">이름 : <a href="/user/profile"><%=session.getAttribute("name")%></a></li>--%>
+<%--                <li id="rank">등급 : <%=session.getAttribute("rank")%></li>--%>
+<%--                <li>게시글 수 : ${contentWriterList.length}개</li>--%>
+<%--                <li>댓글 수 :  ${contentWriterList.length}개</li>--%>
+<%--                <li>좋아요 수 : ${contentWriterList.length}개</li>--%>
+<%--                <br>--%>
+<%--                <div id="user-btn">--%>
+<%--                    <button id="logout"><a href="/user/account/logout">로그아웃</a></button>--%>
+<%--                </div>--%>
                 <%
                     };
                 %>
