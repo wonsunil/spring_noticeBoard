@@ -1,5 +1,7 @@
 package sunil;
 
+import sunil.noticeBoard.DataList;
+
 import java.sql.*;
 
 public class OracleConnection {
@@ -77,13 +79,21 @@ public class OracleConnection {
         return this.rs;
     };
 
-    public String[] getResultArray(ResultSet rs, String[] originalArr) {
+    public String[] getResultArray(ResultSet rs, String[] originalArr) throws SQLException {
         int i = 0;
+        String[] columnNames = new String[rs.getMetaData().getColumnCount()];
 
         try{
+            for(int j = 1; j <= columnNames.length; j++) {
+                columnNames[j-1] = rs.getMetaData().getColumnName(j);
+            };
+
             while(rs.next()) {
                 String[] newArr = new String[i+1];
-                newArr[i] = rs.getString("writer");
+
+                for(int k = 0; k < columnNames.length; k++) {
+                    newArr[i] = rs.getString(columnNames[k]);
+                };
 
                 System.arraycopy(originalArr, 0, newArr, 0, originalArr.length);
 
@@ -95,5 +105,54 @@ public class OracleConnection {
         };
 
         return originalArr;
+    };
+
+    public String[][] getResultArray(ResultSet rs, String[][] originalArr) throws SQLException {
+        DataList dataList= new DataList();
+
+        String[] columnNames = new String[rs.getMetaData().getColumnCount()];
+        String sql = "select writer from content";
+        String[] writerList = new String[0];
+        writerList = dataList.getList(sql, writerList);
+
+        try{
+            for(int j = 1; j <= columnNames.length; j++) {
+                columnNames[j-1] = rs.getMetaData().getColumnName(j);
+            };
+
+            String[][] newArr = new String[writerList.length][columnNames.length];
+
+            for(int k = 0; k < writerList.length; k++) {
+                rs.next();
+
+                for(int x = 0; x < columnNames.length; x++) {
+                    newArr[k][x] = rs.getString(columnNames[x]);
+                };
+            };
+
+            System.arraycopy(originalArr, 0, newArr, 0, originalArr.length);
+
+            originalArr = newArr;
+        } catch (ArrayIndexOutOfBoundsException ignored) {
+            console.log("Array index out of bounds exception!");
+        } catch (NullPointerException ignored) {
+            if(writerList == null) console.log("writerList is null!");
+
+            console.log("something is null!");
+        } catch (SQLException ignored) {
+            console.log("SQL exception!");
+        };
+
+        return originalArr;
+    };
+
+    public String[] resizeArray(String[] array) {
+        String[] copyArray = new String[array.length + 1];
+
+        for(int i = 0; i < array.length; i++) {
+            copyArray[i] = array[i];
+        }
+
+        return copyArray;
     };
 };
