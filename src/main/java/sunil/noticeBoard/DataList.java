@@ -16,4 +16,15 @@ public class DataList {
 
         return resultArray;
     };
+
+    public String[][] getList(String sql, String[][] resultArray) throws SQLException {
+        OracleConnection oracleConn = new OracleConnection();
+
+        oracleConn.setPstmt(sql, "select");
+        ResultSet rs = oracleConn.getResult();
+        resultArray = oracleConn.getResultArray(rs, resultArray);
+        rs.close();
+
+        return resultArray;
+    };
 };
