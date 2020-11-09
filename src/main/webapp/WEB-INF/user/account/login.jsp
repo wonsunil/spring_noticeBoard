@@ -31,7 +31,7 @@
         OracleConnection oracleConn = new OracleConnection();
 
         try {
-            oracleConn.setPstmt("SELECT email, name, rank FROM USERS where email='"+email+"' and password='"+pw+"'", kind);
+            oracleConn.setPstmt("SELECT email, name, rank FROM USER_INFO where email='"+email+"' and password='"+pw+"'", kind);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         };
@@ -40,13 +40,13 @@
 
         if(rs != null) {
             rs.next();
-            String resultemail = rs.getString("email");
-            String resultname = rs.getString("name");
-            String resultrank = rs.getString("rank");
+            String resultEmail = rs.getString("email");
+            String resultName = rs.getString("name");
+            String resultRank = rs.getString("rank");
 
-            session.setAttribute("email", resultemail);
-            session.setAttribute("name", resultname);
-            session.setAttribute("rank", resultrank);
+            session.setAttribute("email", resultEmail);
+            session.setAttribute("name", resultName);
+            session.setAttribute("rank", resultRank);
             response.sendRedirect("/main");
 
             rs.close();
