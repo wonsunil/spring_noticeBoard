@@ -8,7 +8,7 @@ import sunil.noticeBoard.service.MemberService;
 
 import java.util.List;
 
-public class MemberServiceImpl implements MemberService {
+public class TestMemberServiceImpl implements MemberService {
 
     @Autowired
     private MemberMapper memberMapper;
