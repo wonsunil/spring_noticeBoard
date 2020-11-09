@@ -2,6 +2,7 @@ package sunil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 public class Console {
     public void log(String text) {
@@ -15,17 +16,15 @@ public class Console {
     };
 
     public void log(String[] arr) {
-        for (String element : arr) {
-            if(element != null) {
-                this.log(element);
-
-            };
+        this.log(Arrays.toString(arr));
+    };
+    public void log(String[][] arr) {
+        for(int i = 0, length = arr.length; i < length; i++) {
+            this.log(arr[i]);
         }
     };
     public void log(int[] arr) {
-        for (int j : arr) {
-            this.log(j);
-        }
+        this.log(Arrays.toString(arr));
     };
 
     public void log(ResultSet rs) throws SQLException {
