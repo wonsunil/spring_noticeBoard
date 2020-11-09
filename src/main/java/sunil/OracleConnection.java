@@ -25,10 +25,6 @@ public class OracleConnection {
         }
     };
 
-    public <any> void console(any text) {
-        System.out.println(text);
-    };
-
     public void setPstmt(String sql, String kind) throws SQLException {
         if(kind != null) {
             try{
@@ -40,12 +36,13 @@ public class OracleConnection {
             };
         };
     };
+
     public void setPstmt(String sql, String kind, String values) throws SQLException {
         values = values.replace("[", "");
         values = values.replace("]", "");
         String[] valueArray = values.replace(" ", "").split(",");
 
-        for(int i = 0; i < values.length(); i++) {
+        for(int i = 0, limit = values.length(); i < limit; i++) {
             try{
                 sql = sql.replaceFirst("\\?", "'" + valueArray[i] + "'");
             } catch (ArrayIndexOutOfBoundsException ignored) {
@@ -61,14 +58,14 @@ public class OracleConnection {
             pstmt.executeQuery();
             pstmt.close();
         } catch (NullPointerException ignored) {
-            console("Null Pointer Exception!");
+            console.log("Null Pointer Exception!");
 
             if(this.pstmt == null) {
-                console("Prepared Statement is null!");
+                console.log("Prepared Statement is null!");
             };
 
             if(this.rs == null) {
-                console("Result is null!");
+                console.log("Result is null!");
             };
         } catch (SQLSyntaxErrorException ignored) {
 
@@ -82,16 +79,17 @@ public class OracleConnection {
     public String[] getResultArray(ResultSet rs, String[] originalArr) throws SQLException {
         int i = 0;
         String[] columnNames = new String[rs.getMetaData().getColumnCount()];
+        int columnLength = columnNames.length;
 
         try{
-            for(int j = 1; j <= columnNames.length; j++) {
+            for(int j = 1; j <= columnLength; j++) {
                 columnNames[j-1] = rs.getMetaData().getColumnName(j);
             };
 
             while(rs.next()) {
                 String[] newArr = new String[i+1];
 
-                for(int k = 0; k < columnNames.length; k++) {
+                for(int k = 0; k < columnLength; k++) {
                     newArr[i] = rs.getString(columnNames[k]);
                 };
 
@@ -111,7 +109,7 @@ public class OracleConnection {
         DataList dataList= new DataList();
 
         String[] columnNames = new String[rs.getMetaData().getColumnCount()];
-        String sql = "select writer from content";
+        String sql = "SELECT WRITER FROM CONTENT_INFO";
         String[] writerList = new String[0];
         writerList = dataList.getList(sql, writerList);
 
