@@ -21,9 +21,9 @@ public class MainController {
     @GetMapping("/main")
     public String goToMainPageGet(Model model, HttpSession session) throws SQLException {
         String email = (String) session.getAttribute("email");
-        String sql = "select writer from content where writer='"+email+"'";
-        String sql2 = "select id from comments where id='"+email+"'";
-        String sql3 = "select id from likes where id='"+email+"'";
+        String sql = "SELECT WRITER FROM CONTENT_INFO WHERE WRITER='"+email+"'";
+        String sql2 = "SELECT ID FROM COMMENTS WHERE ID='"+email+"'";
+        String sql3 = "select ID FROM LIKES WHERE ID='"+email+"'";
 
         String[] contentWriterList = dataList.getList(sql, new String[0]);
         model.addAttribute("contentWriterList", contentWriterList);
