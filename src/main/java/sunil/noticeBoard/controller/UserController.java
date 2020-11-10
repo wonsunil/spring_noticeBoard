@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
-
     @GetMapping("/user/account/login")
     public String goToLoginPageGet() {
         return "user/account/login";
