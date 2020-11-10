@@ -3,6 +3,6 @@
 
 <mapper namespace="sunil.noticeBoard.mapper.MemberMapper">
     <select id="getAllMember" resultType="sunil.noticeBoard.model.Member">
-        SELECT EMAIL, NAME, PHONE, RANK FROM CONTENT_INFO;
+        SELECT EMAIL, NAME, PHONE, RANK FROM USER_INFO
     </select>
 </mapper>
