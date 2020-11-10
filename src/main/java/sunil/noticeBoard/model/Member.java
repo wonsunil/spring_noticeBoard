@@ -3,7 +3,6 @@ package sunil.noticeBoard.model;
 public class Member {
     private String email;
     private String name;
-    private String password;
     private String phone;
     private String rank;
 
@@ -20,19 +19,27 @@ public class Member {
         return rank;
     };
 
-    public void setEmail(String eamil) {
+    public void setEmail(String email) {
         this.email = email;
     };
     public void setName(String name) {
         this.name = name;
-    };
-    public void setPassword(String password) {
-        this.password = password;
     };
     public void setPhone(String phone) {
         this.phone = phone;
     };
     public void setRank(String rank) {
         this.rank = rank;
+    };
+
+    public String toString() {
+        String memberDataText = "email : " + this.email + "\r name : " + this.name + "\r phone : " + this.phone + "\r rank : " + this.rank;
+
+        return memberDataText;
+    };
+    public String[] toArray() {
+        String[] memberDataArray = {this.email, this.name, this.phone, this.rank};
+
+        return memberDataArray;
     };
 };
