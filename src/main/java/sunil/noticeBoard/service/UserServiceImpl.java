@@ -14,9 +14,23 @@ public class UserServiceImpl implements UserService {
     private UserMapper mapper;
 
     @Override
-    public List<User> getAllMember() {
-        List<User> member = mapper.getAllMember();
+    public List<User> getAllUser() {
+        List<User> userList = mapper.getAllUser();
 
-        return member;
-    }
+        return userList;
+    };
+
+    @Override
+    public List<User> getUserByEmail(String email) {
+        List<User> user = mapper.getUserByEmail(email);
+
+        return user;
+    };
+
+    @Override
+    public List<User> getUserColumnByCondition(String columnName, String condition, String value) {
+        List<User> userColumnData = mapper.getUserColumnByCondition(columnName, condition, value);
+
+        return userColumnData;
+    };
 }
