@@ -1,13 +1,13 @@
 package sunil.noticeBoard.mapper;
 
-import sunil.noticeBoard.model.Member;
+import sunil.noticeBoard.model.User;
 
 import java.util.List;
 
-public interface MemberMapper {
-    Member selectMemberByEmail(String Email);
+public interface UserMapper {
+    User selectMemberByEmail(String Email);
 
-    List<Member> getAllMember();
+    List<User> getAllMember();
 
-    void insertMemberData(Member member);
+    void insertMemberData(User member);
 };

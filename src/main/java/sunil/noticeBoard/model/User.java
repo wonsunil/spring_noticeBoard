@@ -1,6 +1,6 @@
 package sunil.noticeBoard.model;
 
-public class Member {
+public class User {
     private String email;
     private String name;
     private String phone;
@@ -33,13 +33,13 @@ public class Member {
     };
 
     public String toString() {
-        String memberDataText = "email : " + this.email + "\r name : " + this.name + "\r phone : " + this.phone + "\r rank : " + this.rank;
+        String userDataText = "email : " + this.email + "\r name : " + this.name + "\r phone : " + this.phone + "\r rank : " + this.rank;
 
-        return memberDataText;
+        return userDataText;
     };
     public String[] toArray() {
-        String[] memberDataArray = {this.email, this.name, this.phone, this.rank};
+        String[] userDataArray = {this.email, this.name, this.phone, this.rank};
 
-        return memberDataArray;
+        return userDataArray;
     };
 };

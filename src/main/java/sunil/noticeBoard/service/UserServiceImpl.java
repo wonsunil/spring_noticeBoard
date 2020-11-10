@@ -2,20 +2,20 @@ package sunil.noticeBoard.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sunil.noticeBoard.mapper.MemberMapper;
-import sunil.noticeBoard.model.Member;
+import sunil.noticeBoard.mapper.UserMapper;
+import sunil.noticeBoard.model.User;
 
 import java.util.List;
 
 @Service
-public class MemberServiceImpl implements MemberService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
-    private MemberMapper mapper;
+    private UserMapper mapper;
 
     @Override
-    public List<Member> getAllMember() {
-        List<Member> member = mapper.getAllMember();
+    public List<User> getAllMember() {
+        List<User> member = mapper.getAllMember();
 
         return member;
     }

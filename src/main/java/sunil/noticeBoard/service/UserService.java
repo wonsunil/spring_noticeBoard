@@ -1,11 +1,11 @@
 package sunil.noticeBoard.service;
 
 import org.springframework.stereotype.Service;
-import sunil.noticeBoard.model.Member;
+import sunil.noticeBoard.model.User;
 
 import java.util.List;
 
 @Service
-public interface MemberService {
-    List<Member> getAllMember();
+public interface UserService {
+    List<User> getAllMember();
 };
