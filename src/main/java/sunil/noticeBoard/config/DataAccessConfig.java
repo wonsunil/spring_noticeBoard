@@ -19,7 +19,7 @@ public class DataAccessConfig {
         sessionFactory.setDataSource(dataSource);
         sessionFactory.setMapperLocations(
                 new PathMatchingResourcePatternResolver().getResources(
-                        "classpath:/mapper/*.xml"
+                        "classpath:/sunil/noticeBoard/mapper/*.xml"
                 )
         );
         return sessionFactory.getObject();
