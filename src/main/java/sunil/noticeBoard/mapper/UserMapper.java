@@ -5,9 +5,9 @@ import sunil.noticeBoard.model.User;
 import java.util.List;
 
 public interface UserMapper {
-    User selectMemberByEmail(String Email);
-
-    List<User> getAllMember();
+    List<User> getAllUser();
+    List<User> getUserByEmail(String email);
+    List<User> getUserColumnByCondition(String columnName, String condition, String value);
 
     void insertMemberData(User member);
 };
