@@ -28,18 +28,18 @@
     String method = request.getMethod();
 
     if(method.equals("POST")) {
-        String email = request.getParameter("Email");
-        String name = request.getParameter("Name");
-        String pw = request.getParameter("Password");
-        String phone = request.getParameter("Phone");
-
-        OracleConnection oracleConn = new OracleConnection();
-        String[] arr = {email, name, pw, phone, "Noamal"};
-
-        oracleConn.setPstmt("INSERT INTO USER_INFO values (?, ?, ?, ?, ?)", "insert", Arrays.toString(arr));
-
-        if(oracleConn.getResult() != null) {
-            response.sendRedirect("/main");
-        };
+//        String email = request.getParameter("Email");
+//        String name = request.getParameter("Name");
+//        String pw = request.getParameter("Password");
+//        String phone = request.getParameter("Phone");
+//
+//        OracleConnection oracleConn = new OracleConnection();
+//        String[] arr = {email, name, pw, phone, "Noamal"};
+//
+//        oracleConn.setPstmt("INSERT INTO USER_INFO values (?, ?, ?, ?, ?)", "insert", Arrays.toString(arr));
+//
+//        if(oracleConn.getResult() != null) {
+//            response.sendRedirect("/main");
+//        };
     };
 %>

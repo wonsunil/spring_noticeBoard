@@ -1,16 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ page import="sunil.Console" %>
-<%@ page import="sunil.noticeBoard.DataList" %>
+<%@ page import="sunil.noticeBoard.model.Content" %>
 
 <%
-    DataList dataList = new DataList();
-    Console console = new Console();
-
-    String[][] allContentList = dataList.getList("SELECT * FROM CONTENT_INFO", new String[0][0]);
-
-    String[] contentWriterList = (String[]) request.getAttribute("contentWriterList");
-    String[] commentWriterList = (String[]) request.getAttribute("commentWriterList");
-    String[] likeContentsList = (String[]) request.getAttribute("likeContentsList");
+    Content[] allContents = (Content[]) request.getAttribute("allContentArray");
+    Content[] writtenContentArray = (Content[]) request.getAttribute("writtenContentArray");
 %>
 
 <html>
@@ -37,9 +30,7 @@
                 %>
                 <li id="name">이름 : <a href="/user/profile"><%=session.getAttribute("name")%></a></li>
                 <li id="rank">등급 : <%=session.getAttribute("rank")%></li>
-                <li>게시글 수 : <%=contentWriterList.length%>개<li>
-                <li>댓글 수 :  <%=commentWriterList.length%>개</li>
-                <li>좋아요 수 : <%=likeContentsList.length%>개</li>
+                <li>게시글 수 : <%=writtenContentArray.length%>개<li>
                 <br>
                 <div id="user-btn">
                     <button id="logout"><a href="/user/account/logout">로그아웃</a></button>
@@ -56,13 +47,14 @@
             <section id="notice-board">
                     <%
                         try{
-                            for(int i = 0, limit = allContentList.length; i < limit; i++) {
+                            for(int i = 0, limit = allContents.length; i < limit; i++) {
+                                String[] content = allContents[i].toArray();
                     %>
-                        <div class="notice-item" data-index="<%=allContentList[i][4]%>">
-                            <li class="board"><%=allContentList[i][0]%></li>
-                            <li class="writer"><%=allContentList[i][1]%></li>
-                            <li class="title"><%=allContentList[i][2]%></li>
-                            <li class="content"><%=allContentList[i][3]%></li>
+                        <div class="notice-item" data-index="<%=content[4]%>">
+                            <li class="board"><%=content[0]%></li>
+                            <li class="writer"><%=content[1]%></li>
+                            <li class="title"><%=content[2]%></li>
+                            <li class="content"><%=content[3]%></li>
                             <li class="comments">
                                 <button class="comment"></button>
                                 댓글 수
@@ -73,11 +65,10 @@
                             </li>
                         </div>
                     <%
-
                             }
-                        } catch (ArrayIndexOutOfBoundsException ignored) {
+                        } catch (ArrayIndexOutOfBoundsException | NullPointerException ignored) {
 
-                        };
+                        }
                     %>
             </section>
         </article>
