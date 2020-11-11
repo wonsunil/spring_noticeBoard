@@ -35,4 +35,11 @@ public class UserServiceImpl implements UserService {
 
         return userColumnData;
     };
+
+    @Override
+    public List<User> getUserByLogin(String email, String password) {
+        List<User> user = mapper.getUserByLogin(email, password);
+
+        return user;
+    };
 }

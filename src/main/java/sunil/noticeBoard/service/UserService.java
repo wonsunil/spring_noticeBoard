@@ -9,8 +9,12 @@ import java.util.List;
 @Service
 public interface UserService {
     List<User> getAllUser();
-    List<User> getUserByEmail(@Param("email")String email);
+    List<User> getUserByEmail(@Param("email") String email);
     List<User> getUserColumnByCondition(
             String columnName, String condition, String value
+    );
+    List<User> getUserByLogin(
+            @Param("email") String email,
+            @Param("password") String password
     );
 };
