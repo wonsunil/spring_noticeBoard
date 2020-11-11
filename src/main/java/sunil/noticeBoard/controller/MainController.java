@@ -10,7 +10,6 @@ import sunil.noticeBoard.service.ContentService;
 import sunil.noticeBoard.service.UserService;
 
 import javax.servlet.http.HttpSession;
-import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -29,7 +28,7 @@ public class MainController {
     };
 
     @GetMapping("/main")
-    public String goToMainPageGet(Model model, HttpSession session) throws SQLException {
+    public String goToMainPageGet(Model model, HttpSession session) {
         String email = (String) session.getAttribute("email");
 
         if(email != null) {
