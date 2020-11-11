@@ -8,7 +8,7 @@ public class OracleConnection {
     Console console = new Console();
 
     private ResultSet rs = null;
-    private final String url = "jdbc:oracle:thin:@localhost:7997:orcl";
+    private final String url = "jdbc:oracle:thin:@SYS2020DV034.home.e-kmall.com:4163:orcl";
     private final Connection conn = DriverManager.getConnection(url, "sunil", "1234");;
     private PreparedStatement pstmt = null;
 
