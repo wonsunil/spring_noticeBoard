@@ -11,8 +11,6 @@ public interface UserService {
     List<User> getAllUser();
     List<User> getUserByEmail(@Param("email")String email);
     List<User> getUserColumnByCondition(
-            @Param("columnName")String columnName,
-            @Param("condition")String condition,
-            @Param("value")String value
+            String columnName, String condition, String value
     );
 };

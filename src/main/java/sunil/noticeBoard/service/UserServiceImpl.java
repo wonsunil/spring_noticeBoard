@@ -28,7 +28,9 @@ public class UserServiceImpl implements UserService {
     };
 
     @Override
-    public List<User> getUserColumnByCondition(String columnName, String condition, String value) {
+    public List<User> getUserColumnByCondition(
+            String columnName, String condition, String value
+    ) {
         List<User> userColumnData = mapper.getUserColumnByCondition(columnName, condition, value);
 
         return userColumnData;
