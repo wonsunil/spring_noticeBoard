@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sunil.noticeBoard.mapper.ContentMapper">
+    <select id="getAllContent" resultType="sunil.noticeBoard.model.Content">
+        SELECT * FROM CONTENT_INFO
+    </select>
+    <select id="getContentByEmail" resultType="sunil.noticeBoard.model.Content">
+        SELECT * FROM CONTENT_INFO WHERE WRITER=#{email}
+    </select>
+    <select id="getContentByContentName" resultType="sunil.noticeBoard.model.Content">
+        SELECT * FROM CONTENT_INFO WHERE CONTNET_NAME = #{contentName}
+        UNION
+        SELECT * FROM CONTENT_INFO WHERE CONTENT_NAME LIKE '%'+#{contentName}+'%'
+        UNION
+        SELECT * FROM CONTENT_INFO WHERE CONTENT_NAME LIKE '%'+#{contentName}
+        UNION
+        SELECT * FROM CONTENT_INFO WHERE CONTENT_NAME LIKE #{contentName}+'%'
+    </select>
+</mapper>

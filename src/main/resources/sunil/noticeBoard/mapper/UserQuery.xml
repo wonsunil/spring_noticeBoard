@@ -9,6 +9,6 @@
         SELECT EMAIL, NAME, PHONE, RANK FROM USER_INFO WHERE EMAIL = #{email}
     </select>
     <select id="getUserColumnByCondition" resultType="sunil.noticeBoard.model.User">
-        SELECT EMAIL FROM USER_INFO WHERE #{condition} = #{value}
+        SELECT #{columnName} FROM USER_INFO WHERE #{condition} = #{value}
     </select>
 </mapper>
