@@ -1,2 +1,11 @@
-package sunil.noticeBoard.mapper;public interface ContentMapper {
-}
+package sunil.noticeBoard.mapper;
+
+import sunil.noticeBoard.model.Content;
+
+import java.util.List;
+
+public interface ContentMapper {
+    List<Content> getAllContent();
+    List<Content> getContentByEmail(String email);
+    List<Content> getContentByContentName(String contentName);
+};
