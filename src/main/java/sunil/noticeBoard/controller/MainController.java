@@ -4,20 +4,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import sunil.noticeBoard.DataList;
-import sunil.noticeBoard.model.User;
+import sunil.noticeBoard.model.Content;
+import sunil.noticeBoard.service.ContentService;
 import sunil.noticeBoard.service.UserService;
 
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
 public class MainController {
     @Autowired
     UserService userService;
+
+    @Autowired
+    ContentService contentService;
 
     DataList dataList = new DataList();
 
@@ -29,30 +31,19 @@ public class MainController {
     @GetMapping("/main")
     public String goToMainPageGet(Model model, HttpSession session) throws SQLException {
         String email = (String) session.getAttribute("email");
-        String sql = "SELECT WRITER FROM CONTENT_INFO WHERE WRITER='"+email+"'";
-        String sql2 = "SELECT EMAIL FROM COMMENTS WHERE EMAIL='"+email+"'";
-        String sql3 = "select EMAIL FROM LIKES WHERE EMAIL='"+email+"'";
 
-        List<User> userColumnDataList = userService.getUserColumnByCondition("WRITER", "WRITER", email);
-        User[] userColumnDataArray = userColumnDataList.toArray(new User[userColumnDataList.size()]);
+        if(email != null) {
+            List<Content> writtenContentList = contentService.getContentByEmail(email);
+            Content[] writtenContentArray = writtenContentList.toArray(new Content[0]);
 
-        System.out.print(userColumnDataArray);
-        System.out.print(Arrays.toString(userColumnDataArray));
+            model.addAttribute("writtenContentArray", writtenContentArray);
+        };
 
-        String[] contentWriterList = dataList.getList(sql, new String[0]);
-        model.addAttribute("contentWriterList", contentWriterList);
+        List<Content> allContentList = contentService.getAllContent();
+        Content[] allContentArray = allContentList.toArray(new Content[allContentList.size()]);
 
-        String[] commentWriterList = dataList.getList(sql2, new String[0]);
-        model.addAttribute("commentWriterList", commentWriterList);
+        model.addAttribute("allContentArray", allContentArray);
 
-        String[] likeContentsList = dataList.getList(sql3, new String[0]);
-        model.addAttribute("likeContentsList", likeContentsList);
-
-        return "main";
-    };
-
-    @PostMapping("/main")
-    public String goToMainPagePost() {
         return "main";
     };
 }
