@@ -1,6 +1,6 @@
 package sunil.noticeBoard.model;
 
-public class Comments {
+public class Comment {
     private String email;
     private String content_code;
     private String comment_content;
