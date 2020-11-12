@@ -6,7 +6,7 @@
         SELECT * FROM CONTENT_INFO
     </select>
     <select id="getContentByEmail" resultType="sunil.noticeBoard.model.Content">
-        SELECT * FROM CONTENT_INFO WHERE WRITER=#{email}
+        SELECT * FROM CONTENT_INFO WHERE WRITER = #{email}
     </select>
     <select id="getContentByContentName" resultType="sunil.noticeBoard.model.Content">
         SELECT * FROM CONTENT_INFO WHERE CONTNET_NAME = #{contentName}
