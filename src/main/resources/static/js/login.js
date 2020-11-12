@@ -1,31 +1,20 @@
 window.onload = function() {
     const $email = document.querySelector("#email");
-    const $password = document.querySelector("#password");
-    const $check = document.querySelector("#check");
+    const emailTypeCheck = function(email) {
+        const emailCheckResult = email.match(new RegExp(/[A-Z|a-z|0-9]*@[A-Za-z0-9]*\.[A-Z|a-z]{2,3}/g));
 
-    $email.addEventListener("keydown", function(event) {
-        const { target, key } = event;
-
-        if(key === "Enter" || key === "Tab") {
-            event.preventDefault();
-            let check = true;
-
-            if(!emailTypeCheck(target.value)) {
-                $check.innerHTML = "이메일 형식이 잘못되었습니다";
-
-                check = false;
-                return $email.focus();
-            };
-
-            $check.innerHTML = "";
-
-            if(check) $password.focus();
-        };
-    });
+        return !!emailCheckResult;
+    };
 
     document.forms[0].addEventListener("submit", function(event) {
         event.preventDefault();
 
-        if($check.innerHTML === "") this.submit();
+        if(!emailTypeCheck($email.value)) {
+            alert("이메일 형식이 잘못되었습니다");
+
+            return $email.focus();
+        };
+
+        return this.submit();
     });
 };
