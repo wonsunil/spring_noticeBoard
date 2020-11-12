@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Main Page</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
 <div id="wrap">
@@ -28,7 +28,7 @@
             <%
                 if (session.getAttribute("email") != null) {
             %>
-            <li id="name">이름 : <a href="/user/profile"><%=session.getAttribute("name")%>
+            <li id="name">이름 : <a href="/user/profile?email=<%= (String) session.getAttribute("email")%>"><%=session.getAttribute("name")%>
             </a></li>
             <li id="rank">등급 : <%=session.getAttribute("rank")%>
             </li>
