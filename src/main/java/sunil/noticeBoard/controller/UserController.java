@@ -2,6 +2,7 @@ package sunil.noticeBoard.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import sunil.noticeBoard.model.User;
@@ -79,7 +80,19 @@ public class UserController {
     };
 
     @GetMapping("/user/profile")
-    public String goToProfilePage() {
+    public String goToProfilePage(Model model, HttpServletRequest request, HttpSession session) {
+        if(session.getAttribute("email") == null) {
+            return "redirect:/user/account/logout";
+        };
+
+        String email = (String) request.getAttribute("email");
+        String name = (String) request.getAttribute("name");
+        String phone = (String) request.getAttribute("phone");
+
+        model.addAttribute("email", email);
+        model.addAttribute("name", name);
+        model.addAttribute("phone", phone);
+
         return "user/profile";
     };
 
