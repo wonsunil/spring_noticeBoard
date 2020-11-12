@@ -17,7 +17,12 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/user/account/login")
-    public String goToLoginPageGet() {
+    public String goToLoginPageGet(HttpSession session) {
+        String email = (String) session.getAttribute("email");
+
+        if(email != null)
+            return "redirect:/main";
+
         return "user/account/login";
     };
 
@@ -29,9 +34,7 @@ public class UserController {
         List<User> userList = userService.getUserByLogin(email, password);
         User[] user = userList.toArray(new User[0]);
 
-        String url = "/user/account/login";
-
-        if (user != null) {
+        if (user.length > 0) {
             try{
                 session.setAttribute("email", user[0].toArray()[0]);
                 session.setAttribute("name", user[0].toArray()[1]);
@@ -50,14 +53,19 @@ public class UserController {
 
     @GetMapping("/user/account/register")
     public String goToRegisterPageGet() {
-
-
         return "user/account/register";
     };
 
     @PostMapping("/user/account/register")
-    public String goToRegisterPagePost() {
-        return "user/account/register";
+    public String goToRegisterPagePost(HttpServletRequest request) {
+        String email = request.getParameter("email");
+        String name = request.getParameter("name");
+        String password = request.getParameter("password");
+        String phone = request.getParameter("phone");
+
+        userService.insertUser(email, name, password, phone);
+
+        return "redirect:/main";
     };
 
     @GetMapping("/user/account/logout")
@@ -76,12 +84,7 @@ public class UserController {
     };
 
     @GetMapping("/user/account/duplicate_check")
-    public String goToDuplicateCheck() {
-        return "user/account/duplicateCheck";
-    };
-
-    @PostMapping("/user/account/duplicate_check")
-    public String goToDuplicateCheck2() {
-        return "user/account/duplicateCheck";
+    public String block() {
+        return "/main";
     };
 }

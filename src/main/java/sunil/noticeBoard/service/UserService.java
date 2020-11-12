@@ -17,4 +17,10 @@ public interface UserService {
             @Param("email") String email,
             @Param("password") String password
     );
+    void insertUser(
+            @Param("email") String email,
+            @Param("name") String name,
+            @Param("password") String password,
+            @Param("phone") String phone
+    );
 };

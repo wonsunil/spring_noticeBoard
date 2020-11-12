@@ -14,4 +14,7 @@
     <select id="getUserByLogin" resultType="sunil.noticeBoard.model.User">
         SELECT EMAIL, NAME, PHONE, RANK FROM USER_INFO WHERE EMAIL = #{email} AND PASSWORD = #{password}
     </select>
+    <insert id="insertUser">
+        INSERT INTO USER_INFO VALUES (#{email}, #{name}, #{password}, #{phone}, 'Nomal')
+    </insert>
 </mapper>

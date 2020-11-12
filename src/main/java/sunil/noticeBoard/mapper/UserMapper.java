@@ -10,5 +10,5 @@ public interface UserMapper {
     List<User> getUserColumnByCondition(String columnName, String condition, String value);
     List<User> getUserByLogin(String email, String password);
 
-    void insertMemberData(User member);
+    void insertUser(String email, String name, String password, String phone);
 };
