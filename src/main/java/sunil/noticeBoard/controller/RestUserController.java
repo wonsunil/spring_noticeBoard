@@ -1,10 +1,13 @@
 package sunil.noticeBoard.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import sunil.noticeBoard.model.Follow;
 import sunil.noticeBoard.model.User;
-import sunil.noticeBoard.model.Content;
-import sunil.noticeBoard.service.ContentService;
+import sunil.noticeBoard.service.FollowService;
 import sunil.noticeBoard.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +18,10 @@ public class RestUserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/getAllUser")
+    @Autowired
+    FollowService followService;
+
+    @GetMapping("/user/all-users")
     public List<User> getAllUser() {
         List<User> userList = userService.getAllUser();
 
@@ -36,14 +42,19 @@ public class RestUserController {
         return true;
     };
 
-    @Autowired
-    ContentService contentService;
+    @GetMapping("/user/user-follower")
+    public Follow[] getUserFollower(@RequestParam String email) {
+        List<Follow> followerList = followService.getFollower(email);
+        Follow[] followers = followerList.toArray(new Follow[0]);
 
-    @GetMapping("/content/user-content")
-    public Content[] userContent(@RequestParam String email) {
-        List<Content> contentList = contentService.getContentByEmail(email);
-        Content[] contents = contentList.toArray(new Content[0]);
+        return followers;
+    };
 
-        return contents;
+    @GetMapping("/user/user-following")
+    public Follow[] getUserFollowing(@RequestParam String email) {
+        List<Follow> followingList = followService.getFollowing(email);
+        Follow[] following = followingList.toArray(new Follow[0]);
+
+        return following;
     };
 };
