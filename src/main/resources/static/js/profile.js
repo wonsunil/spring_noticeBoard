@@ -1,10 +1,11 @@
 window.onload = function() {
-    HTMLElement.prototype.render = function(arr) {
+    HTMLElement.prototype.contentRender = function(arr) {
         arr.map(item => {
             this.insertAdjacentHTML("beforeend", `
-                <div class="contents">
+                <div class="content" data-code=${item.contentCode}>
                 <li class="board">${item.boardName}</li>
                 <li class="writer">${item.writer}</li>
+                <li class="title">${item.contentName}</li>
                 <li class="content">${item.content}</li>
                 </div>
             `
@@ -24,18 +25,20 @@ window.onload = function() {
         rankPopup();
     });
 
-    const xhr = new XMLHttpRequest();
     const $email = document.querySelector("#email");
+    const email = $email.innerHTML.trim().split(":")[1].trim();
+    const $contents = document.querySelector("#contents");
+
+    const xhr = new XMLHttpRequest();
 
     xhr.responseType = "json";
-    xhr.open("GET", `/content/user-content?email=${$email.innerHTML}`);
-    xhr.send();
+    xhr.open("GET", `/content/user-content?email=${email}`);
 
-    const $userContent = document.querySelector("#user-content");
+    xhr.send();
 
     xhr.onreadystatechange = function() {
         if(xhr.readyState === 4) {
-            $userContent.render(xhr.response);
+            $contents.contentRender(xhr.response);
         };
     };
 };
