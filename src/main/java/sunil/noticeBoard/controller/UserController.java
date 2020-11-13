@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import sunil.noticeBoard.model.User;
 import sunil.noticeBoard.service.UserService;
 
@@ -80,18 +81,17 @@ public class UserController {
     };
 
     @GetMapping("/user/profile")
-    public String profilePage(Model model, HttpServletRequest request, HttpSession session) {
-        if(session.getAttribute("email") == null) {
-            return "redirect:/user/account/logout";
-        };
+    public String profilePage(Model model, HttpServletRequest request, HttpSession session, @RequestParam String email) {
+        List<User> userList = userService.getUserByEmail(email);
+        User[] user = userList.toArray(new User[0]);
 
-        String email = (String) request.getAttribute("email");
-        String name = (String) request.getAttribute("name");
-        String phone = (String) request.getAttribute("phone");
+       try{
+           model.addAttribute("email", user[0].toArray()[0]);
+           model.addAttribute("name", user[0].toArray()[1]);
+           model.addAttribute("phone", user[0].toArray()[2]);
+       } catch(ArrayIndexOutOfBoundsException ignored) {
 
-        model.addAttribute("email", email);
-        model.addAttribute("name", name);
-        model.addAttribute("phone", phone);
+       }
 
         return "user/profile";
     };
