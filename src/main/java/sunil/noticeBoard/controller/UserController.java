@@ -53,12 +53,12 @@ public class UserController {
     };
 
     @GetMapping("/user/account/register")
-    public String goToRegisterPageGet() {
+    public String registerPage() {
         return "user/account/register";
     };
 
     @PostMapping("/user/account/register")
-    public String goToRegisterPagePost(HttpServletRequest request) {
+    public String register(HttpServletRequest request) {
         String email = request.getParameter("email");
         String name = request.getParameter("name");
         String password = request.getParameter("password");
@@ -70,7 +70,7 @@ public class UserController {
     };
 
     @GetMapping("/user/account/logout")
-    public String goToMain(HttpSession session) {
+    public String logout(HttpSession session) {
         session.setAttribute("email", null);
         session.setAttribute("name", null);
         session.setAttribute("phone", null);
@@ -80,7 +80,7 @@ public class UserController {
     };
 
     @GetMapping("/user/profile")
-    public String goToProfilePage(Model model, HttpServletRequest request, HttpSession session) {
+    public String profilePage(Model model, HttpServletRequest request, HttpSession session) {
         if(session.getAttribute("email") == null) {
             return "redirect:/user/account/logout";
         };
@@ -98,6 +98,6 @@ public class UserController {
 
     @GetMapping("/user/account/duplicate_check")
     public String block() {
-        return "/main";
+        return "redirect:/main";
     };
 }
