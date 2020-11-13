@@ -10,6 +10,7 @@
 <head>
     <title>Main Page</title>
     <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/main.js"></script>
 </head>
 <body>
 <div id="wrap">
@@ -48,6 +49,11 @@
             <img src="/images/banner.jpg" alt="banner image" id="banner-img">
         </section>
         <section id="notice-board">
+<%--            <select id="align-option">--%>
+<%--                <option value="updated_date">날짜순</option>--%>
+<%--                <option value="liked">좋아요순</option>--%>
+<%--            </select>--%>
+            <button><a href="/content/content-write">글쓰기</a></button>
             <%
                 try {
                     for (int i = 0, limit = allContents.length; i < limit; i++) {
@@ -77,4 +83,18 @@
     </article>
 </div>
 </body>
+<script>
+    const email = "${email}";
+
+    const $write = document.querySelector("#notice-board > button");
+    $write.addEventListener("click", function(event) {
+        if(email == "") {
+            event.preventDefault();
+
+            alert("로그인한 유저만 접근 가능합니다");
+
+            return location.href = "/user/account/login";
+        };
+    });
+</script>
 </html>
