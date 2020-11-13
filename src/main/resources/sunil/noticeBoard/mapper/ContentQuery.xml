@@ -14,11 +14,11 @@
     <select id="getContentByContentName" resultType="sunil.noticeBoard.model.Content">
         SELECT * FROM CONTENT_INFO WHERE CONTNET_NAME = #{contentName}
         UNION
-        SELECT * FROM CONTENT_INFO WHERE CONTENT_NAME LIKE '%'+#{contentName}+'%'
+        SELECT * FROM CONTENT_INFO WHERE CONTENT_NAME LIKE %#{contentName}%
         UNION
-        SELECT * FROM CONTENT_INFO WHERE CONTENT_NAME LIKE '%'+#{contentName}
+        SELECT * FROM CONTENT_INFO WHERE CONTENT_NAME LIKE %#{contentName}%
         UNION
-        SELECT * FROM CONTENT_INFO WHERE CONTENT_NAME LIKE #{contentName}+'%'
+        SELECT * FROM CONTENT_INFO WHERE CONTENT_NAME LIKE #{contentName}%
     </select>
     <insert id="insertContent">
         INSERT INTO CONTENT_INFO VALUES (#{boardName}, #{writer}, #{contentName}, #{content}, #{code}, #{date}, #{likes})
