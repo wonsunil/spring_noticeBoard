@@ -28,5 +28,6 @@
         <li>파일 첨부 : </li><input type="file">
         <input type="submit" value="글쓰기">
     </form>
+    <button><a href="/main">메인</a></button>
 </body>
 </html>
