@@ -2,7 +2,7 @@ window.onload = function() {
     HTMLElement.prototype.contentRender = function(arr) {
         arr.map(item => {
             this.insertAdjacentHTML("beforeend", `
-                <div class="content" data-code=${item.contentCode}>
+                <div class="contents" data-code=${item.contentCode}>
                 <li class="board">${item.boardName}</li>
                 <li class="writer">${item.writer}</li>
                 <li class="title">${item.contentName}</li>
@@ -27,6 +27,7 @@ window.onload = function() {
 
     const $email = document.querySelector("#email");
     const email = $email.innerHTML.trim().split(":")[1].trim();
+
     const $contents = document.querySelector("#contents");
 
     const xhr = new XMLHttpRequest();
