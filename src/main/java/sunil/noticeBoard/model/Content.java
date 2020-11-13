@@ -6,6 +6,8 @@ public class Content {
     private String content_name;
     private String content;
     private String content_code;
+    private String updated_date;
+    private int likes;
 
     public String getBoardName() {
         return notice_board;
@@ -21,6 +23,12 @@ public class Content {
     };
     public String getContent_code() {
         return content_code;
+    };
+    public String getUpdated_date() {
+        return updated_date;
+    };
+    public int getLikes() {
+        return likes;
     };
 
     public void setBoardName(String boardName) {
@@ -40,7 +48,7 @@ public class Content {
     };
 
     public String[] toArray() {
-        String[] contentArray = {this.notice_board, this.writer, this.content_name, this.content, this.content_code};
+        String[] contentArray = {notice_board, writer, content_name, content, content_code, updated_date, String.valueOf(likes)};
 
         return contentArray;
     };
