@@ -25,9 +25,21 @@ public class ContentServiceImpl implements ContentService {
 
         return contentList;
     };
+
+    @Override
     public List<Content> getContentByContentName(String contentName) {
         List<Content> contentList = mapper.getContentByContentName(contentName);
 
         return contentList;
+    };
+
+    @Override
+    public List<Content> getContentByCondition(String condition) {
+        return mapper.getContentByCondition(condition);
+    };
+
+    @Override
+    public void insertContent(String boardName, String writer, String contentName, String content, String code, String date, int likes) {
+        mapper.insertContent(boardName, writer, contentName, content, code, date, likes);
     };
 };
