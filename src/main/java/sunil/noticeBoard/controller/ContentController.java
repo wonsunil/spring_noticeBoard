@@ -30,9 +30,7 @@ public class ContentController {
 
         List<Content> userWrittenContentList = contentService.getContentByEmail(writer);
         Content[] contents = userWrittenContentList.toArray(new Content[0]);
-        String code = writer + "_" + contents.length+1;
-
-        System.out.print(new String[]{boardName, writer, contentName, content, date, code});
+        String code = writer + "_" + (contents.length+1);
 
         contentService.insertContent(boardName, writer, contentName, content, code, date, 0);
 
