@@ -38,11 +38,6 @@
             flex-direction: column;
         }
 
-        #follow{
-            width: 100%;
-            height: 35%;
-        }
-
         .contents{
             width: 100%;
             display: flex;
@@ -62,7 +57,7 @@
 <body>
 <article id="wrap">
     <section id="user-info">
-        <ul id="user-profile">
+        <ul id="user-data">
             <li id="email">이메일 : ${email}</li>
             <li id="name">이름 : ${name}</li>
             <li id="phone">전화번호 : ${phone}</li>
@@ -75,11 +70,12 @@
         </ul>
     </section>
     <section id="user-content">
-        <div id="profile-doc">
-            <%-- 유저 본인이 작성 / 마크다운으로 가능하게 하고 싶음 --%>
+        <div id="profile">
+            <%-- 기본 프로필만 있고 유저가 프로필 작성 --%>
         </div>
-        <div id="contents"> <%-- 문서 로딩시 자동으로 추가됨 --%>
-
+        <div id="contents">
+            <%-- 문서 로딩시 자동으로 추가됨 --%>
+            <%-- 정렬기능 추가 예정 --%>
         </div>
     </section>
 </article>
