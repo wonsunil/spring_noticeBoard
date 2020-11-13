@@ -14,6 +14,14 @@ public class RestContentController {
     @Autowired
     ContentService contentService;
 
+    @GetMapping("/content/align-content")
+    public Content[] getContents(@RequestParam String condition) {
+        List<Content> contentList = contentService.getContentByCondition(condition);
+        Content[] contents = contentList.toArray(new Content[0]);
+
+        return contents;
+    };
+
     @GetMapping("/content/user-content")
     public Content[] userContent(@RequestParam String email) {
         List<Content> contentList = contentService.getContentByEmail(email);
