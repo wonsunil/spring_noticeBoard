@@ -1,9 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="sunil.noticeBoard.model.Content" %>
+<%@ page import="sunil.noticeBoard.Pagination" %>
 
 <%
     Content[] allContents = (Content[]) request.getAttribute("allContentArray");
     Content[] writtenContentArray = (Content[]) request.getAttribute("writtenContentArray");
+
+    Pagination pagination = new Pagination();
+
+    pagination.getRange();
 %>
 
 <html>
@@ -49,17 +54,13 @@
             <img src="/images/banner.jpg" alt="banner image" id="banner-img">
         </section>
         <section id="notice-board">
-<%--            <select id="align-option">--%>
-<%--                <option value="updated_date">날짜순</option>--%>
-<%--                <option value="liked">좋아요순</option>--%>
-<%--            </select>--%>
             <div id="additional-function">
                 <button id="write"><a href="/content/content-write">글쓰기</a></button>
                 <input type="text" id="search-content" placeholder="게시글 검색">
             </div>
 
             <%
-                // 게시글 출력부분 / limit 10개
+                // 게시글 출력부
                 try {
                     for (int i = 0, limit = 10; i < limit; i++) {
                         String[] content = allContents[i].toArray();
@@ -85,13 +86,13 @@
 
                 };
             %>
-            <div id="paging">
+            <div id="pagination">
             <%
                 if(allContents.length > 10) {
-                // 게시글이 10개가 넘으면 페이징 처리를 위한 앵커태그 생성부
-                    for (int i = 1, limit = allContents.length % 10 + 1; i <= limit; i++) {
+                // 페이징 처리를 위한 앵커태그 생성부
+                    for (int i = 1, limit = 2; i <= limit; i++) {
             %>
-                <li class="page-nation"><a href="?page=<%=i%>"><%=i%></a></li>
+                <li class=<%=pagination.getCurrentPage() == i ? "current-page" : ""%>><a href="?page=<%=i%>"><%=i%></a></li>
             <%
                     };
                 };
@@ -106,7 +107,7 @@
 
     const $write = document.querySelector("#write");
     $write.addEventListener("click", function(event) {
-        if(email == "") {
+        if(email === "") {
             event.preventDefault();
 
             alert("로그인한 유저만 접근 가능합니다");
