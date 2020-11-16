@@ -40,6 +40,13 @@ html, body{
     height: 65%;
     border: 1px solid black;
 }
+
+#additional-function{
+    width: auto;
+    height: 50px;
+    margin-top: 25px;
+}
+
 .notice-item{
     width: 100%;
     display: flex;
@@ -53,3 +60,18 @@ html, body{
 .notice-item > .content{
     width: calc(100%/2);
 }
+
+#paging {
+    display: flex;
+    text-align: center;
+    margin-top: 30px;
+}
+#paging > li {
+    width: 30px;
+    background: #ededed;
+    padding: 3px;
+    border: 1px solid black;
+}
+#paging > li:hover{ background: #858383; }
+#paging > li:hover > a{ color: white; }
+#paging > li > a{ display: block; }
