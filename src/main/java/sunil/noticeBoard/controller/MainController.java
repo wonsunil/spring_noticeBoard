@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import sunil.noticeBoard.DataList;
+import sunil.noticeBoard.Pagination;
 import sunil.noticeBoard.model.Content;
 import sunil.noticeBoard.service.ContentService;
 import sunil.noticeBoard.service.UserService;
@@ -37,12 +38,12 @@ public class MainController {
 
             model.addAttribute("writtenContentArray", writtenContentArray);
         };
-
+        Pagination page = new Pagination();
         List<Content> allContentList = contentService.getAllContent();
         Content[] allContentArray = allContentList.toArray(new Content[allContentList.size()]);
 
         model.addAttribute("allContentArray", allContentArray);
-
+        model.addAttribute("paging", page);
         return "main";
     };
 }
