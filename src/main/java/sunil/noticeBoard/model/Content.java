@@ -9,7 +9,7 @@ public class Content {
     private String updated_date;
     private int likes;
 
-    public String getBoardName() {
+    public String getNoticeBoard() {
         return notice_board;
     };
     public String getWriter() {
@@ -21,18 +21,18 @@ public class Content {
     public String getContent() {
         return content;
     };
-    public String getContent_code() {
+    public String getContentCode() {
         return content_code;
     };
-    public String getUpdated_date() {
+    public String getUpdatedDate() {
         return updated_date;
     };
     public int getLikes() {
         return likes;
     };
 
-    public void setBoardName(String boardName) {
-        this.notice_board = boardName;
+    public void setNoticeBoard(String noticeBoard) {
+        this.notice_board = noticeBoard;
     };
     public void setWriter(String writer) {
         this.writer = writer;
@@ -45,6 +45,12 @@ public class Content {
     };
     public void setContent_code(String content_code) {
         this.content_code = content_code;
+    };
+    public void setUpdatedDate(String date) {
+        this.updated_date = date;
+    };
+    public void setLikes(int likes) {
+        this.likes = likes;
     };
 
     public String[] toArray() {
