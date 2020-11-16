@@ -3,55 +3,7 @@
 <html>
 <head>
     <title>Title</title>
-    <style>
-        *{ margin: 0; padding: 0; }
-        a{ text-decoration: none; }
-        li{ list-style: none; }
-
-        #wrap {
-            width: 90%;
-            height: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            position: absolute;
-            left: 5%;
-        }
-
-        #user-info{
-            width: 20%;
-            height: 100%;
-        }
-
-        #user-activity{
-            display: flex;
-            padding: 5px;
-            box-sizing: border-box;
-        }
-        #user-activity > li{
-            margin-right: 5px;
-        }
-
-        #user-content{
-            width: 80%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .contents{
-            width: 100%;
-            display: flex;
-            border: 1px solid black;
-            text-align: center;
-        }
-        .contents > li{
-            width: calc(100%/9);
-            border-right: 1px solid black;
-        }
-        .contents > li.content{
-            width: calc(100%/2);
-        }
-    </style>
+    <link rel="stylesheet" href="/css/profile.css">
     <script src="/js/profile.js"></script>
 </head>
 <body>
@@ -88,20 +40,4 @@
     </div>
 </article>
 </body>
-<script>
-    const $email = document.querySelector("#email");
-    const email = $email.innerHTML.trim().split(":")[1].trim();
-
-    const xhr = new XMLHttpRequest();
-
-    xhr.responseType = "json";
-    xhr.open("GET", "user/user-follower?="+email);
-    xhr.send();
-
-    xhr.onreadystatechange = function() {
-        if(xhr.readyState === 4) {
-            console.log(xhr.response);
-        };
-    };
-</script>
 </html>
