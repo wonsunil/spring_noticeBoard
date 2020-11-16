@@ -40,8 +40,8 @@ public class RestContentController {
     };
 
     @PostMapping("/content/rewrite")
-    public Boolean rewriteContent(String content, String code) {
-        contentService.rewriteContent(content, code);
+    public Boolean rewriteContent(String content, String date, String code) {
+        contentService.rewriteContent(content, date, code);
 
         return true;
     };

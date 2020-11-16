@@ -21,6 +21,6 @@
         INSERT INTO CONTENT_INFO VALUES (#{noticeBoard}, #{writer}, #{contentName}, #{content}, #{contentCode}, #{updatedDate}, #{likes})
     </insert>
     <update id="rewriteContent">
-        UPDATE CONTENT_INFO SET CONTENT = #{content} WHERE CONTENT_CODE = #{code}
+        UPDATE CONTENT_INFO SET CONTENT = #{content}, UPDATED_DATE = #{date} WHERE CONTENT_CODE = #{code}
     </update>
 </mapper>
