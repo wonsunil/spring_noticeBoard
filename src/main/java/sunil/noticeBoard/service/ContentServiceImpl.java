@@ -39,7 +39,7 @@ public class ContentServiceImpl implements ContentService {
     };
 
     @Override
-    public void insertContent(String boardName, String writer, String contentName, String content, String code, String date, int likes) {
-        mapper.insertContent(boardName, writer, contentName, content, code, date, likes);
+    public void insertContent(Content content) {
+        mapper.insertContent(content);
     };
 };
