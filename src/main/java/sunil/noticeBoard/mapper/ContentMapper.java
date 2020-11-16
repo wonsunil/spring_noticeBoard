@@ -8,6 +8,7 @@ public interface ContentMapper {
     List<Content> getAllContent();
     List<Content> getContentByEmail(String email);
     List<Content> getContentByContentName(String contentName);
-    List<Content> getContentByCondition(String condition);
+    List<Content> getSearchByContentName(String contentName);
     void insertContent(Content content);
+    void rewriteContent(String content, String code);
 };

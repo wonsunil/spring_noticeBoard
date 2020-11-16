@@ -34,12 +34,17 @@ public class ContentServiceImpl implements ContentService {
     };
 
     @Override
-    public List<Content> getContentByCondition(String condition) {
-        return mapper.getContentByCondition(condition);
+    public List<Content> getSearchByContentName(String contentName) {
+        return mapper.getSearchByContentName(contentName);
     };
 
     @Override
     public void insertContent(Content content) {
         mapper.insertContent(content);
+    };
+
+    @Override
+    public void rewriteContent(String content, String code) {
+        mapper.rewriteContent(content, code);
     };
 };
