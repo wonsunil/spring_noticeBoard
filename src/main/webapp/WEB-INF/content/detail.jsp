@@ -9,15 +9,14 @@
 <head>
     <title>content</title>
     <link rel="stylesheet" href="/css/content_detail.css">
-    <style>
-
-    </style>
+    <script src="/js/content_detail.js"></script>
 </head>
 <body>
     <li id="notice-board">게시판 : ${boardName}</li>
     <li id="writer">작성자 : ${writer}</li>
     <li id="content-name">제목 : ${contentName}</li>
     <textarea name="" id="content" cols="30" rows="10" disabled>${content}</textarea>
+    <textarea name="" id="change" class="editing" cols="30" rows="10">${content}</textarea>
     <%
         if(email != null && email.equals(writer)) {
     %>
@@ -60,27 +59,5 @@
             if(xhr.readyState === 4 && method === "GET") callback(xhr.response);
         };
     };
-
-    const $textarea = document.querySelector("textarea");
-    const $rewriteButton = document.querySelector("#rewrite");
-
-    $rewriteButton?.addEventListener("click", function(event) {
-        $textarea.disabled = false;
-
-        if(document.querySelector("#save") !== null) return false;
-
-        $rewriteButton.insertAdjacentHTML("afterend", "<button id='save'>저장</button>");
-    });
-
-    const $saveButton = document.querySelector("#save");
-    document.body.addEventListener("click", function({ target }) {
-        if(target.getAttribute("id") === "save") {
-            $textarea.disabled = true;
-
-            executeXhr("/content/rewrite", {method: "POST", data: {content: $textarea.value}});
-
-            target.parentNode.removeChild(target)
-        };
-    });
 </script>
 </html>
