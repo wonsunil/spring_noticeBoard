@@ -42,7 +42,7 @@ public class RestUserController {
         return true;
     };
 
-    @GetMapping("/user/user-follower")
+    @GetMapping("/user/follower")
     public Follow[] getUserFollower(@RequestParam String email) {
         List<Follow> followerList = followService.getFollower(email);
         Follow[] followers = followerList.toArray(new Follow[0]);
@@ -50,7 +50,7 @@ public class RestUserController {
         return followers;
     };
 
-    @GetMapping("/user/user-following")
+    @GetMapping("/user/following")
     public Follow[] getUserFollowing(@RequestParam String email) {
         List<Follow> followingList = followService.getFollowing(email);
         Follow[] following = followingList.toArray(new Follow[0]);
