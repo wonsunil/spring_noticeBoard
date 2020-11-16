@@ -3,7 +3,7 @@ window.onload = function() {
         arr.map(item => {
             this.insertAdjacentHTML("beforeend", `
                 <div class="contents" data-code=${item.contentCode}>
-                <li class="board">${item.boardName}</li>
+                <li class="board">${item.noticeBoard}</li>
                 <li class="writer">${item.writer}</li>
                 <li class="title">${item.contentName}</li>
                 <li class="content">${item.content}</li>
