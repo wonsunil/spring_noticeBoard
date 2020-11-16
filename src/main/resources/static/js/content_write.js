@@ -1,5 +1,5 @@
 window.onload = function() {
-    function getFormatDate(date){
+    const getDate = function(date) {
         const year = date.getFullYear();
 
         let month = (1 + date.getMonth());
@@ -9,9 +9,11 @@ window.onload = function() {
         day = day >= 10 ? day : '0' + day;
 
         return  year + "/" + month + "/" + day;
-    }
+    };
 
-    const file_type_check = img => img.match(new RegExp(/\.png|\.jpg|\.jpeg|\.git|\.bmp/));
+    const file_type_check = function(img) {
+        img.match(new RegExp(/\.png|\.jpg|\.jpeg|\.git|\.bmp/));
+    };
 
     const $form = document.forms[0];
     const $board = $form.children[0];
@@ -30,11 +32,11 @@ window.onload = function() {
             return alert("공백은 넣을 수 없습니다.");
         };
 
-        form.append("boardName", $board.innerHTML);
+        form.append("noticeBoard", $board.innerHTML);
         form.append("writer", $writer.innerHTML.replaceAll(" ", "").split(":")[1]);
         form.append("contentName", $contentName.value);
         form.append("content", $content.value);
-        form.append("date", getFormatDate(new Date()));
+        form.append("updatedDate", getDate(new Date()));
 
         const xhr = new XMLHttpRequest();
 
