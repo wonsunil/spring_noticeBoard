@@ -2,9 +2,11 @@ package sunil.noticeBoard.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import sunil.noticeBoard.model.Content;
 import sunil.noticeBoard.service.ContentService;
 
@@ -34,5 +36,19 @@ public class ContentController {
         contentService.insertContent(content);
 
         return "redirect:/content/content-write";
+    };
+
+    @GetMapping("/content/detail")
+    public String showContentDetail(Model model, @RequestParam String contentName) {
+        List<Content> contentList = contentService.getContentByContentName(contentName);
+        Content[] content = contentList.toArray(new Content[0]);
+
+        model.addAttribute("boardName", content[0].toArray()[0]);
+        model.addAttribute("writer", content[0].toArray()[1]);
+        model.addAttribute("contentName", content[0].toArray()[2]);
+        model.addAttribute("content", content[0].toArray()[3]);
+        model.addAttribute("code", content[0].toArray()[4]);
+
+        return "/content/detail";
     };
 };
