@@ -47,4 +47,9 @@ public class ContentServiceImpl implements ContentService {
     public void rewriteContent(String content, String date, String code) {
         mapper.rewriteContent(content, date, code);
     };
+
+    @Override
+    public void deleteContent(Content content) {
+        mapper.deleteContent(content);
+    };
 };

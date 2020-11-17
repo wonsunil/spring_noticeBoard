@@ -14,6 +14,7 @@ public interface ContentService {
     List<Content> getSearchByContentName(@Param("contentName") String contentName);
     void insertContent(Content content);
     void rewriteContent(String content, String date, String code);
+    void deleteContent(Content content);
 
     // 게시글 고유 번호로 검색 필요하면 추가
 };

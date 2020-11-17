@@ -23,4 +23,8 @@
     <update id="rewriteContent">
         UPDATE CONTENT_INFO SET CONTENT = #{content}, UPDATED_DATE = #{date} WHERE CONTENT_CODE = #{code}
     </update>
+    <delete id="deleteContent">
+        INSERT INTO CONTENT_BACKUP VALUES (#{noticeBoard}, #{writer}, #{contentName}, #{content}, #{contentCode}, #{updatedDate}, #{likes}, #{deleted_date}),
+        DELETE FROM CONTENT_INFO WHERE CONTENT_CODE = #{contentCode}
+    </delete>
 </mapper>
