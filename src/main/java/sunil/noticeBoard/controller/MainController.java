@@ -42,7 +42,11 @@ public class MainController {
         Pagination page = new Pagination();
         page.setRange(allContentArray.length);
 
-        page.setLastPage((int) Math.floor(allContentArray.length / 10) + 1);
+        if((allContentArray.length % 10) != 0)
+            page.setLastPage((int) (Math.floor(allContentArray.length / 10) + 1));
+
+        if(allContentArray.length % 10 == 0)
+            page.setLastPage((int) Math.floor(allContentArray.length / 10));
 
         if(currentPage != null) page.setCurrentPage(Integer.parseInt(currentPage));
 
