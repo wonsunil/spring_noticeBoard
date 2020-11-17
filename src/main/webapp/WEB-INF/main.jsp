@@ -55,7 +55,6 @@
             <div id="additional-function">
                 <button id="write"><a href="/content/content-write">글쓰기</a></button>
                 <input type="text" id="search-content" placeholder="게시글 검색">
-                <button><a href="/user/search">유저 검색</a></button>
             </div>
 
             <%
