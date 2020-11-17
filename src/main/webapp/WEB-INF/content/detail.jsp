@@ -12,24 +12,34 @@
     <script src="/js/content_detail.js"></script>
 </head>
 <body>
-    <li id="notice-board">게시판 : ${boardName}</li>
-    <li id="writer">작성자 : ${writer}</li>
-    <li id="content-name">제목 : ${contentName}</li>
-    <textarea name="" id="content" cols="30" rows="10" disabled>${content}</textarea>
-    <textarea name="" id="change" class="editing" cols="30" rows="10">${content}</textarea>
-    <%
-        if(email != null && email.equals(writer)) {
-    %>
+    <div>
+        <li id="notice-board">게시판 : ${boardName}</li>
+        <li id="writer">작성자 : ${writer}</li>
+        <li id="content-name">제목 : ${contentName}</li>
+        <textarea name="" id="content" cols="30" rows="10" disabled>${content}</textarea>
+        <textarea name="" id="change" class="editing" cols="30" rows="10">${content}</textarea>
+        <%
+            if(email != null && email.equals(writer)) {
+        %>
         <div>
             <button id="rewrite">수정</button>
         </div>
         <div>
             <button id="delete">삭제</button>
         </div>
-    <%
-        };
-    %>
-    <button><a href="/main">메인</a></button>
+        <%
+            };
+        %>
+        <button><a href="/main">메인</a></button>
+        <article id="comment">
+            <section id="comment-box">
+
+            </section>
+            <section>
+
+            </section>
+        </article>
+    </div>
 </body>
 <script>
     const getDate = function(date) {
