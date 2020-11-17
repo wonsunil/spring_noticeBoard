@@ -58,10 +58,13 @@ html, body{
 .notice-item > li{
     width: calc(100%/9);
     border-right: 1px solid black;
+    display: block;
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
 }
-.notice-item > .content{
-    width: calc(100%/2);
-}
+.notice-item > .content{ width: calc(100%/2); }
+.notice-item > li > a{ width: 100%; overflow: hidden; text-overflow: ellipsis; }
 
 #pagination {
     display: flex;
