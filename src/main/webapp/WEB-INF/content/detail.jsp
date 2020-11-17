@@ -23,6 +23,9 @@
         <div>
             <button id="rewrite">수정</button>
         </div>
+        <div>
+            <button id="delete">삭제</button>
+        </div>
     <%
         };
     %>
@@ -44,16 +47,20 @@
         const xhr = new XMLHttpRequest();
         const form = new FormData();
 
+        form.append("noticeBoard", "${boardName}");
+        form.append("writer", "${writer}");
+        form.append("contentName", "${contentName}");
         form.append("content", data.content);
-        form.append("code", "${code}");
-        form.append("date", getDate(new Date()));
+        form.append("contentCode", "${code}");
+        form.append("updatedDate", getDate(new Date()));
 
         try{
             xhr.open(method, url);
 
-            if(data) xhr.send(form);
+            if(method === "POST" || method === "DELETE") xhr.send(form);
             xhr.send();
         } catch(err) {};
+
 
         xhr.onreadystatechange = function() {
             if(xhr.readyState === 4 && method === "GET") callback(xhr.response);
