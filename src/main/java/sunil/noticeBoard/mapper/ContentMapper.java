@@ -10,6 +10,7 @@ public interface ContentMapper {
     List<Content> getContentByContentName(String contentName);
     List<Content> getSearchByContentName(String contentName);
     void insertContent(Content content);
-    void rewriteContent(String content, String date, String code);
+    void insertBackupContent(Content content);
+    void rewriteContent(Content content);
     void deleteContent(Content content);
 };

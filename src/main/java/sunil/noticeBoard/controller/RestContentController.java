@@ -1,10 +1,7 @@
 package sunil.noticeBoard.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import sunil.noticeBoard.model.Content;
 import sunil.noticeBoard.service.ContentService;
 
@@ -40,9 +37,25 @@ public class RestContentController {
     };
 
     @PostMapping("/content/rewrite")
-    public Boolean rewriteContent(String content, String date, String code) {
-        contentService.rewriteContent(content, date, code);
+    public Boolean rewriteContent(@ModelAttribute Content content) {
+        contentService.rewriteContent(content);
 
         return true;
+    };
+
+    @DeleteMapping("/content/delete")
+    public Boolean deleteContent(@ModelAttribute Content content) {
+        content.setDeletedDate(content.getUpdatedDate());
+        contentService.insertBackupContent(content);
+        contentService.deleteContent(content);
+
+        return true;
+    };
+
+    @GetMapping("/content/search")
+    public Content[] searchContent(String contentName) {
+        List<Content> contentList = contentService.getSearchByContentName(contentName);
+
+        return contentList.toArray(new Content[0]);
     };
 };

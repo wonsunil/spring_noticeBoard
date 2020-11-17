@@ -30,7 +30,7 @@ public class ContentController {
         Content[] contents = userWrittenContentList.toArray(new Content[0]);
         String code = writer + "_" + (contents.length+1);
 
-        content.setContent_code(code);
+        content.setContentCode(code);
         content.setLikes(0);
 
         contentService.insertContent(content);

@@ -15,16 +15,18 @@
         SELECT * FROM CONTENT_INFO WHERE CONTENT_NAME = #{contentName}
     </select>
     <select id="getSearchByContentName" resultType="sunil.noticeBoard.model.Content">
-        SELECT * FROM CONTENT_INFO WHERE CONTNET_NAME LIKE #{condition}%
+        SELECT * FROM CONTENT_INFO WHERE CONTNET_NAME LIKE #{contentName}%
     </select>
     <insert id="insertContent">
         INSERT INTO CONTENT_INFO VALUES (#{noticeBoard}, #{writer}, #{contentName}, #{content}, #{contentCode}, #{updatedDate}, #{likes})
     </insert>
+    <insert id="insertBackupContent">
+        INSERT INTO CONTENT_BACKUP VALUES (#{noticeBoard}, #{writer}, #{contentName}, #{content}, #{contentCode}, #{updatedDate}, #{likes}, #{deleted_date})
+    </insert>
     <update id="rewriteContent">
-        UPDATE CONTENT_INFO SET CONTENT = #{content}, UPDATED_DATE = #{date} WHERE CONTENT_CODE = #{code}
+        UPDATE CONTENT_INFO SET CONTENT = #{content}, UPDATED_DATE = #{updatedDate} WHERE CONTENT_CODE = #{contentCode}
     </update>
     <delete id="deleteContent">
-        INSERT INTO CONTENT_BACKUP VALUES (#{noticeBoard}, #{writer}, #{contentName}, #{content}, #{contentCode}, #{updatedDate}, #{likes}, #{deleted_date}),
         DELETE FROM CONTENT_INFO WHERE CONTENT_CODE = #{contentCode}
     </delete>
 </mapper>

@@ -44,8 +44,13 @@ public class ContentServiceImpl implements ContentService {
     };
 
     @Override
-    public void rewriteContent(String content, String date, String code) {
-        mapper.rewriteContent(content, date, code);
+    public void insertBackupContent(Content content) {
+        mapper.insertBackupContent(content);
+    };
+
+    @Override
+    public void rewriteContent(Content content) {
+        mapper.rewriteContent(content);
     };
 
     @Override

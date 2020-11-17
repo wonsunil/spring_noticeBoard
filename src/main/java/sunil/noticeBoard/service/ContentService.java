@@ -13,7 +13,8 @@ public interface ContentService {
     List<Content> getContentByContentName(@Param("contentName") String contentName);
     List<Content> getSearchByContentName(@Param("contentName") String contentName);
     void insertContent(Content content);
-    void rewriteContent(String content, String date, String code);
+    void insertBackupContent(Content content);
+    void rewriteContent(Content content);
     void deleteContent(Content content);
 
     // 게시글 고유 번호로 검색 필요하면 추가

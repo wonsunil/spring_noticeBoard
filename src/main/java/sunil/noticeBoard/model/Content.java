@@ -47,8 +47,8 @@ public class Content {
     public void setContent(String content) {
         this.content = content;
     };
-    public void setContent_code(String content_code) {
-        this.content_code = content_code;
+    public void setContentCode(String contentCode) {
+        this.content_code = contentCode;
     };
     public void setUpdatedDate(String date) {
         this.updated_date = date;
@@ -56,7 +56,7 @@ public class Content {
     public void setLikes(int likes) {
         this.likes = likes;
     };
-    public void setDeleted_date(String date) {
+    public void setDeletedDate(String date) {
         this.deleted_date = date;
     };
 

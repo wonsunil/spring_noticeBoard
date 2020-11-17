@@ -29,5 +29,10 @@ window.onload = function() {
             $textarea.classList.remove("editing");
             $change.classList.add("editing");
         };
+        if(target.getAttribute("id") === "delete") {
+            executeXhr("/content/delete", {method: "DELETE",  data: {content: $textarea.value}});
+
+            location.href = "/main";
+        };
     });
 };
