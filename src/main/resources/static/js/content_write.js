@@ -66,4 +66,11 @@ window.onload = function() {
 
         document.querySelector("#boardName").innerHTML  = value;
     });
+
+    const $textarea = document.forms[0].children[4];
+
+    $textarea.addEventListener("keydown", function(event) {
+        this.style.height = "auto";
+        this.style.height = this.scrollHeight + (this.offsetHeight - this.clientHeight);
+    });
 };
