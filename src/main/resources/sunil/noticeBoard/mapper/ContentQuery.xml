@@ -15,7 +15,7 @@
         SELECT * FROM CONTENT_INFO WHERE CONTENT_NAME = #{contentName}
     </select>
     <select id="getSearchByContentName" resultType="sunil.noticeBoard.model.Content">
-        SELECT * FROM CONTENT_INFO WHERE CONTNET_NAME LIKE #{contentName}%
+        SELECT * FROM CONTENT_INFO WHERE CONTENT_NAME LIKE #{contentName}||'%'
     </select>
     <insert id="insertContent">
         INSERT INTO CONTENT_INFO VALUES (#{noticeBoard}, #{writer}, #{contentName}, #{content}, #{contentCode}, #{updatedDate}, #{likes})
