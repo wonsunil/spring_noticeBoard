@@ -28,14 +28,6 @@ public class RestContentController {
         return contents;
     };
 
-    @GetMapping("/content/user-content-name")
-    public Content[] userContentByContentName(@RequestParam String contentName) {
-        List<Content> contentList = contentService.getSearchByContentName(contentName);
-        Content[] contents = contentList.toArray(new Content[0]);
-
-        return contents;
-    };
-
     @PostMapping("/content/rewrite")
     public Boolean rewriteContent(@ModelAttribute Content content) {
         contentService.rewriteContent(content);
@@ -52,7 +44,7 @@ public class RestContentController {
     };
 
     @GetMapping("/content/search")
-    public Content[] searchContent(String contentName) {
+    public Content[] searchContent(@RequestParam String contentName) {
         List<Content> contentList = contentService.getSearchByContentName(contentName);
 
         return contentList.toArray(new Content[0]);
