@@ -45,7 +45,6 @@ public class RestContentController {
 
     @DeleteMapping("/content/delete")
     public Boolean deleteContent(@ModelAttribute Content content) {
-        content.setDeletedDate(content.getUpdatedDate());
         contentService.insertBackupContent(content);
         contentService.deleteContent(content);
 

@@ -52,7 +52,14 @@
         form.append("contentName", "${contentName}");
         form.append("content", data.content);
         form.append("contentCode", "${code}");
-        form.append("updatedDate", getDate(new Date()));
+
+        if(method === "POST")
+            form.append("updatedDate", getDate(new Date()));
+
+        if(method === "DELETE") {
+            form.append("updatedDate", `${updatedDate}`.substring(0, 10));
+            form.append("deletedDate", getDate(new Date()));
+        };
 
         try{
             xhr.open(method, url);
@@ -60,7 +67,6 @@
             if(method === "POST" || method === "DELETE") xhr.send(form);
             xhr.send();
         } catch(err) {};
-
 
         xhr.onreadystatechange = function() {
             if(xhr.readyState === 4 && method === "GET") callback(xhr.response);
