@@ -48,6 +48,7 @@ public class ContentController {
         model.addAttribute("contentName", content[0].toArray()[2]);
         model.addAttribute("content", content[0].toArray()[3]);
         model.addAttribute("code", content[0].toArray()[4]);
+        model.addAttribute("updatedDate", content[0].toArray()[5]);
 
         return "/content/detail";
     };
