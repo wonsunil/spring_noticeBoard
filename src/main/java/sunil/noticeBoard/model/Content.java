@@ -31,7 +31,7 @@ public class Content {
     public int getLikes() {
         return likes;
     };
-    public String getDeleted_date() {
+    public String getDeletedDate() {
         return deleted_date;
     };
 

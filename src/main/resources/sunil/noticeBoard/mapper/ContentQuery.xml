@@ -21,7 +21,7 @@
         INSERT INTO CONTENT_INFO VALUES (#{noticeBoard}, #{writer}, #{contentName}, #{content}, #{contentCode}, #{updatedDate}, #{likes})
     </insert>
     <insert id="insertBackupContent">
-        INSERT INTO CONTENT_BACKUP VALUES (#{noticeBoard}, #{writer}, #{contentName}, #{content}, #{contentCode}, #{updatedDate}, #{likes}, #{deleted_date})
+        INSERT INTO CONTENT_BACKUP VALUES (#{noticeBoard}, #{writer}, #{contentName}, #{content}, #{contentCode}, #{updatedDate}, #{likes}, #{deletedDate})
     </insert>
     <update id="rewriteContent">
         UPDATE CONTENT_INFO SET CONTENT = #{content}, UPDATED_DATE = #{updatedDate} WHERE CONTENT_CODE = #{contentCode}
