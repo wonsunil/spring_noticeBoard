@@ -6,9 +6,7 @@
     Content[] allContents = (Content[]) request.getAttribute("allContentArray");
     Content[] writtenContentArray = (Content[]) request.getAttribute("writtenContentArray");
 
-    Pagination pagination = new Pagination();
-
-    pagination.getRange();
+    Pagination pagination = (Pagination) request.getAttribute("paging");
 %>
 
 <html>
@@ -62,7 +60,7 @@
             <%
                 // 게시글 출력부
                 try {
-                    for (int i = 0, limit = 10; i < limit; i++) {
+                    for (int i = pagination.getStartIndex(), limit = pagination.getLastIndex(); i < limit; i++) {
                         String[] content = allContents[i].toArray();
             %>
             <div class="notice-item" data-index="<%=content[4]%>">
@@ -90,7 +88,7 @@
             <%
                 if(allContents.length > 10) {
                 // 페이징 처리를 위한 앵커태그 생성부
-                    for (int i = 1, limit = 2; i <= limit; i++) {
+                    for (int i = 1, limit = pagination.getLastPage(); i <= limit; i++) {
             %>
                 <li class=<%=pagination.getCurrentPage() == i ? "current-page" : ""%>><a href="?page=<%=i%>"><%=i%></a></li>
             <%

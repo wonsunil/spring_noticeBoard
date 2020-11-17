@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import sunil.noticeBoard.DataList;
+import org.springframework.web.bind.annotation.RequestParam;
 import sunil.noticeBoard.Pagination;
 import sunil.noticeBoard.model.Content;
 import sunil.noticeBoard.service.ContentService;
@@ -21,15 +21,13 @@ public class MainController {
     @Autowired
     ContentService contentService;
 
-    DataList dataList = new DataList();
-
     @GetMapping("/")
     public String redirectMainPage() {
         return "redirect:/main";
     };
 
     @GetMapping("/main")
-    public String goToMainPageGet(Model model, HttpSession session) {
+    public String goToMainPageGet(Model model, HttpSession session, @RequestParam(value = "page", required = false) String currentPage) {
         String email = (String) session.getAttribute("email");
 
         if(email != null) {
@@ -38,9 +36,21 @@ public class MainController {
 
             model.addAttribute("writtenContentArray", writtenContentArray);
         };
-        Pagination page = new Pagination();
         List<Content> allContentList = contentService.getAllContent();
-        Content[] allContentArray = allContentList.toArray(new Content[allContentList.size()]);
+        Content[] allContentArray = allContentList.toArray(new Content[0]);
+
+        Pagination page = new Pagination();
+        page.setRange(allContentArray.length);
+
+        page.setLastPage((int) Math.floor(allContentArray.length / 10) + 1);
+
+        if(currentPage != null) page.setCurrentPage(Integer.parseInt(currentPage));
+
+        if(page.getCurrentPage() == 1) page.setStartIndex(0);
+        if(page.getCurrentPage() > 1)
+            page.setStartIndex((page.getCurrentPage() - 1) * 10);
+
+        page.setLastIndex(page.getCurrentPage() * 10);
 
         model.addAttribute("allContentArray", allContentArray);
         model.addAttribute("paging", page);
