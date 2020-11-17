@@ -13,7 +13,7 @@
 <head>
     <title>Main Page</title>
     <link rel="stylesheet" href="/css/main.css">
-    <script src="/js/main.js"></script>
+<%--    <script src="/js/main.js"></script>--%>
 </head>
 <body>
 <div id="wrap">
@@ -55,6 +55,7 @@
             <div id="additional-function">
                 <button id="write"><a href="/content/content-write">글쓰기</a></button>
                 <input type="text" id="search-content" placeholder="게시글 검색">
+                <button><a href="/user/search">유저 검색</a></button>
             </div>
 
             <%
@@ -111,35 +112,6 @@
             alert("로그인한 유저만 접근 가능합니다");
 
             return location.href = "/user/account/login";
-        };
-    });
-
-    HTMLElement.prototype.contentRender = function(arr) {
-        arr.map(item => {
-            this.insertAdjacentHTML("beforeend", `
-                <div class="contents" data-code=${item.contentCode}>
-                <li class="board">${item.boardName}</li>
-                <li class="writer">${item.writer}</li>
-                <li class="title">${item.contentName}</li>
-                <li class="content">${item.content}</li>
-                </div>
-            `
-            );
-        });
-    };
-
-    const xhr = new XMLHttpRequest();
-
-    xhr.responseType = "json";
-
-    const $search = document.querySelector("#search-content");
-
-    $search.addEventListener("keyup", function({ target, key }) {
-        if(key === "Enter") {
-            xhr.open("GET", "/content/user-content-name?contentName="+target.value+"");
-            xhr.send();
-
-            console.log(target.value)
         };
     });
 </script>
