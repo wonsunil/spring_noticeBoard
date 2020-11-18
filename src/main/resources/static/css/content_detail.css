@@ -1,6 +1,6 @@
 *{ margin: 0; padding: 0; }
 li{ list-style: none; }
-html, body{ width: 100%; height: 100%; user-select: none; }
+html, body{ width: 100%; height: 100%; user-select: none; overflow-y: hidden; }
 
 #wrap{
     width: 70%;
