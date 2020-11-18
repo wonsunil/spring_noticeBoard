@@ -1,4 +1,9 @@
+<%@ page import="sunil.noticeBoard.model.Content" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
+
+<%
+    Content[] contentArray = (Content[]) request.getAttribute("contents");
+%>
 
 <html>
 <head>
@@ -26,8 +31,27 @@
             <%-- 기본 프로필만 있고 유저가 프로필 작성 --%>
         </div>
         <div id="contents">
-            <%-- 문서 로딩시 자동으로 추가됨 --%>
-            <%-- 정렬기능 추가 예정 --%>
+            <%
+                for(int i = 0, length = contentArray.length; i < length; i++) {
+                    String[] content = contentArray[i].toArray();
+            %>
+                <div class="notice-item" data-index="<%=content[4]%>">
+                    <li class="board"><%=content[0]%></li>
+                    <li class="writer"><a href="/user/profile?email=<%=content[1]%>"><%=content[1]%></a></li>
+                    <li class="title"><a href="/content/detail?contentName=<%=content[2]%>"><%=content[2]%></a></li>
+                    <div class="content"><%=content[3]%></div>
+                    <li class="comments">
+                        <span>💬</span><%=content[7]%>
+                        <button class="comment"></button>
+                    </li>
+                    <li class="likes">
+                        <span>👍</span><%=content[6]%>
+                        <button class="like"></button>
+                    </li>
+                </div>
+            <%
+                }
+            %>
         </div>
     </section>
 </article>
