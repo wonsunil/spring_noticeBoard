@@ -8,6 +8,7 @@ public class Content {
     private String content_code;
     private String updated_date;
     private int likes;
+    private int comments;
     private String deleted_date;
 
     public String getNoticeBoard() {
@@ -34,6 +35,9 @@ public class Content {
     public String getDeletedDate() {
         return deleted_date;
     };
+    public int getComments() {
+        return comments;
+    };
 
     public void setNoticeBoard(String noticeBoard) {
         this.notice_board = noticeBoard;
@@ -59,9 +63,12 @@ public class Content {
     public void setDeletedDate(String date) {
         this.deleted_date = date;
     };
+    public void setComments(int comments) {
+        this.comments = comments;
+    };
 
     public String[] toArray() {
-        String[] contentArray = {notice_board, writer, content_name, content, content_code, updated_date, String.valueOf(likes), deleted_date};
+        String[] contentArray = {notice_board, writer, content_name, content, content_code, updated_date, String.valueOf(likes), String.valueOf(comments)};
 
         return contentArray;
     };
