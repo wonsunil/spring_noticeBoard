@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import sunil.noticeBoard.model.User;
+import sunil.noticeBoard.model.Content;
 import sunil.noticeBoard.service.UserService;
+import sunil.noticeBoard.service.ContentService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,6 +19,9 @@ import java.util.List;
 public class UserController {
     @Autowired
     UserService userService;
+
+    @Autowired
+    ContentService contentService;
 
     @GetMapping("/user/account/login")
     public String goToLoginPageGet(HttpSession session) {
@@ -81,7 +86,7 @@ public class UserController {
     };
 
     @GetMapping("/user/profile")
-    public String profilePage(Model model, HttpServletRequest request, HttpSession session, @RequestParam String email) {
+    public String profilePage(Model model, @RequestParam String email) {
         List<User> userList = userService.getUserByEmail(email);
         User[] user = userList.toArray(new User[0]);
 
@@ -92,6 +97,11 @@ public class UserController {
        } catch(ArrayIndexOutOfBoundsException ignored) {
 
        }
+
+       List<Content> contentList = contentService.getContentByEmail(email);
+       Content[] contents = contentList.toArray(new Content[0]);
+
+       model.addAttribute("contents", contents);
 
         return "user/profile";
     };
