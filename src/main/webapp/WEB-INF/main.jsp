@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="sunil.noticeBoard.model.Content" %>
 <%@ page import="sunil.noticeBoard.Pagination" %>
+<%@ page import="java.util.Arrays" %>
 
 <%
     Content[] allContents = (Content[]) request.getAttribute("allContentArray");
@@ -67,14 +68,14 @@
                 <li class="board"><%=content[0]%></li>
                 <li class="writer"><a href="/user/profile?email=<%=content[1]%>"><%=content[1]%></a></li>
                 <li class="title"><a href="/content/detail?contentName=<%=content[2]%>"><%=content[2]%></a></li>
-                <li class="content"><%=content[3]%></li>
+                <div class="content"><%=content[3]%></div>
                 <li class="comments">
+                    <span>💬</span><%=content[7]%>
                     <button class="comment"></button>
-                    댓글 수
                 </li>
                 <li class="likes">
+                    <span>👍</span><%=content[6]%>
                     <button class="like"></button>
-                    좋아요 수
                 </li>
             </div>
 

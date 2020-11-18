@@ -55,7 +55,7 @@ html, body{
     text-align: center;
     line-height: 45px;
 }
-.notice-item > li{
+.notice-item > li, .content{
     width: calc(100%/9);
     border-right: 1px solid black;
     display: block;
