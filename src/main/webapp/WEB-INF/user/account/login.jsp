@@ -8,9 +8,9 @@
 </head>
 <body>
     <form action="/user/account/login" method="POST">
-        <input type="text" id="email" name="email" placeholder="이메일을 입력해주세요.">
+        <input type="text" id="email" name="email" placeholder="이메일을 입력해주세요." autocomplete="off">
         <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요.">
-        <input type="submit">
+        <input type="submit" value="Sign in">
     </form>
 </body>
 </html>

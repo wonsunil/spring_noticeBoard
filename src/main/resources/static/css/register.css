@@ -3,9 +3,7 @@ body{ background: #ededed; }
 
 form{
     width: 400px;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
+    height: auto;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -16,16 +14,18 @@ form > input{
     height: 70px;
     outline: none;
 }
-form > input:not(:nth-of-type(3)) {
+form > input:not(:last-child) {
     padding-left: 20px;
     border: 1px solid lightslategray;
+    box-sizing: border-box;
 }
 
-#email{
+form > input:nth-of-type(1) {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
-#password{
+
+form > input:nth-of-type(5){
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }
