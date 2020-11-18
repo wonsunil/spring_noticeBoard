@@ -9,7 +9,7 @@
 <head>
     <title>content</title>
     <link rel="stylesheet" href="/css/content_detail.css">
-<%--    <script src="/js/content_detail.js"></script>--%>
+    <script src="/js/content_detail.js"></script>
 </head>
 <body>
     <div id="wrap">
