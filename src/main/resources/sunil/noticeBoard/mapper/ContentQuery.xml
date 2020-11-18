@@ -3,10 +3,10 @@
 
 <mapper namespace="sunil.noticeBoard.mapper.ContentMapper">
     <select id="getAllContent" resultType="sunil.noticeBoard.model.Content">
-        SELECT * FROM CONTENT_INFO ORDER BY UPDATED_DATE ASC
+        SELECT * FROM CONTENT_INFO ORDER BY CONTENT_CODE ASC
     </select>
     <select id="getContentByEmail" resultType="sunil.noticeBoard.model.Content">
-        SELECT * FROM CONTENT_INFO WHERE WRITER = #{email}
+        SELECT * FROM CONTENT_INFO WHERE WRITER = #{email} ORDER BY CONTENT_CODE ASC
     </select>
     <select id="getContentByCondition" resultType="sunil.noticeBoard.model.Content">
         SELECT * FROM CONTENT_INFO ORDER BY #{condition} ASC
@@ -18,10 +18,10 @@
         SELECT * FROM CONTENT_INFO WHERE CONTENT_NAME LIKE #{contentName}||'%'
     </select>
     <insert id="insertContent">
-        INSERT INTO CONTENT_INFO VALUES (#{noticeBoard}, #{writer}, #{contentName}, #{content}, #{contentCode}, #{updatedDate}, #{likes})
+        INSERT INTO CONTENT_INFO VALUES (#{noticeBoard}, #{writer}, #{contentName}, #{content}, #{contentCode}, #{updatedDate}, #{likes}, #{comments})
     </insert>
     <insert id="insertBackupContent">
-        INSERT INTO CONTENT_BACKUP VALUES (#{noticeBoard}, #{writer}, #{contentName}, #{content}, #{contentCode}, #{updatedDate}, #{likes}, #{deletedDate})
+        INSERT INTO CONTENT_BACKUP VALUES (#{noticeBoard}, #{writer}, #{contentName}, #{content}, #{contentCode}, #{updatedDate}, #{likes}, #{comments}, #{deletedDate})
     </insert>
     <update id="rewriteContent">
         UPDATE CONTENT_INFO SET CONTENT = #{content}, UPDATED_DATE = #{updatedDate} WHERE CONTENT_CODE = #{contentCode}
