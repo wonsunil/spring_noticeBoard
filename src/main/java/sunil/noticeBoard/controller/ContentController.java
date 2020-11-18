@@ -28,7 +28,14 @@ public class ContentController {
 
         List<Content> userWrittenContentList = contentService.getContentByEmail(writer);
         Content[] contents = userWrittenContentList.toArray(new Content[0]);
-        String code = writer + "_" + (contents.length+1);
+
+        int length = contents.length;
+
+        var code = writer + "_" + (length+1);
+
+        if(length > 1) {
+            code = writer + "_" + (Integer.parseInt(contents[length-1].toArray()[4].substring(contents[length-1].toArray()[4].length() -1))+1);
+        };
 
         content.setContentCode(code);
         content.setLikes(0);
@@ -52,4 +59,4 @@ public class ContentController {
 
         return "/content/detail";
     };
-};
+}
