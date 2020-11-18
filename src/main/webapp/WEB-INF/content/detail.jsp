@@ -9,39 +9,41 @@
 <head>
     <title>content</title>
     <link rel="stylesheet" href="/css/content_detail.css">
-    <script src="/js/content_detail.js"></script>
+<%--    <script src="/js/content_detail.js"></script>--%>
 </head>
 <body>
-    <div>
-        <li id="notice-board">게시판 : ${boardName}</li>
-        <li id="writer">작성자 : ${writer}</li>
-        <li id="content-name">제목 : ${contentName}</li>
-        <textarea name="" id="content" cols="30" rows="10" disabled>${content}</textarea>
-        <textarea name="" id="change" class="editing" cols="30" rows="10">${content}</textarea>
+    <div id="wrap">
+        <h1 id="title">${contentName}</h1>
+        <h3 id="writer">${updatedDate.substring(0, 10)} by <a href="/user/profile?email=${writer}" target="_blank">${writer}</a></h3>
+        <div id="content"></div>
+    </div>
+    <article id="more">
+        <div>
         <%
             if(email != null && email.equals(writer)) {
         %>
-        <div>
             <button id="rewrite">수정</button>
-        </div>
-        <div>
             <button id="delete">삭제</button>
-        </div>
         <%
             };
         %>
-        <button><a href="/main">메인</a></button>
-        <article id="comment">
-            <section id="comment-box">
+            <button><a href="/main">메인</a></button>
+        </div>
+        <section id="comment-box">
 
-            </section>
-            <section>
+        </section>
+        <section>
 
-            </section>
-        </article>
-    </div>
+        </section>
+    </article>
 </body>
 <script>
+    const content = `${content}`;
+    const $content = document.querySelector("#content");
+    const $wrap = document.querySelector("#wrap");
+
+    $content.insertAdjacentHTML("beforeend", content);
+
     const getDate = function(date) {
         const year = date.getFullYear();
 
@@ -82,5 +84,45 @@
             if(xhr.readyState === 4 && method === "GET") callback(xhr.response);
         };
     };
+
+    const $textarea = document.querySelector("#content");
+    const $rewriteButton = document.querySelector("#rewrite");
+
+    $rewriteButton?.addEventListener("click", function(event) {
+        if(document.querySelector("#save") !== null) return false;
+
+        let replaceContent = content.replaceAll("<li>", "");
+        replaceContent = replaceContent.replaceAll("</li>", "");
+        replaceContent = replaceContent.replaceAll("<br/>", "\n\n");
+
+        $content.style.display = "none";
+        $wrap.insertAdjacentHTML("beforeend", "<textarea>" + replaceContent + "</textarea>");
+        $rewriteButton.insertAdjacentHTML("afterend", "<button id='save'>저장</button>");
+    });
+
+    document.body.addEventListener("click", function({ target }) {
+        if(target.getAttribute("id") === "save") {
+            const $textarea = document.querySelector("textarea");
+
+            let text = "";
+
+            $textarea.value.split("\n").filter( v => v != "").map(v => {
+                text += "<li>" + v + "<li><br/>";
+            });
+
+            $content.innerHTML = text;
+            $content.style.display = "block";
+
+            $textarea.parentNode.removeChild($textarea);
+            executeXhr("/content/rewrite", {method: "POST", data: {content: text}});
+
+            target.parentNode.removeChild(target);
+        };
+        if(target.getAttribute("id") === "delete") {
+            executeXhr("/content/delete", {method: "DELETE",  data: {content: $textarea.value}});
+
+            location.href = "/main";
+        };
+    });
 </script>
 </html>

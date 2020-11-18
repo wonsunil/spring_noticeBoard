@@ -32,10 +32,16 @@ window.onload = function() {
             return alert("공백은 넣을 수 없습니다.");
         };
 
+        let content = "";
+
+        $content.value.split("\n").map(function(value) {
+            content += `<li>${value}</li><br/>`;
+        });
+
         form.append("noticeBoard", $board.innerHTML);
         form.append("writer", $writer.innerHTML.replaceAll(" ", "").split(":")[1]);
         form.append("contentName", $contentName.value);
-        form.append("content", $content.value);
+        form.append("content", content);
         form.append("updatedDate", getDate(new Date()));
 
         const xhr = new XMLHttpRequest();
