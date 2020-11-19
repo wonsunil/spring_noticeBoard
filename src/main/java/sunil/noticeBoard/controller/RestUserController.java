@@ -11,6 +11,7 @@ import sunil.noticeBoard.service.FollowService;
 import sunil.noticeBoard.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -56,5 +57,12 @@ public class RestUserController {
         Follow[] following = followingList.toArray(new Follow[0]);
 
         return following;
+    };
+
+    @PostMapping("/user/profile/update")
+    public Boolean updateUserProfile(HttpSession session, @RequestParam String content) {
+        userService.updateUserProfile((String) session.getAttribute("email"), content);
+
+        return true;
     };
 };

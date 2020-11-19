@@ -47,4 +47,9 @@ public class UserServiceImpl implements UserService {
     public void insertUser(String email, String name, String password, String phone) {
         mapper.insertUser(email, name, password, phone);
     };
+
+    @Override
+    public void updateUserProfile(String email, String content) {
+        mapper.updateUserProfile(email, content);
+    };
 }

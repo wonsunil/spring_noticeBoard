@@ -11,4 +11,5 @@ public interface UserMapper {
     List<User> getUserByLogin(String email, String password);
 
     void insertUser(String email, String name, String password, String phone);
+    void updateUserProfile(String email, String content);
 };

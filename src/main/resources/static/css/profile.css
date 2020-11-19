@@ -76,3 +76,37 @@ html, body{ width: 100%; height: 100%; }
 
 .content{ height: 30%; }
 .more{ display: flex; }
+
+.user-setting{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    background: #ededed;
+    position: relative;
+}
+.user-setting img{ width: 200px; height: 200px; }
+
+.user-setting > textarea {
+    width: 80%;
+    height: 100%;
+    resize: none;
+    margin: auto;
+    background: #ededed;
+    font-size: 18px;
+}
+.user-setting > button{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.change-img{}
+.change-img::before{
+    content: "변경";
+    width: 200px;
+    height: 200px;
+    color: black;
+    background: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    position: absolute;
+}

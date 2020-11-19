@@ -9,7 +9,7 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="/css/profile.css">
-<%--    <script src="/js/profile.js"></script>--%>
+    <script src="/js/profile.js"></script>
 </head>
 <body>
 <article id="wrap">
@@ -26,7 +26,7 @@
             </ul>
         </div>
         <div id="profile-content">
-            <li>${user[4]}</li>
+            ${user[4]}
         </div>
         <%
             if(session.getAttribute("email") != null) {
@@ -39,24 +39,24 @@
     <section id="user-content">
         <div id="contents">
             <%
-                for(int i = 0, length = contentArray.length; i < length; i++) {
-                    String[] content = contentArray[i].toArray();
+                for (Content value : contentArray) {
+                    String[] content = value.toArray();
             %>
-                <div class="notice-item" data-index="<%=content[4]%>">
-                    <li class="writer"><a href="/user/profile?email=<%=content[1]%>"><%=content[1]%></a></li>
-                    <li class="title"><a href="/content/detail?contentName=<%=content[2]%>"><%=content[2]%></a></li>
-                    <div class="content"><%=content[3]%></div>
-                    <div class="more">
-                        <li class="comments">
-                            <span>💬</span><%=content[7]%>
-                            <button class="comment"></button>
-                        </li>
-                        <li class="likes">
-                            <span>👍</span><%=content[6]%>
-                            <button class="like"></button>
-                        </li>
-                    </div>
+            <div class="notice-item" data-index="<%=content[4]%>">
+                <li class="writer"><a href="/user/profile?email=<%=content[1]%>"><%=content[1]%></a></li>
+                <li class="title"><a href="/content/detail?contentName=<%=content[2]%>"><%=content[2]%></a></li>
+                <div class="content"><%=content[3]%></div>
+                <div class="more">
+                    <li class="comments">
+                        <span>💬</span><%=content[7]%>
+                        <button class="comment"></button>
+                    </li>
+                    <li class="likes">
+                        <span>👍</span><%=content[6]%>
+                        <button class="like"></button>
+                    </li>
                 </div>
+            </div>
             <%
                 }
             %>

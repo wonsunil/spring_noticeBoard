@@ -17,4 +17,7 @@
     <insert id="insertUser">
         INSERT INTO USER_INFO VALUES (#{email}, #{name}, #{password}, #{phone}, 'Nomal')
     </insert>
+    <update id="updateUserProfile">
+        UPDATE USER_INFO SET PROFILE_CONTENT = #{content} WHERE EMAIL = #{email}
+    </update>
 </mapper>

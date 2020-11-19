@@ -23,4 +23,5 @@ public interface UserService {
             @Param("password") String password,
             @Param("phone") String phone
     );
+    void updateUserProfile(String email, String content);
 };
