@@ -1,22 +1,39 @@
 window.onload = function() {
+    const createAlert = text => {
+        const box = document.createElement("div");
+        const li = document.createElement("li");
+        const button = document.createElement("button");
+
+        box.setAttribute("id", "alert");
+
+        box.style.width = "300px";
+
+        li.innerHTML = text;
+        button.innerHTML = "확인";
+
+        button.addEventListener("click", ({ target }) => {
+            target.parentNode.parentNode.removeChild(target.parentNode);
+
+            location.href = "/user/account/login";
+        });
+
+        box.append(li, button);
+        document.body.append(box);
+    };
+
+    document.body.addEventListener("click", event => {
+        if(document.querySelector("#alert") !== null) event.preventDefault();
+    });
     const xhr = new XMLHttpRequest();
 
     xhr.responseType = "json";
 
-    document.body.addEventListener("keyup", function({ target, key }) {
-        if(target.getAttribute("id") !== "search-content") return false;
+    const $write = document.querySelector("#write");
+    $write.addEventListener("click", function(event) {
+        if(email === "") {
+            event.preventDefault();
 
-        if(key === "Enter") {
-            xhr.open("GET", "/content/search?contentName="+target.value+"");
-            xhr.send();
-
-            xhr.onreadystatechange = function() {
-                if(xhr.readyState === 4) {
-                    if(xhr.response.length === 0) return alert("검색결과가 없습니다");
-
-                    return location.href = `/main?search=${target.value}`;
-                };
-            };
+            createAlert("로그인한 유저만 접근 가능합니다");
         };
     });
 };

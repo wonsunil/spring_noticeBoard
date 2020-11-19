@@ -14,7 +14,7 @@
 <head>
     <title>Main Page</title>
     <link rel="stylesheet" href="/css/main.css">
-<%--    <script src="/js/main.js"></script>--%>
+    <script src="/js/main.js"></script>
 </head>
 <body>
 <div id="wrap">
@@ -103,16 +103,5 @@
 </body>
 <script>
     const email = "${email}";
-
-    const $write = document.querySelector("#write");
-    $write.addEventListener("click", function(event) {
-        if(email === "") {
-            event.preventDefault();
-
-            alert("로그인한 유저만 접근 가능합니다");
-
-            return location.href = "/user/account/login";
-        };
-    });
 </script>
 </html>

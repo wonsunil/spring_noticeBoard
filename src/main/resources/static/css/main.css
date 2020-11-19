@@ -84,3 +84,33 @@ html, body{
 
 .current-page{ background: #858383 !important; }
 .current-page > a{ color: white; }
+
+#alert{
+    width: 300px;
+    height: 100px;
+    background: white;
+    border: 1px solid black;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 45%;
+}
+#alert > li{
+    height: 70%;
+    line-height: 70px;
+    font-size: 18px;
+}
+#alert > button{
+    width: 70px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background: #4995fa;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 7px;
+}
