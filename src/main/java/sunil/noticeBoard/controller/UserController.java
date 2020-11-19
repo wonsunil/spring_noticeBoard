@@ -90,21 +90,12 @@ public class UserController {
         List<User> userList = userService.getUserByEmail(email);
         User[] user = userList.toArray(new User[0]);
 
-       try{
-           model.addAttribute("email", user[0].toArray()[0]);
-           model.addAttribute("name", user[0].toArray()[1]);
-           model.addAttribute("phone", user[0].toArray()[2]);
-           model.addAttribute("rank", user[0].toArray()[3]);
-           model.addAttribute("profileContent", user[0].toArray()[4]);
-           model.addAttribute("profileImage", user[0].toArray()[5]);
-       } catch(ArrayIndexOutOfBoundsException ignored) {
+        model.addAttribute("user", user[0].toArray());
 
-       }
+        List<Content> contentList = contentService.getContentByEmail(email);
+        Content[] contents = contentList.toArray(new Content[0]);
 
-       List<Content> contentList = contentService.getContentByEmail(email);
-       Content[] contents = contentList.toArray(new Content[0]);
-
-       model.addAttribute("contents", contents);
+        model.addAttribute("contents", contents);
 
         return "user/profile";
     };

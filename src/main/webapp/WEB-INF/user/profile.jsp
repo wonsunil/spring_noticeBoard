@@ -16,11 +16,8 @@
     <section id="user-info">
         <div>
             <ul id="user-data">
-                <img src="<%=request.getAttribute("profileImage")%>" alt="">
-                <li id="email">${email}</li>
-                <%--            <li id="name">${name}</li>--%>
-                <%--            <li id="phone">${phone}</li>--%>
-<%--                <li id="rank"></li>--%>
+                <img src="${user[5]}" alt="">
+                <li id="email">${user[0]}</li>
             </ul>
             <ul id="user-activity">
                 <li id="follower">0 followers</li>
@@ -29,7 +26,7 @@
             </ul>
         </div>
         <div id="profile-content">
-            <li>${profileContent}</li>
+            <li>${user[4]}</li>
         </div>
         <%
             if(session.getAttribute("email") != null) {
