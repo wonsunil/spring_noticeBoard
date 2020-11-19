@@ -5,6 +5,8 @@ public class User {
     private String name;
     private String phone;
     private String rank;
+    private String profile_content;
+    private String profile_image;
 
     public String getEmail() {
         return email;
@@ -17,6 +19,9 @@ public class User {
     };
     public String getRank() {
         return rank;
+    };
+    public String getProfileContent() {
+        return profile_content;
     };
 
     public void setEmail(String email) {
@@ -31,6 +36,12 @@ public class User {
     public void setRank(String rank) {
         this.rank = rank;
     };
+    public void setProfileContent(String content) {
+        this.profile_content = content;
+    };
+    public void setProfileImage(String imageUrl) {
+        this.profile_image = imageUrl;
+    };
 
     public String toString() {
         String userDataText = "email : " + this.email + "\r name : " + this.name + "\r phone : " + this.phone + "\r rank : " + this.rank;
@@ -38,7 +49,7 @@ public class User {
         return userDataText;
     };
     public String[] toArray() {
-        String[] userDataArray = {this.email, this.name, this.phone, this.rank};
+        String[] userDataArray = {this.email, this.name, this.phone, this.rank, this.profile_content, this.profile_image};
 
         return userDataArray;
     };

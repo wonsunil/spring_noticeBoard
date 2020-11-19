@@ -94,6 +94,9 @@ public class UserController {
            model.addAttribute("email", user[0].toArray()[0]);
            model.addAttribute("name", user[0].toArray()[1]);
            model.addAttribute("phone", user[0].toArray()[2]);
+           model.addAttribute("rank", user[0].toArray()[3]);
+           model.addAttribute("profileContent", user[0].toArray()[4]);
+           model.addAttribute("profileImage", user[0].toArray()[5]);
        } catch(ArrayIndexOutOfBoundsException ignored) {
 
        }
