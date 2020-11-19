@@ -2,51 +2,77 @@
 a{ text-decoration: none; color: black; }
 li{ list-style: none; }
 
+html, body{ width: 100%; height: 100%; }
+
 #wrap {
-    width: 90%;
+    width: 70%;
     height: 100%;
     display: flex;
     flex-wrap: wrap;
     position: absolute;
-    left: 5%;
+    left: 15%;
 }
 
 #user-info{
-    width: 20%;
-    height: 100%;
+    width: 100%;
+    height: 30%;
+    background: #ededed;
+    display: flex;
+    position: relative;
 }
+
+#user-data > img{ width: 200px; height: 200px; }
+
+#email{ font-size: 2.5rem; }
 
 #user-activity{
     display: flex;
     padding: 5px;
     box-sizing: border-box;
 }
-#user-activity > li{
-    margin-right: 5px;
+#user-activity > li{ margin-right: 5px; }
+
+#profile-content{ text-align: center; margin: auto; }
+#profile-content > li{ font-size: 30px; }
+#profile-content > button{ font-size: 18px; }
+
+#setting{
+    width: 35px;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
 #user-content{
-    width: 80%;
-    height: 100%;
+    width: 100%;
+    height: auto;
     display: flex;
-    flex-direction: column;
+    margin-top: 50px;
 }
 
-.notice-item{
+#contents{
     width: 100%;
-    height: 45px;
+    height: auto;
     display: flex;
-    border: 1px solid black;
-    text-align: center;
+    flex-wrap: wrap;
+}
+.notice-item{
+    width: calc(100%/3);
+    height: 20%;
+    text-align: left;
     line-height: 45px;
+    box-sizing: border-box;
 }
 .notice-item > li, .content{
-    width: calc(100%/9);
-    border-right: 1px solid black;
+    width: 100%;
     display: block;
     overflow: hidden;
-    white-space:nowrap;
+    white-space: nowrap;
     text-overflow: ellipsis;
 }
 .notice-item > .content{ width: calc(100%/2); }
 .notice-item > li > a{ width: 100%; overflow: hidden; text-overflow: ellipsis; }
+
+.content{ height: 30%; }
+.more{ display: flex; }
