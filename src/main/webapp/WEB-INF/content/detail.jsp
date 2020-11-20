@@ -32,8 +32,8 @@
             for (User user : users) {
     %>
     <div class="profile">
-        <img class="profile-img" src="<%=user.toArray()[5]%>" alt="">
-        <li><a href="/user/profile?email=<%=user.toArray()[0]%>" target="_blank"><%=user.toArray()[0]%></a></li>
+        <a href="/user/profile/<%=user.toArray()[0]%>"><img class="profile-img" src="<%=user.toArray()[5]%>" alt=""></a>
+        <li><a href="/user/profile/<%=user.toArray()[0]%>" target="_blank"><%=user.toArray()[0]%></a></li>
     </div>
     <%
             }

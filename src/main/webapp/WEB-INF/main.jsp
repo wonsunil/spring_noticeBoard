@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="sunil.noticeBoard.model.Content" %>
 <%@ page import="sunil.noticeBoard.Pagination" %>
-<%@ page import="java.util.Arrays" %>
 
 <%
     Content[] allContents = (Content[]) request.getAttribute("allContentArray");
@@ -33,7 +32,7 @@
             <%
                 if (session.getAttribute("email") != null) {
             %>
-            <li id="name">이름 : <a href="/user/profile?email=<%= (String) session.getAttribute("email")%>"><%=session.getAttribute("name")%>
+            <li id="name">이름 : <a href="/user/profile/<%=session.getAttribute("email")%>"><%=session.getAttribute("name")%>
             </a></li>
             <li id="rank">등급 : <%=session.getAttribute("rank")%>
             </li>
@@ -66,7 +65,7 @@
             %>
             <div class="notice-item" data-index="<%=content[4]%>">
                 <li class="board"><%=content[0]%></li>
-                <li class="writer"><a href="/user/profile?email=<%=content[1]%>"><%=content[1]%></a></li>
+                <li class="writer"><a href="/user/profile/<%=content[1]%>"><%=content[1]%></a></li>
                 <li class="title"><a href="/content/<%=content[4]%>"><%=content[2]%></a></li>
                 <div class="content"><%=content[3]%></div>
             </div>

@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import sunil.noticeBoard.model.User;
 import sunil.noticeBoard.model.Content;
-import sunil.noticeBoard.service.UserService;
+import sunil.noticeBoard.model.User;
 import sunil.noticeBoard.service.ContentService;
+import sunil.noticeBoard.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -85,8 +85,8 @@ public class UserController {
         return "redirect:/main";
     };
 
-    @GetMapping("/user/profile")
-    public String profilePage(Model model, @RequestParam String email) {
+    @GetMapping("/user/profile/{email}")
+    public String profilePage(Model model, @PathVariable String email) {
         List<User> userList = userService.getUserByEmail(email);
         User[] user = userList.toArray(new User[0]);
 
