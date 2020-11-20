@@ -19,7 +19,7 @@ window.onload = function() {
     const $board = $form.children[0];
     const $writer = $form.children[1];
     const $contentName = $form.children[2];
-    const $content = $form.children[4];
+    const $content = $form.children[3];
 
     $form.addEventListener("submit", function(event) {
         event.preventDefault();
