@@ -1,13 +1,16 @@
 <%@ page import="java.util.Arrays" %>
 <%@ page import="sunil.noticeBoard.model.Likes" %>
 <%@ page import="sunil.noticeBoard.model.User" %>
+<%@ page import="sunil.noticeBoard.model.Content" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <%
-    String email = (String) session.getAttribute("email");
-    String writer = (String) request.getAttribute("writer");
+    String[] contents = (String[]) request.getAttribute("content");
     Likes[] likes = (Likes[]) request.getAttribute("likes");
     User[] users = (User[]) request.getAttribute("users");
+
+    String email = (String) session.getAttribute("email");
+    String writer = contents[1];
 %>
 
 <html>
@@ -59,7 +62,7 @@
     %>
     <div>
         <%
-            if(likes == null && email != null && email.equals(writer)) {
+            if(email != null && email.equals(writer)) {
         %>
         <button id="rewrite">수정</button>
         <button id="delete">삭제</button>
