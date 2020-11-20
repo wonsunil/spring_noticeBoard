@@ -19,6 +19,16 @@
     </div>
     <article id="more">
         <div>
+            <li id="likes" class="box">
+                <span>👍 Likes</span>
+                <button id="like">${likes}</button>
+            </li>
+            <li id="comments" class="box">
+                <span>💬 Comments</span>
+                <button id="comment">${comments}</button>
+            </li>
+        </div>
+        <div>
         <%
             if(email != null && email.equals(writer)) {
         %>
@@ -29,12 +39,6 @@
         %>
             <button><a href="/main">메인</a></button>
         </div>
-        <section id="comment-box">
-
-        </section>
-        <section>
-
-        </section>
     </article>
 </body>
 <script>
