@@ -45,7 +45,6 @@
             <div class="notice-item" data-index="<%=content[4]%>">
                 <li class="writer"><a href="/user/profile/<%=content[1]%>"><%=content[1]%></a></li>
                 <li class="title"><a href="/content/<%=content[4]%>"><%=content[2]%></a></li>
-                <div class="content"><%=content[3]%></div>
                 <div class="more">
                     <li class="comments">
                         <span>💬</span><%=content[7]%>
