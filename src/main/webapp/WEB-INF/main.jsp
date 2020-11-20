@@ -53,6 +53,9 @@
             <img src="/images/banner.jpg" alt="banner image" id="banner-img">
         </section>
         <section id="notice-board">
+            <div id="additional-function">
+                <button id="write"><a href="/content/content-write">글쓰기</a></button>
+            </div>
             <table class="table table-hover table-striped text-center" style="border: 1px solid black;">
                 <thead>
                     <tr>
