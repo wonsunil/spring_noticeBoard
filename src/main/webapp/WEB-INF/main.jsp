@@ -12,6 +12,7 @@
 <html>
 <head>
     <title>Main Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/main.css">
     <script src="/js/main.js"></script>
 </head>
@@ -52,30 +53,34 @@
             <img src="/images/banner.jpg" alt="banner image" id="banner-img">
         </section>
         <section id="notice-board">
-            <div id="additional-function">
-                <button id="write"><a href="/content/content-write">글쓰기</a></button>
-                <input type="text" id="search-content" placeholder="게시글 검색">
-            </div>
+            <table class="table table-hover table-striped text-center" style="border: 1px solid black;">
+                <thead>
+                    <tr>
+                        <th>게시판</th>
+                        <th>작성자</th>
+                        <th>제목</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <%
+                    try {
+                        for (int i = pagination.getStartIndex(), limit = pagination.getLastIndex(); i < limit; i++) {
+                            String[] content = allContents[i].toArray();
+                %>
+                    <tr>
+                        <th><%=content[0]%></th>
+                        <th><a href="/user/profile/<%=content[1]%>"><%=content[1]%></a></th>
+                        <th><a href="/content/<%=content[4]%>"><%=content[2]%></a></th>
+                    </tr>
 
-            <%
-                // 게시글 출력부
-                try {
-                    for (int i = pagination.getStartIndex(), limit = pagination.getLastIndex(); i < limit; i++) {
-                        String[] content = allContents[i].toArray();
-            %>
-            <div class="notice-item" data-index="<%=content[4]%>">
-                <li class="board"><%=content[0]%></li>
-                <li class="writer"><a href="/user/profile/<%=content[1]%>"><%=content[1]%></a></li>
-                <li class="title"><a href="/content/<%=content[4]%>"><%=content[2]%></a></li>
-                <div class="content"><%=content[3]%></div>
-            </div>
+                <%
+                        }
+                    } catch (ArrayIndexOutOfBoundsException ignored) {
 
-            <%
-                    }
-                } catch (ArrayIndexOutOfBoundsException ignored) {
-
-                };
-            %>
+                    };
+                %>
+                </tbody>
+            </table>
             <div id="pagination">
             <%
                 if(allContents.length > 10) {
