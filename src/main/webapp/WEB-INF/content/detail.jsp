@@ -12,37 +12,37 @@
     <script src="/js/content_detail.js"></script>
 </head>
 <body>
-    <div id="wrap">
-        <h1 id="title">${contentName}</h1>
-        <h3 id="writer">${updatedDate.substring(0, 10)} by <a href="/user/profile?email=${writer}" target="_blank">${writer}</a></h3>
-        <div id="content"></div>
+<div id="wrap">
+    <h1 id="title">${content[2]}</h1>
+    <h3 id="writer">${content[5].substring(0, 10)} by <a href="/user/profile?email=${content[1]}" target="_blank">${content[1]}</a></h3>
+    <div id="content"></div>
+</div>
+<article id="more">
+    <div>
+        <li id="likes" class="box">
+            <span>👍 Likes</span>
+            <button id="like">${content[6]}</button>
+        </li>
+        <li id="comments" class="box">
+            <span>💬 Comments</span>
+            <button id="comment">${content[7]}</button>
+        </li>
     </div>
-    <article id="more">
-        <div>
-            <li id="likes" class="box">
-                <span>👍 Likes</span>
-                <button id="like">${likes}</button>
-            </li>
-            <li id="comments" class="box">
-                <span>💬 Comments</span>
-                <button id="comment">${comments}</button>
-            </li>
-        </div>
-        <div>
+    <div>
         <%
             if(email != null && email.equals(writer)) {
         %>
-            <button id="rewrite">수정</button>
-            <button id="delete">삭제</button>
+        <button id="rewrite">수정</button>
+        <button id="delete">삭제</button>
         <%
             };
         %>
-            <button><a href="/main">메인</a></button>
-        </div>
-    </article>
+        <button><a href="/main">메인</a></button>
+    </div>
+</article>
 </body>
 <script>
-    const content = `${content}`;
+    const content = `${content[3]}`;
     const $content = document.querySelector("#content");
     const $wrap = document.querySelector("#wrap");
 
@@ -63,11 +63,11 @@
         const xhr = new XMLHttpRequest();
         const form = new FormData();
 
-        form.append("noticeBoard", "${boardName}");
-        form.append("writer", "${writer}");
-        form.append("contentName", "${contentName}");
+        form.append("noticeBoard", "${content[0]}");
+        form.append("writer", "${content[1]}");
+        form.append("contentName", "${content[2]}");
         form.append("content", data.content);
-        form.append("contentCode", "${code}");
+        form.append("contentCode", "${content[4]}");
 
         if(method === "POST")
             form.append("updatedDate", getDate(new Date()));
