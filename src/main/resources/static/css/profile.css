@@ -59,7 +59,7 @@ html, body{ width: 100%; height: 100%; }
 }
 .notice-item{
     width: calc(100%/3);
-    height: 20%;
+    height: auto;
     text-align: left;
     line-height: 35px;
     box-sizing: border-box;

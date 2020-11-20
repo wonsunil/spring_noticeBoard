@@ -12,7 +12,7 @@ window.onload = function() {
                             <li id="email">${$userInfo.children[0].children[0].children[1].innerHTML}</li>
                         </ul>
                     </div>
-                    <textarea>${$userInfo.children[1].children[0].innerHTML}</textarea>
+                    <textarea>${$userInfo.children[1].innerHTML}</textarea>
                     <button id="save">저장</button>
                 </section>
             `);
