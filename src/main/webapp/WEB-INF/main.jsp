@@ -67,16 +67,8 @@
             <div class="notice-item" data-index="<%=content[4]%>">
                 <li class="board"><%=content[0]%></li>
                 <li class="writer"><a href="/user/profile?email=<%=content[1]%>"><%=content[1]%></a></li>
-                <li class="title"><a href="/content/detail?contentName=<%=content[2]%>"><%=content[2]%></a></li>
+                <li class="title"><a href="/content/<%=content[4]%>"><%=content[2]%></a></li>
                 <div class="content"><%=content[3]%></div>
-                <li class="comments">
-                    <span>💬</span><%=content[7]%>
-                    <button class="comment"></button>
-                </li>
-                <li class="likes">
-                    <span>👍</span><%=content[6]%>
-                    <button class="like"></button>
-                </li>
             </div>
 
             <%

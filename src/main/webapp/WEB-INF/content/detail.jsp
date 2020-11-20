@@ -21,7 +21,7 @@
     <div>
         <li id="likes" class="box">
             <span>👍 Likes</span>
-            <button id="like">${content[6]}</button>
+            <button id="like"><a href="/content/${content[4]}/likes">${content[6]}</a></button>
         </li>
         <li id="comments" class="box">
             <span>💬 Comments</span>
