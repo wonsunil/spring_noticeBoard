@@ -14,6 +14,9 @@
     <select id="getContentByContentName" resultType="sunil.noticeBoard.model.Content">
         SELECT * FROM CONTENT_INFO WHERE CONTENT_NAME = #{contentName}
     </select>
+    <select id="getContentByContentCode" resultType="sunil.noticeBoard.model.Content">
+        SELECT * FROM CONTENT_INFO WHERE CONTENT_CODE = #{contentCode}
+    </select>
     <select id="getSearchByContentName" resultType="sunil.noticeBoard.model.Content">
         SELECT * FROM CONTENT_INFO WHERE CONTENT_NAME LIKE #{contentName}||'%'
     </select>

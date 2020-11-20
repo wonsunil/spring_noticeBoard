@@ -3,12 +3,11 @@ package sunil.noticeBoard.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import sunil.noticeBoard.model.Content;
+import sunil.noticeBoard.model.Likes;
 import sunil.noticeBoard.service.ContentService;
+import sunil.noticeBoard.service.LikesService;
 
 import java.util.List;
 
@@ -16,6 +15,9 @@ import java.util.List;
 public class ContentController {
     @Autowired
     ContentService contentService;
+
+    @Autowired
+    LikesService likesService;
 
     @GetMapping("/content/content-write")
     public String contentWrite() {
@@ -46,12 +48,22 @@ public class ContentController {
         return "redirect:/content/content-write";
     };
 
-    @GetMapping("/content/detail")
-    public String showContentDetail(Model model, @RequestParam String contentName) {
-        List<Content> contentList = contentService.getContentByContentName(contentName);
+    @GetMapping("/content/{contentCode}")
+    public String showContentDetail(Model model, @PathVariable String contentCode) {
+        List<Content> contentList = contentService.getContentByContentCode(contentCode);
         Content[] content = contentList.toArray(new Content[0]);
 
         model.addAttribute("content", content[0].toArray());
+
+        return "/content/detail";
+    };
+
+    @GetMapping("/content/{contentCode}/likes")
+    public String likes(Model model, @PathVariable("contentCode") String contentCode) {
+        List<Likes> likesList = likesService.getLikes(contentCode);
+        Likes[] likes = likesList.toArray(new Likes[0]);
+
+        model.addAttribute("likes", likes);
 
         return "/content/detail";
     };
