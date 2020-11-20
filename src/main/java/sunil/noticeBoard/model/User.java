@@ -23,6 +23,9 @@ public class User {
     public String getProfileContent() {
         return profile_content;
     };
+    public String getProfileImage() {
+        return profile_image;
+    };
 
     public void setEmail(String email) {
         this.email = email;
