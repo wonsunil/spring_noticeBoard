@@ -38,4 +38,11 @@ window.onload = function() {
             location.href = "/main";
         };
     });
+
+    const $likeButton = document.querySelector("#like > a");
+    $likeButton?.addEventListener("click", event => {
+        const { target } = event;
+
+        if(target.innerHTML === "0") event.preventDefault();
+    });
 };
