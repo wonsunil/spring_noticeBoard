@@ -1,8 +1,13 @@
+<%@ page import="java.util.Arrays" %>
+<%@ page import="sunil.noticeBoard.model.Likes" %>
+<%@ page import="sunil.noticeBoard.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <%
     String email = (String) session.getAttribute("email");
     String writer = (String) request.getAttribute("writer");
+    Likes[] likes = (Likes[]) request.getAttribute("likes");
+    User[] users = (User[]) request.getAttribute("users");
 %>
 
 <html>
@@ -15,9 +20,30 @@
 <div id="wrap">
     <h1 id="title">${content[2]}</h1>
     <h3 id="writer">${content[5].substring(0, 10)} by <a href="/user/profile?email=${content[1]}" target="_blank">${content[1]}</a></h3>
+    <%
+        if(likes == null) {
+    %>
     <div id="content"></div>
+    <%
+        };
+    %>
+    <%
+        if(likes != null) {
+            for (User user : users) {
+    %>
+    <div class="profile">
+        <img class="profile-img" src="<%=user.toArray()[5]%>" alt="">
+        <li><a href="/user/profile?email=<%=user.toArray()[0]%>" target="_blank"><%=user.toArray()[0]%></a></li>
+    </div>
+    <%
+            }
+        };
+    %>
 </div>
 <article id="more">
+    <%
+        if(likes == null) {
+    %>
     <div>
         <li id="likes" class="box">
             <span>👍 Likes</span>
@@ -28,9 +54,12 @@
             <button id="comment">${content[7]}</button>
         </li>
     </div>
+    <%
+        };
+    %>
     <div>
         <%
-            if(email != null && email.equals(writer)) {
+            if(likes == null && email != null && email.equals(writer)) {
         %>
         <button id="rewrite">수정</button>
         <button id="delete">삭제</button>
@@ -46,7 +75,7 @@
     const $content = document.querySelector("#content");
     const $wrap = document.querySelector("#wrap");
 
-    $content.insertAdjacentHTML("beforeend", content);
+    $content?.insertAdjacentHTML("beforeend", content);
 
     const getDate = function(date) {
         const year = date.getFullYear();
