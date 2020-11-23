@@ -14,7 +14,7 @@
 <html>
 <head>
     <title>content</title>
-<%--    <link rel="stylesheet" href="/css/content_detail.css">--%>
+    <link rel="stylesheet" href="/css/content_detail.css">
     <script src="/js/content_detail.js"></script>
     <style>
 
@@ -85,7 +85,7 @@
     %>
     <div>
         <%
-            if(email != null && email.equals(writer)) {
+            if(email != null && email.equals(writer) || session.getAttribute("rank").equals("admin")) {
         %>
         <button id="rewrite">수정</button>
         <button id="delete">삭제</button>
