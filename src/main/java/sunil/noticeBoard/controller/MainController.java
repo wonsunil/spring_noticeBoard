@@ -57,7 +57,7 @@ public class MainController {
         if(page.getCurrentPage() > 1)
             page.setStartIndex((page.getCurrentPage() - 1) * 10);
 
-        page.setLastIndex(page.getCurrentPage() * page.getLimit());
+        page.setLastIndex(page.getCurrentPage() * Integer.parseInt(page.getLimit()));
 
         model.addAttribute("allContentArray", allContentArray);
         model.addAttribute("paging", page);
