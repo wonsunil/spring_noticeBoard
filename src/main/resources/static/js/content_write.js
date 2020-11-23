@@ -16,17 +16,17 @@ window.onload = function() {
     };
 
     const $form = document.forms[0];
-    const $board = $form.children[0];
-    const $writer = $form.children[1];
-    const $contentName = $form.children[2];
-    const $content = $form.children[3];
+    const $board = $form.children[0].children[0];
+    const $writer = $form.children[0].children[1];
+    const $contentName = $form.children[1].children[0];
+    const $content = $form.children[2];
 
     $form.addEventListener("submit", function(event) {
         event.preventDefault();
 
         const form = new FormData();
 
-        if($content.innerHTML === null) {
+        if($content.value === "") {
             $content.focus();
 
             return alert("공백은 넣을 수 없습니다.");
