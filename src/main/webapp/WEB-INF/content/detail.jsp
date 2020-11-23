@@ -1,7 +1,5 @@
-<%@ page import="java.util.Arrays" %>
 <%@ page import="sunil.noticeBoard.model.Likes" %>
 <%@ page import="sunil.noticeBoard.model.User" %>
-<%@ page import="sunil.noticeBoard.model.Content" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <%
@@ -231,7 +229,7 @@
             form.append("updatedDate", getDate(new Date()));
 
         if(method === "DELETE") {
-            form.append("updatedDate", `${updatedDate}`.substring(0, 10));
+            form.append("updatedDate", `${content[5].substring(0, 10)}`);
             form.append("deletedDate", getDate(new Date()));
         };
 

@@ -1,5 +1,5 @@
 window.onload = function() {
-    const $textarea = document.querySelector("#content");
+    const $content = document.querySelector("#content");
     const $rewriteButton = document.querySelector("#rewrite");
 
     $rewriteButton?.addEventListener("click", function(event) {
@@ -33,7 +33,7 @@ window.onload = function() {
             target.parentNode.removeChild(target);
         };
         if(target.getAttribute("id") === "delete") {
-            executeXhr("/content/delete", {method: "DELETE",  data: {content: $textarea.value}});
+            executeXhr("/content/delete", {method: "DELETE",  data: {content: $content.innerHTML}});
 
             location.href = "/main";
         };
