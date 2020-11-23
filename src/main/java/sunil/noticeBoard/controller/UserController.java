@@ -43,11 +43,7 @@ public class UserController {
 
         if (user.length > 0) {
             try{
-                session.setAttribute("email", user[0].toArray()[0]);
-                session.setAttribute("name", user[0].toArray()[1]);
-                session.setAttribute("phone", user[0].toArray()[2]);
-                session.setAttribute("rank", user[0].toArray()[3]);
-
+                session.setAttribute("user", user[0].toArray());
             } catch(ArrayIndexOutOfBoundsException ignored) {
 
             };
