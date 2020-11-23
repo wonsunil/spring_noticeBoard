@@ -21,6 +21,8 @@ public class MainController {
     @Autowired
     ContentService contentService;
 
+    public static Pagination page = new Pagination();
+
     @GetMapping("/")
     public String redirectMainPage() {
         return "redirect:/main";
@@ -41,7 +43,6 @@ public class MainController {
 
         int allContentsLength = allContentArray.length;
 
-        Pagination page = new Pagination();
         page.setRange(allContentsLength);
 
         if((allContentsLength % 10) != 0)
@@ -56,7 +57,7 @@ public class MainController {
         if(page.getCurrentPage() > 1)
             page.setStartIndex((page.getCurrentPage() - 1) * 10);
 
-        page.setLastIndex(page.getCurrentPage() * 10);
+        page.setLastIndex(page.getCurrentPage() * page.getLimit());
 
         model.addAttribute("allContentArray", allContentArray);
         model.addAttribute("paging", page);

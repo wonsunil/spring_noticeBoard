@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import sunil.noticeBoard.Pagination;
 import sunil.noticeBoard.model.Content;
 import sunil.noticeBoard.model.Likes;
 import sunil.noticeBoard.model.User;
@@ -26,6 +27,8 @@ public class ContentController {
 
     @Autowired
     LikesService likesService;
+
+    Pagination page = MainController.page;
 
     @GetMapping("/content/content-write")
     public String contentWrite() {
@@ -62,6 +65,7 @@ public class ContentController {
         Content[] content = contentList.toArray(new Content[0]);
 
         model.addAttribute("content", content[0].toArray());
+        model.addAttribute("page", page);
 
         return "/content/detail";
     };
