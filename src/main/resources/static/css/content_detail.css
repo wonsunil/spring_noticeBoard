@@ -48,14 +48,6 @@ textarea{
     display: flex;
 }
 
-#like, #comment {
-    width: 30px;
-    height: 30px;
-    line-height: 20px;
-    font-size: 18px;
-
-}
-
 .box{
     width: auto;
     height: 30px;
@@ -66,19 +58,25 @@ textarea{
     margin-bottom: 20px;
     font-size: 18px;
 }
-.box > span{
-    width: 150px;
-    border: none;
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
-    cursor: pointer;
-}
-.box > button{
-    outline: none;
+.box button{
+    width: 80%;
+    font-size: 18px;
     padding-right: 15px;
     padding-left: 5px;
-    border-right: 1px solid black;
+    border: none;
+    outline: none;
     cursor: pointer;
+}
+.box button:first-child{
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-right: 1px solid black;
+}
+.box button:last-child{
+    width: 50px;
+    height: 100%;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
 .box a{
     color: black;
