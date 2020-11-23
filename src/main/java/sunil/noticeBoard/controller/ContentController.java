@@ -15,6 +15,7 @@ import sunil.noticeBoard.service.ContentService;
 import sunil.noticeBoard.service.LikesService;
 import sunil.noticeBoard.service.UserService;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -31,8 +32,12 @@ public class ContentController {
     Pagination page = MainController.page;
 
     @GetMapping("/content/content-write")
-    public String contentWrite() {
-        return "/content/content_write";
+    public String contentWrite(HttpSession session) {
+        if(session.getAttribute("email") != null) {
+            return "/content/content_write";
+        };
+
+        return "redirect:/user/account/login";
     };
 
     @PostMapping("/content/content-write")
