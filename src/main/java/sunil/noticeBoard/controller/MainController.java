@@ -31,7 +31,9 @@ public class MainController {
 
     @GetMapping("/main")
     public String goToMainPageGet(Model model, HttpSession session, @RequestParam(value = "page", required = false) String currentPage) {
-        String email = (String) session.getAttribute("email");
+        String email = (String) session.getAttribute("user-data");
+
+        System.out.print(email);
 
         if(email == null) {
             return "redirect:/index";
@@ -75,7 +77,9 @@ public class MainController {
     };
 
     @GetMapping("/index")
-    public String index() {
+    public String index(HttpSession session) {
+        if(session.getAttribute("user") != null) return "redirect:/main";
+
         return "index";
     };
 }
