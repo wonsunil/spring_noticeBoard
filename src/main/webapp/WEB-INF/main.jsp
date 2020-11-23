@@ -55,6 +55,11 @@
         <section id="notice-board">
             <div id="additional-function">
                 <button id="write"><a href="/content/content-write">글쓰기</a></button>
+                <select name="limit" id="">
+                    <option value="10" <%=pagination.getLimit().equals("10") ? "selected" : ""%>>10개</option>
+                    <option value="15" <%=pagination.getLimit().equals("15") ? "selected" : ""%>>15개</option>
+                    <option value="20" <%=pagination.getLimit().equals("20") ? "selected" : ""%>>20개</option>
+                </select>
             </div>
             <table class="table table-hover table-striped text-center" style="border: 1px solid black;">
                 <thead>
@@ -86,7 +91,7 @@
             </table>
             <div id="pagination">
             <%
-                if(allContents.length > 10) {
+                if(allContents.length > 10 && allContents.length > Integer.parseInt(pagination.getLimit())) {
                 // 페이징 처리를 위한 앵커태그 생성부
                     for (int i = 1, limit = pagination.getLastPage(); i <= limit; i++) {
             %>

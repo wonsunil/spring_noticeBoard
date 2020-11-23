@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import sunil.noticeBoard.Pagination;
 import sunil.noticeBoard.model.Content;
@@ -53,7 +54,7 @@ public class MainController {
 
         if(currentPage != null) page.setCurrentPage(Integer.parseInt(currentPage));
 
-        if(page.getCurrentPage() == 1) page.setStartIndex(0);
+        if(page.getCurrentPage() == 1) page.setStartIndex(1);
         if(page.getCurrentPage() > 1)
             page.setStartIndex((page.getCurrentPage() - 1) * 10);
 
@@ -62,5 +63,14 @@ public class MainController {
         model.addAttribute("allContentArray", allContentArray);
         model.addAttribute("paging", page);
         return "main";
+    };
+
+    @GetMapping("/pagination/set/{limit}")
+    public void setLimit(@PathVariable(value = "limit") String limit) {
+        page.setLimit(limit);
+        if(page.getCurrentPage() == 1) page.setStartIndex(1);
+        if(page.getCurrentPage() > 1)
+            page.setStartIndex((page.getCurrentPage() - 1) * 10);
+        page.setLastIndex(page.getCurrentPage() * Integer.parseInt(page.getLimit()));
     };
 }

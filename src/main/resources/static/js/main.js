@@ -36,4 +36,15 @@ window.onload = function() {
             createAlert("로그인한 유저만 접근 가능합니다");
         };
     });
+
+    const $selectBox = document.querySelector("select[name='limit']");
+    $selectBox.onchange = ({ target }) => {
+        const limit = [...target.children].filter(option => option.selected === true)[0].getAttribute("value");
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "/pagination/set/" + limit);
+        xhr.send();
+
+        location.href = "/main?page=1";
+    };
 };
