@@ -85,14 +85,14 @@
     %>
     <div>
         <%
-            if(email != null && email.equals(writer) || session.getAttribute("rank").equals("admin")) {
+            if(email != null && email.equals(writer) || session.getAttribute("rank") != null && session.getAttribute("rank").equals("admin")) {
         %>
         <button id="rewrite">수정</button>
         <button id="delete">삭제</button>
         <%
             };
         %>
-        <button><a href="/main">메인</a></button>
+        <button><a href="/main?page=${page.getCurrentPage()}">메인</a></button>
     </div>
 </article>
 </body>
