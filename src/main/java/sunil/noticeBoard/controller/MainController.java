@@ -33,12 +33,15 @@ public class MainController {
     public String goToMainPageGet(Model model, HttpSession session, @RequestParam(value = "page", required = false) String currentPage) {
         String email = (String) session.getAttribute("email");
 
-        if(email != null) {
-            List<Content> writtenContentList = contentService.getContentByEmail(email);
-            Content[] writtenContentArray = writtenContentList.toArray(new Content[0]);
-
-            model.addAttribute("writtenContentArray", writtenContentArray);
+        if(email == null) {
+            return "redirect:/index";
         };
+
+        List<Content> writtenContentList = contentService.getContentByEmail(email);
+        Content[] writtenContentArray = writtenContentList.toArray(new Content[0]);
+
+        model.addAttribute("writtenContentArray", writtenContentArray);
+
         List<Content> allContentList = contentService.getAllContent();
         Content[] allContentArray = allContentList.toArray(new Content[0]);
 
@@ -69,5 +72,10 @@ public class MainController {
     public void setLimit(@PathVariable(value = "limit") String limit) {
         page.setLimit(limit);
         page.setLastIndex(page.getCurrentPage() * Integer.parseInt(page.getLimit()));
+    };
+
+    @GetMapping("/index")
+    public String index() {
+        return "index";
     };
 }
