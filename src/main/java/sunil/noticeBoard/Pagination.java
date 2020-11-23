@@ -5,7 +5,7 @@ public class Pagination {
     private int currentPage = 1;
     private int lastPage = 0;
     private int range = 0;
-    private int startIndex = 0;
+    private int startIndex = 1;
     private int lastIndex = 0;
 
     public String getLimit() {

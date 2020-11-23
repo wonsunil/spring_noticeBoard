@@ -15,6 +15,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/main.css">
     <script src="/js/main.js"></script>
+    <style>
+        #wrap > article:nth-of-type(2) {
+            overflow-y: scroll;
+        }
+    </style>
 </head>
 <body>
 <div id="wrap">
@@ -54,7 +59,6 @@
         </section>
         <section id="notice-board">
             <div id="additional-function">
-                <button id="write"><a href="/content/content-write">글쓰기</a></button>
                 <select name="limit" id="">
                     <option value="10" <%=pagination.getLimit().equals("10") ? "selected" : ""%>>10개</option>
                     <option value="15" <%=pagination.getLimit().equals("15") ? "selected" : ""%>>15개</option>
@@ -89,17 +93,20 @@
                 %>
                 </tbody>
             </table>
-            <div id="pagination">
-            <%
-                if(allContents.length > 10 && allContents.length > Integer.parseInt(pagination.getLimit())) {
-                // 페이징 처리를 위한 앵커태그 생성부
-                    for (int i = 1, limit = pagination.getLastPage(); i <= limit; i++) {
-            %>
-                <li class=<%=pagination.getCurrentPage() == i ? "current-page" : ""%>><a href="?page=<%=i%>"><%=i%></a></li>
-            <%
-                    };
-                };
-            %>
+            <a href="/content/content-write" id="write" class="btn btn-default">글쓰기</a>
+            <div class="text-center">
+                <ul class="pagination">
+                    <%
+                        if(allContents.length > 10 && allContents.length > Integer.parseInt(pagination.getLimit())) {
+                            // 페이징 처리를 위한 앵커태그 생성부
+                            for (int i = 1, limit = pagination.getLastPage(); i <= limit; i++) {
+                    %>
+                    <li class=<%=pagination.getCurrentPage() == i ? "current-page" : ""%>><a href="?page=<%=i%>"><%=i%></a></li>
+                    <%
+                            };
+                        };
+                    %>
+                </ul>
             </div>
         </section>
     </article>

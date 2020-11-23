@@ -68,9 +68,6 @@ public class MainController {
     @GetMapping("/pagination/set/{limit}")
     public void setLimit(@PathVariable(value = "limit") String limit) {
         page.setLimit(limit);
-        if(page.getCurrentPage() == 1) page.setStartIndex(1);
-        if(page.getCurrentPage() > 1)
-            page.setStartIndex((page.getCurrentPage() - 1) * 10);
         page.setLastIndex(page.getCurrentPage() * Integer.parseInt(page.getLimit()));
     };
 }
