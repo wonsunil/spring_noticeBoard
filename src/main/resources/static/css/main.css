@@ -80,6 +80,12 @@ header > .container > section > li{
     display: flex;
 }
 
+#content > article{ width: 100%; height: auto; }
+
+.list-group-item > img{ width: 30px; height: 30px; }
+
+#follow{ width: 30%; }
+
 #notice-board{
     width: 100%;
     height: auto;

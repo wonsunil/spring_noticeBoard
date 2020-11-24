@@ -62,7 +62,7 @@
     </div>
 </header>
 <div id="content">
-    <article>
+    <article class="d-flex justify-content-around">
         <section id="follow">
             <ul class="list-group">
                 <%
