@@ -31,18 +31,14 @@ public class MainController {
 
     @GetMapping("/main")
     public String goToMainPageGet(Model model, HttpSession session, @RequestParam(value = "page", required = false) String currentPage) {
-        String email = (String) session.getAttribute("user-data");
+        String email = (String) session.getAttribute("email");
 
-        System.out.print(email);
+        if(email != null) {
+            List<Content> writtenContentList = contentService.getContentByEmail(email);
+            Content[] writtenContentArray = writtenContentList.toArray(new Content[0]);
 
-        if(email == null) {
-            return "redirect:/index";
+            model.addAttribute("writtenContentArray", writtenContentArray);
         };
-
-        List<Content> writtenContentList = contentService.getContentByEmail(email);
-        Content[] writtenContentArray = writtenContentList.toArray(new Content[0]);
-
-        model.addAttribute("writtenContentArray", writtenContentArray);
 
         List<Content> allContentList = contentService.getAllContent();
         Content[] allContentArray = allContentList.toArray(new Content[0]);
