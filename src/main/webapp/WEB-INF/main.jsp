@@ -7,81 +7,18 @@
     Content[] writtenContentArray = (Content[]) request.getAttribute("writtenContentArray");
 
     Pagination pagination = (Pagination) request.getAttribute("paging");
+
+    String email = (String) session.getAttribute("email");
+    String name = (String) session.getAttribute("name");
+    String rank = (String) session.getAttribute("rank");
 %>
 
 <html>
 <head>
     <title>Main Page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<%--    <link rel="stylesheet" href="/css/main.css">--%>
-    <style>
-        *{ margin: 0; padding : 0; box-sizing: border-box; }
-        li{ list-style: none; }
-        a{ text-decoration: none; color: black; }
-
-        html, body{
-            width: 100%;
-            height: 100%;
-        }
-
-        #wrap{
-            width: 100%;
-            height: 100%;
-            display: flex;
-        }
-
-        #wrap > article:nth-of-type(2) { width: 85%; height: 100%; }
-
-        #notice-board{
-            width: 100%;
-            height: 65%;
-            border: 1px solid black;
-            position: relative;
-        }
-
-        #additional-function{
-            width: auto;
-            height: 50px;
-            margin-top: 25px;
-        }
-
-        #alert{
-            width: 300px;
-            height: 100px;
-            background: white;
-            border: 1px solid black;
-            text-align: center;
-            position: absolute;
-            top: 0;
-            left: 45%;
-        }
-        #alert > li{
-            height: 70%;
-            line-height: 70px;
-            font-size: 18px;
-        }
-        #alert > button{
-            width: 70px;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            background: #4995fa;
-            color: white;
-            outline: none;
-            cursor: pointer;
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            margin: 7px;
-        }
-    </style>
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/main.css">
     <script src="/js/main.js"></script>
-    <style>
-        #wrap > article:nth-of-type(2) {
-            overflow-y: scroll;
-        }
-    </style>
 </head>
 <body>
 <header>
@@ -95,7 +32,18 @@
                     <li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a></li>
                 </ul>
                 <div id="button-box" class="pull-right">
+                    <%
+                        if(email == null) {
+                    %>
+                    <button class="btn btn-default"><a href="/user/account/login">Sign in</a></button>
+                    <button class="btn btn-default"><a href="/user/account/register">Sign up</a></button>
+                    <%
+                        }else {
+                    %>
                     <button class="btn btn-default"><a href="/user/account/logout">Sign out</a></button>
+                    <%
+                        };
+                    %>
                 </div>
             </div>
         </nav>
@@ -167,7 +115,5 @@
     </article>
 </div>
 </body>
-<script>
-    const email = "${email}";
-</script>
+<script>const email = "${email}";</script>
 </html>
