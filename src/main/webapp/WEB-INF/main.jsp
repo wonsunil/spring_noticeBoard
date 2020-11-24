@@ -10,6 +10,7 @@
     String email = (String) session.getAttribute("email");
     String image = (String) session.getAttribute("image");
 
+    Follow[] follower = (Follow[]) request.getAttribute("follower");
     Follow[] following = (Follow[]) request.getAttribute("following");
 %>
 
@@ -26,7 +27,7 @@
 <header>
     <div class="container">
         <nav class="navbar navbar-expand-sm text-black">
-            <a class="navbar-brand" href="index">Expand at sm</a>
+            <a class="navbar-brand" href="/main">Notice Board</a>
             <div class="collapse navbar-collapse" id="navbarsExample03">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active"><a class="nav-link" href="/main">Home <span class="sr-only">(current)</span></a></li>
@@ -63,10 +64,39 @@
 </header>
 <div id="content">
     <article class="d-flex justify-content-around">
-        <section id="follow">
+        <section id="follow" class="">
             <ul class="list-group">
+                <li>Followers</li>
                 <%
-                    if(following == null || following.length == 0) {
+                    if(following == null) {
+                %>
+                <li class="list-group-item">Please login!</li>
+                <%
+                }else if(following.length == 0) {
+                %>
+                <li class="list-group-item">0 following!</li>
+                <%
+                }else {
+                    for (Follow follow : follower) {
+                %>
+                <li class="list-group-item">
+                    <img src="<%=follow.toArray()[2]%>" alt="">
+                    <a href="/user/profile/<%=follow.toArray()[0]%>"><%=follow.toArray()[0]%>
+                    </a>
+                </li>
+                <%
+                        };
+                    };
+                %>
+            </ul>
+            <ul class="list-group">
+                <li>Following</li>
+                <%
+                    if(following == null) {
+                %>
+                <li class="list-group-item">Please login!</li>
+                <%
+                    }else if(following.length == 0) {
                 %>
                 <li class="list-group-item">0 following!</li>
                 <%
@@ -105,7 +135,7 @@
                     </ul>
                 </nav>
             </div>
-            <table class="table table-hover table-striped text-center" style="border: 1px solid black;">
+            <table class="table table-hover table-striped text-center">
                 <thead>
                     <tr>
                         <th>게시판</th>
