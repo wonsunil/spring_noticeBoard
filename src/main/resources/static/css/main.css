@@ -2,10 +2,7 @@
 li{ list-style: none; }
 a{ text-decoration: none; color: black; }
 
-html, body{
-    width: 100%;
-    height: 100%;
-}
+html, body{ width: 100%; height: 100%; }
 
 header{
     width: 100%;
@@ -77,21 +74,15 @@ header > .container > section > li{
 }
 #profile > .dropdown { margin-top: 20%; }
 
-#wrap{
+#content{
     width: 100%;
     height: 100%;
     display: flex;
 }
 
-#wrap > article:nth-of-type(2) {
-    width: 85%;
-    height: 100%;
-    overflow-y: scroll;
-}
-
 #notice-board{
     width: 100%;
-    height: 65%;
+    height: auto;
     border: 1px solid black;
     position: relative;
 }
