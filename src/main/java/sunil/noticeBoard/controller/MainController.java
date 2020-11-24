@@ -33,13 +33,6 @@ public class MainController {
     public String goToMainPageGet(Model model, HttpSession session, @RequestParam(value = "page", required = false) String currentPage) {
         String email = (String) session.getAttribute("email");
 
-        if(email != null) {
-            List<Content> writtenContentList = contentService.getContentByEmail(email);
-            Content[] writtenContentArray = writtenContentList.toArray(new Content[0]);
-
-            model.addAttribute("writtenContentArray", writtenContentArray);
-        };
-
         List<Content> allContentList = contentService.getAllContent();
         Content[] allContentArray = allContentList.toArray(new Content[0]);
 
@@ -47,11 +40,11 @@ public class MainController {
 
         page.setRange(allContentsLength);
 
-        if((allContentsLength % 10) != 0)
+        if((allContentsLength % 10) != 0) {
             page.setLastPage((int) (Math.floor(allContentsLength / 10) + 1));
-
-        if(allContentsLength % 10 == 0)
+        } else{
             page.setLastPage((int) Math.floor(allContentsLength / 10));
+        };
 
         if(currentPage != null) page.setCurrentPage(Integer.parseInt(currentPage));
 
