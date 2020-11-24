@@ -4,13 +4,9 @@
 
 <%
     Content[] allContents = (Content[]) request.getAttribute("allContentArray");
-    Content[] writtenContentArray = (Content[]) request.getAttribute("writtenContentArray");
-
     Pagination pagination = (Pagination) request.getAttribute("paging");
 
     String email = (String) session.getAttribute("email");
-    String name = (String) session.getAttribute("name");
-    String rank = (String) session.getAttribute("rank");
     String image = (String) session.getAttribute("image");
 %>
 
@@ -71,6 +67,20 @@
                     <option value="15" <%=pagination.getLimit().equals("15") ? "selected" : ""%>>15개</option>
                     <option value="20" <%=pagination.getLimit().equals("20") ? "selected" : ""%>>20개</option>
                 </select>
+                <nav>
+                    <ul class="pagination">
+                        <%
+                            if(allContents.length > 10 && allContents.length > Integer.parseInt(pagination.getLimit())) {
+                                // 페이징 처리를 위한 앵커태그 생성부
+                                for (int i = 1, limit = pagination.getLastPage(); i <= limit; i++) {
+                        %>
+                        <li class="page-item <%=pagination.getCurrentPage() == i ? "active" : ""%>"><a href="?page=<%=i%>" class="page-link"><%=i%></a></li>
+                        <%
+                                };
+                            };
+                        %>
+                    </ul>
+                </nav>
             </div>
             <table class="table table-hover table-striped text-center" style="border: 1px solid black;">
                 <thead>
@@ -101,22 +111,6 @@
                 </tbody>
             </table>
             <a href="/content/content-write" id="write" class="btn btn-outline-dark">글쓰기</a>
-            <div class="text-center">
-                <nav>
-                    <ul class="pagination">
-                        <%
-                            if(allContents.length > 10 && allContents.length > Integer.parseInt(pagination.getLimit())) {
-                                // 페이징 처리를 위한 앵커태그 생성부
-                                for (int i = 1, limit = pagination.getLastPage(); i <= limit; i++) {
-                        %>
-                        <li class="page-item <%=pagination.getCurrentPage() == i ? "active" : ""%>"><a href="?page=<%=i%>" class="page-link"><%=i%></a></li>
-                        <%
-                                };
-                            };
-                        %>
-                    </ul>
-                </nav>
-            </div>
         </section>
     </article>
 </div>
