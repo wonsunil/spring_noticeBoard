@@ -21,9 +21,10 @@ html, body{ width: 100%; height: 100%; }
     position: relative;
 }
 
+#user-data{ margin: 0; }
 #user-data > img{ width: 200px; height: 200px; }
 
-#email{ font-size: 2.5rem; }
+#email{ font-size: 2rem; }
 
 #user-activity{
     display: flex;
@@ -51,29 +52,10 @@ html, body{ width: 100%; height: 100%; }
     margin-top: 30px;
 }
 
-#contents{
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
+#user-content > div > ul > div:last-child { border-bottom: 1px solid black !important; }
+#user-content > div > ul > div:hover{
+    background: rgba(0, 0, 0, 0.1);
 }
-.notice-item{
-    width: calc(100%/3);
-    height: auto;
-    text-align: left;
-    line-height: 35px;
-    box-sizing: border-box;
-    border: 1px solid black;
-}
-.notice-item > li, .content{
-    width: 100%;
-    display: block;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-.notice-item > .content{ width: calc(100%/2); }
-.notice-item > li > a{ width: 100%; overflow: hidden; text-overflow: ellipsis; }
 
 .content{ height: 30%; }
 .more{ display: flex; }
