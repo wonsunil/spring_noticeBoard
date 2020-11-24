@@ -10,7 +10,7 @@
     <form action="/user/account/login" method="POST">
         <div>
             <img src="/images/user/account/person.png" alt="">
-            <input type="text" id="email" name="email" placeholder="이메일을 입력해주세요." autocomplete="off">
+            <input type="text" id="email" name="email" placeholder="이메일을 입력해주세요." autocomplete="off" autofocus>
         </div>
         <div>
             <img src="/images/user/account/lock.png" alt="">
