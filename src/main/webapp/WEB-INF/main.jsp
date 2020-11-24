@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="sunil.noticeBoard.model.Content" %>
 <%@ page import="sunil.noticeBoard.Pagination" %>
+<%@ page import="sunil.noticeBoard.model.Follow" %>
 
 <%
     Content[] allContents = (Content[]) request.getAttribute("allContentArray");
@@ -8,6 +9,8 @@
 
     String email = (String) session.getAttribute("email");
     String image = (String) session.getAttribute("image");
+
+    Follow[] following = (Follow[]) request.getAttribute("following");
 %>
 
 <html>
@@ -58,11 +61,32 @@
         </nav>
     </div>
 </header>
-<div id="wrap">
+<div id="content">
     <article>
+        <section id="follow">
+            <ul class="list-group">
+                <%
+                    if(following == null || following.length == 0) {
+                %>
+                <li class="list-group-item">0 following!</li>
+                <%
+                    }else {
+                        for (Follow follow : following) {
+                %>
+                <li class="list-group-item">
+                    <img src="<%=follow.toArray()[2]%>" alt="">
+                    <a href="/user/profile/<%=follow.toArray()[1]%>"><%=follow.toArray()[1]%>
+                    </a>
+                </li>
+                <%
+                        };
+                    };
+                %>
+            </ul>
+        </section>
         <section id="notice-board">
-            <div id="additional-function">
-                <select name="limit" id="">
+            <div id="additional-function" class="d-flex justify-content-between align-items-start">
+                <select name="limit">
                     <option value="10" <%=pagination.getLimit().equals("10") ? "selected" : ""%>>10개</option>
                     <option value="15" <%=pagination.getLimit().equals("15") ? "selected" : ""%>>15개</option>
                     <option value="20" <%=pagination.getLimit().equals("20") ? "selected" : ""%>>20개</option>
@@ -71,7 +95,6 @@
                     <ul class="pagination">
                         <%
                             if(allContents.length > 10 && allContents.length > Integer.parseInt(pagination.getLimit())) {
-                                // 페이징 처리를 위한 앵커태그 생성부
                                 for (int i = 1, limit = pagination.getLastPage(); i <= limit; i++) {
                         %>
                         <li class="page-item <%=pagination.getCurrentPage() == i ? "active" : ""%>"><a href="?page=<%=i%>" class="page-link"><%=i%></a></li>
