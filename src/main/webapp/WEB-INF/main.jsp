@@ -11,12 +11,15 @@
     String email = (String) session.getAttribute("email");
     String name = (String) session.getAttribute("name");
     String rank = (String) session.getAttribute("rank");
+    String image = (String) session.getAttribute("image");
 %>
 
 <html>
 <head>
     <title>Main Page</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/main.css">
     <script src="/js/main.js"></script>
 </head>
@@ -27,35 +30,36 @@
             <a class="navbar-brand" href="index">Expand at sm</a>
             <div class="collapse navbar-collapse" id="navbarsExample03">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active"><a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="/main">Home <span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user/search">Search</a></li>
                     <li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a></li>
                 </ul>
                 <div id="button-box" class="pull-right">
                     <%
                         if(email == null) {
                     %>
-                    <button class="btn btn-default"><a href="/user/account/login">Sign in</a></button>
-                    <button class="btn btn-default"><a href="/user/account/register">Sign up</a></button>
+                    <button class="btn btn-light"><a href="/user/account/login">Sign in</a></button>
+                    <button class="btn btn-light"><a href="/user/account/register">Sign up</a></button>
                     <%
                         }else {
                     %>
-                    <button class="btn btn-default"><a href="/user/account/logout">Sign out</a></button>
+                    <div id="profile">
+                        <img src="<%=image%>" alt="">
+                        <div class="dropdown">
+                            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="/user/profile/<%=session.getAttribute("email")%>">Profile</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="/user/account/logout">Sign out</a>
+                            </div>
+                        </div>
+                    </div>
                     <%
                         };
                     %>
                 </div>
             </div>
         </nav>
-        <section id="user-data">
-<%--            <li id="name">이름 : <a href="/user/profile/<%=session.getAttribute("email")%>"><%=session.getAttribute("name")%></a></li>--%>
-<%--            <li id="rank">등급 : <%=session.getAttribute("rank")%></li>--%>
-<%--            <li>게시글 수 : <%=writtenContentArray.length%>개<li>--%>
-<%--            <br>--%>
-<%--            <div id="user-btn">--%>
-<%--                <button id="logout"><a href="/user/account/logout">로그아웃</a></button>--%>
-<%--            </div>--%>
-        </section>
     </div>
 </header>
 <div id="wrap">
@@ -96,20 +100,22 @@
                 %>
                 </tbody>
             </table>
-            <a href="/content/content-write" id="write" class="btn btn-default">글쓰기</a>
+            <a href="/content/content-write" id="write" class="btn btn-outline-dark">글쓰기</a>
             <div class="text-center">
-                <ul class="pagination">
-                    <%
-                        if(allContents.length > 10 && allContents.length > Integer.parseInt(pagination.getLimit())) {
-                            // 페이징 처리를 위한 앵커태그 생성부
-                            for (int i = 1, limit = pagination.getLastPage(); i <= limit; i++) {
-                    %>
-                    <li class=<%=pagination.getCurrentPage() == i ? "current-page" : ""%>><a href="?page=<%=i%>"><%=i%></a></li>
-                    <%
+                <nav>
+                    <ul class="pagination">
+                        <%
+                            if(allContents.length > 10 && allContents.length > Integer.parseInt(pagination.getLimit())) {
+                                // 페이징 처리를 위한 앵커태그 생성부
+                                for (int i = 1, limit = pagination.getLastPage(); i <= limit; i++) {
+                        %>
+                        <li class="page-item <%=pagination.getCurrentPage() == i ? "active" : ""%>"><a href="?page=<%=i%>" class="page-link"><%=i%></a></li>
+                        <%
+                                };
                             };
-                        };
-                    %>
-                </ul>
+                        %>
+                    </ul>
+                </nav>
             </div>
         </section>
     </article>
