@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import sunil.noticeBoard.Pagination;
 import sunil.noticeBoard.model.Content;
+import sunil.noticeBoard.model.Follow;
 import sunil.noticeBoard.service.ContentService;
+import sunil.noticeBoard.service.FollowService;
 import sunil.noticeBoard.service.UserService;
 
 import javax.servlet.http.HttpSession;
@@ -22,6 +24,9 @@ public class MainController {
     @Autowired
     ContentService contentService;
 
+    @Autowired
+    FollowService followService;
+
     public static Pagination page = new Pagination();
 
     @GetMapping("/")
@@ -32,6 +37,14 @@ public class MainController {
     @GetMapping("/main")
     public String goToMainPageGet(Model model, HttpSession session, @RequestParam(value = "page", required = false) String currentPage) {
         String email = (String) session.getAttribute("email");
+
+        if(email != null) {
+            List<Follow> followerList = followService.getFollower(email);
+            List<Follow> followingList = followService.getFollowing(email);
+
+            model.addAttribute("follower", followerList.toArray(new Follow[0]));
+            model.addAttribute("following", followingList.toArray(new Follow[0]));
+        };
 
         List<Content> allContentList = contentService.getAllContent();
         Content[] allContentArray = allContentList.toArray(new Content[0]);
