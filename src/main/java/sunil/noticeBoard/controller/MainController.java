@@ -39,8 +39,10 @@ public class MainController {
         String email = (String) session.getAttribute("email");
 
         if(email != null) {
+            List<Follow> followerList = followService.getFollower(email);
             List<Follow> followingList = followService.getFollowing(email);
 
+            model.addAttribute("follower", followerList.toArray(new Follow[0]));
             model.addAttribute("following", followingList.toArray(new Follow[0]));
         };
 
