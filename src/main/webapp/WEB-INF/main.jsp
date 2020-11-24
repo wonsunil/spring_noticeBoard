@@ -135,7 +135,7 @@
                     </ul>
                 </nav>
             </div>
-            <table class="table table-hover table-striped text-center">
+            <table class="table table-hover table-striped table-bordered text-center">
                 <thead>
                     <tr>
                         <th>게시판</th>

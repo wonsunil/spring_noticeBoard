@@ -95,6 +95,8 @@ header > .container > section > li{
     position: relative;
 }
 
+#notice-board > .table > thead{ background: lightgrey; }
+
 #additional-function{
     width: auto;
     height: 50px;
