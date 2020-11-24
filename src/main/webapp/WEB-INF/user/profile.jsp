@@ -3,6 +3,8 @@
 
 <%
     Content[] contentArray = (Content[]) request.getAttribute("contents");
+
+    String[] user = (String[]) request.getAttribute("user");
 %>
 
 <html>
@@ -29,7 +31,7 @@
             ${user[4]}
         </div>
         <%
-            if(session.getAttribute("email") != null) {
+            if(session.getAttribute("email") != null && session.getAttribute("email").equals(user[0])) {
         %>
         <button id="setting">설정</button>
         <%
