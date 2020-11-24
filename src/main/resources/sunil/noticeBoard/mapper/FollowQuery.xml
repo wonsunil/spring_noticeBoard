@@ -3,9 +3,9 @@
 
 <mapper namespace="sunil.noticeBoard.mapper.FollowMapper">
     <select id="getFollower" resultType="sunil.noticeBoard.model.Follow">
-        SELECT * FROM FOLLOW WHERE FOLLOWING = #{email}
+        SELECT PROFILE_IMAGE, FOLLOWING FROM USER_INFO, FOLLOW WHERE FOLLOWING = #{email} AND USER_INFO.EMAIL = FOLLOWING
     </select>
     <select id="getFollowing" resultType="sunil.noticeBoard.model.Follow">
-        SELECT *  FROM FOLLOW WHERE FOLLOWER = #{email}
+        SELECT PROFILE_IMAGE, FOLLOWING FROM USER_INFO, FOLLOW WHERE FOLLOWER = #{email} AND USER_INFO.EMAIL = FOLLOWING
     </select>
 </mapper>
