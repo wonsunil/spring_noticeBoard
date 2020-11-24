@@ -16,14 +16,11 @@
     <title>content</title>
     <link rel="stylesheet" href="/css/content_detail.css">
     <script src="/js/content_detail.js"></script>
-    <style>
-
-    </style>
 </head>
 <body>
 <div id="wrap">
     <h1 id="title">${content[2]}</h1>
-    <h3 id="writer">${content[5].substring(0, 10)} by <a href="/user/profile?email=${content[1]}" target="_blank">${content[1]}</a></h3>
+    <h3 id="writer">${content[5].substring(0, 10)} by <a href="/user/profile/${content[1]}" target="_blank">${content[1]}</a></h3>
     <%
         if(likes == null) {
     %>
