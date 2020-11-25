@@ -145,14 +145,14 @@
         <section id="notice-board">
             <div id="additional-function" class="d-flex justify-content-between align-items-start">
                 <select name="limit">
-                    <option value="10" <%=pagination.getLimit().equals("10") ? "selected" : ""%>>10개</option>
-                    <option value="15" <%=pagination.getLimit().equals("15") ? "selected" : ""%>>15개</option>
-                    <option value="20" <%=pagination.getLimit().equals("20") ? "selected" : ""%>>20개</option>
+                    <option value="10" <%=pagination.getLimit() == 10 ? "selected" : ""%>>10개</option>
+                    <option value="15" <%=pagination.getLimit() == 15 ? "selected" : ""%>>15개</option>
+                    <option value="20" <%=pagination.getLimit() == 20 ? "selected" : ""%>>20개</option>
                 </select>
                 <nav>
                     <ul class="pagination">
                         <%
-                            if(allContents.length > 10 && allContents.length > Integer.parseInt(pagination.getLimit())) {
+                            if(allContents.length > 10 && allContents.length > pagination.getLimit()) {
                                 for (int i = 1, limit = pagination.getLastPage(); i <= limit; i++) {
                         %>
                         <li class="page-item <%=pagination.getCurrentPage() == i ? "active" : ""%>"><a href="?page=<%=i%>" class="page-link"><%=i%></a></li>
@@ -174,7 +174,7 @@
                 <tbody>
                 <%
                     try {
-                        for (int i = pagination.getStartIndex(), limit = pagination.getLastIndex(); i < limit; i++) {
+                        for (int i = pagination.getStartIndex(), limit = pagination.getLastIndex(); i <= limit; i++) {
                             String[] content = allContents[i].toArray();
                 %>
                     <tr>

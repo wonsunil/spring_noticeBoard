@@ -1,14 +1,14 @@
 package sunil.noticeBoard;
 
 public class Pagination {
-    private String limit = String.valueOf(10);
+    private int limit = 10;
     private int currentPage = 1;
     private int lastPage = 0;
     private int range = 0;
     private int startIndex = 1;
     private int lastIndex = 0;
 
-    public String getLimit() {
+    public int getLimit() {
         return this.limit;
     };
     public int getCurrentPage() {
@@ -42,7 +42,7 @@ public class Pagination {
     public void setLastIndex(int lastIndex) {
         this.lastIndex = lastIndex;
     };
-    public void setLimit(String limit) {
+    public void setLimit(int limit) {
         this.limit = limit;
     };
 };
