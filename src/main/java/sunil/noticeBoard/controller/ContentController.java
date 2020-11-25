@@ -42,7 +42,7 @@ public class ContentController {
     };
 
     @PostMapping("/content/content-write")
-    public String insertContent(@RequestPart("file") MultipartFile file, @RequestParam("filename") String filename, @ModelAttribute Content content) {
+    public String insertContent(@RequestPart(value = "file", required = false) MultipartFile file, @RequestParam(value = "filename", required = false) String filename, @ModelAttribute Content content) {
         String writer = content.getWriter();
 
         List<Content> userWrittenContentList = contentService.getContentByEmail(writer);
