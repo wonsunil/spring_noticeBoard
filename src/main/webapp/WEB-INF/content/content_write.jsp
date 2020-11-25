@@ -5,7 +5,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/content_write.css">
-<%--    <script src="/js/content_write.js"></script>--%>
+    <script src="/js/content_write.js"></script>
 </head>
 <body class="jumbotron">
     <div class="container">
