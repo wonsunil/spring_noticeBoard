@@ -3,10 +3,8 @@ package sunil.noticeBoard.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import sunil.noticeBoard.Pagination;
 import sunil.noticeBoard.model.Content;
 import sunil.noticeBoard.model.Likes;
@@ -16,6 +14,8 @@ import sunil.noticeBoard.service.LikesService;
 import sunil.noticeBoard.service.UserService;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -41,7 +41,7 @@ public class ContentController {
     };
 
     @PostMapping("/content/content-write")
-    public String insertContent(@ModelAttribute Content content) {
+    public String insertContent(@RequestPart("file") MultipartFile file, @RequestParam("filename") String filename, @ModelAttribute Content content) {
         String writer = content.getWriter();
 
         List<Content> userWrittenContentList = contentService.getContentByEmail(writer);
@@ -52,7 +52,8 @@ public class ContentController {
         var code = writer + "_" + (length+1);
 
         if(length > 1) {
-            code = writer + "_" + Integer.parseInt(contents[length-1].toArray()[4].substring(contents[length-1].toArray()[1].length()+1, contents[length-1].toArray()[4].length()))+1;
+            code = writer + "_" + (Integer.parseInt(contents[length-1].toArray()[4].substring(contents[length-1].toArray()[1].length()+1,
+                    contents[length-1].toArray()[4].length())) + 1);
         };
 
         content.setContentCode(code);
@@ -60,6 +61,22 @@ public class ContentController {
         content.setComments(0);
 
         contentService.insertContent(content);
+
+        try {
+            File dir = new File("C:\\Users\\lee.changjun\\Desktop\\noticeBoard" +
+                    "\\src\\main\\resources\\static\\images\\content\\" + content.getContentCode());
+            String originFilename = file.getOriginalFilename();
+            String extName
+                    = originFilename.substring(originFilename.lastIndexOf("."), originFilename.length());
+
+            if (!dir.isDirectory()) {
+                dir.mkdir();
+            };
+
+            file.transferTo(new File("C:\\Users\\lee.changjun\\Desktop\\noticeBoard" +
+                    "\\src\\main\\resources\\static\\images\\content\\" + content.getContentCode() + "\\" + filename + extName));
+
+        } catch (IOException ignored) {}
 
         return "redirect:/content/content-write";
     };

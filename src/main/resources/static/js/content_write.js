@@ -20,6 +20,8 @@ window.onload = () => {
     const $writer = $form.children[0].children[1];
     const $contentName = $form.children[1].children[0];
     const $content = $form.children[2];
+    const $filename = $form.children[3].children[1];
+    const $file = $form.children[3].children[2];
 
     $form.addEventListener("submit", event => {
         event.preventDefault();
@@ -43,6 +45,8 @@ window.onload = () => {
         form.append("contentName", $contentName.value);
         form.append("content", content);
         form.append("updatedDate", getDate(new Date()));
+        form.append("filename", $filename.value);
+        form.append("file", $file.files[0]);
 
         const xhr = new XMLHttpRequest();
 

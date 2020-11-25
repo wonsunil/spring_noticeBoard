@@ -5,7 +5,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/content_write.css">
-    <script src="/js/content_write.js"></script>
+<%--    <script src="/js/content_write.js"></script>--%>
 </head>
 <body class="jumbotron">
     <div class="container">
@@ -32,7 +32,11 @@
                     <input id="title" name="contentName" placeholder="제목을 입력해주세요!" autocomplete="off">
                 </div>
                 <textarea name="" id="content" name="content" cols="30" rows="10"></textarea>
-                <div class="form-group"><label for="file">파일 첨부 : </label><input type="file" id="file"></div>
+                <div class="form-group">
+                    <label for="filename">파일 첨부 : </label>
+                    <input type="text" id="filename" placeholder="파일명을 입력해주세요.">
+                    <input type="file" id="file">
+                </div>
                 <input type="submit" class="btn btn-primary" value="글쓰기">
             </form>
             <button><a href="/main" class="btn btn-primary">메인</a></button>
