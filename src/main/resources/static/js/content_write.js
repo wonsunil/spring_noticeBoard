@@ -1,5 +1,5 @@
-window.onload = function() {
-    const getDate = function(date) {
+window.onload = () => {
+    const getDate = date => {
         const year = date.getFullYear();
 
         let month = (1 + date.getMonth());
@@ -11,7 +11,7 @@ window.onload = function() {
         return  year + "/" + month + "/" + day;
     };
 
-    const file_type_check = function(img) {
+    const file_type_check = img => {
         img.match(new RegExp(/\.png|\.jpg|\.jpeg|\.git|\.bmp/));
     };
 
@@ -21,7 +21,7 @@ window.onload = function() {
     const $contentName = $form.children[1].children[0];
     const $content = $form.children[2];
 
-    $form.addEventListener("submit", function(event) {
+    $form.addEventListener("submit", event => {
         event.preventDefault();
 
         const form = new FormData();
@@ -49,7 +49,7 @@ window.onload = function() {
         xhr.open("POST", "/content/content-write");
         xhr.send(form);
 
-        xhr.onreadystatechange = function() {
+        xhr.onreadystatechange = () => {
             if(xhr.readyState === 4) {
                 if(xhr.response) location.href = "/main";
             };
@@ -57,7 +57,7 @@ window.onload = function() {
     });
 
     const $img = document.querySelector("input[type='file']");
-    $img.addEventListener("change", function({ target }) {
+    $img.addEventListener("change", ({ target }) => {
         if(file_type_check(target.value) === null) {
             target.value = "";
             return alert("이미지 파일만 선택가능합니다");
@@ -67,7 +67,7 @@ window.onload = function() {
     });
 
     const $selectBox = document.querySelector("select");
-    $selectBox.addEventListener("change", function({ target }) {
+    $selectBox.addEventListener("change", ({ target }) => {
         const value = [...target.children].filter( v => v.selected)[0].innerHTML;
 
         document.querySelector("#boardName").innerHTML  = value;
@@ -75,7 +75,7 @@ window.onload = function() {
 
     const $textarea = document.forms[0].children[4];
 
-    $textarea.addEventListener("keydown", function(event) {
+    $textarea.addEventListener("keydown", function() {
         this.style.height = "auto";
         this.style.height = this.scrollHeight + (this.offsetHeight - this.clientHeight);
     });
