@@ -52,7 +52,7 @@ public class ContentController {
         var code = writer + "_" + (length+1);
 
         if(length > 1) {
-            code = writer + "_" + (Integer.parseInt(contents[length-1].toArray()[4].substring(contents[length-1].toArray()[4].length() - 1))+1);
+            code = writer + "_" + Integer.parseInt(contents[length-1].toArray()[4].substring(contents[length-1].toArray()[1].length()+1, contents[length-1].toArray()[4].length()))+1;
         };
 
         content.setContentCode(code);
