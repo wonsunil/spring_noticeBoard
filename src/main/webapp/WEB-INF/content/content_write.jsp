@@ -14,6 +14,13 @@
             <option value="life">일상 게시판</option>
             <option value="report">신고 게시판</option>
             <option value="inquire">문의 게시판</option>
+            <%
+                if(session.getAttribute("rank").equals("admin")) {
+            %>
+            <option value="notice">공지 사항</option>
+            <%
+                };
+            %>
         </select>
         <div class="container">
             <form action="/content/content-write" method="POST" enctype="multipart/form-data">
