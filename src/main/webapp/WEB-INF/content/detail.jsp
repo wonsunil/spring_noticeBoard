@@ -24,7 +24,15 @@
     <%
         if(likes == null) {
     %>
-    <div id="content"></div>
+    <div id="content">
+    <%
+        if(request.getAttribute("file") != null) {
+    %>
+        <img src="${imagePath.concat(file)}" alt="">
+    <%
+        };
+    %>
+    </div>
     <%
         };
     %>

@@ -16,6 +16,7 @@ import sunil.noticeBoard.service.UserService;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -62,9 +63,11 @@ public class ContentController {
 
         contentService.insertContent(content);
 
+        String path = "C:\\Users\\lee.changjun\\Desktop\\noticeBoard" +
+                "\\src\\main\\resources\\static\\images\\content\\" + content.getContentCode();
+
         try {
-            File dir = new File("C:\\Users\\lee.changjun\\Desktop\\noticeBoard" +
-                    "\\src\\main\\resources\\static\\images\\content\\" + content.getContentCode());
+            File dir = new File(path);
             String originFilename = file.getOriginalFilename();
             String extName
                     = originFilename.substring(originFilename.lastIndexOf("."), originFilename.length());
@@ -73,8 +76,7 @@ public class ContentController {
                 dir.mkdir();
             };
 
-            file.transferTo(new File("C:\\Users\\lee.changjun\\Desktop\\noticeBoard" +
-                    "\\src\\main\\resources\\static\\images\\content\\" + content.getContentCode() + "\\" + filename + extName));
+            file.transferTo(new File(path + "\\" + filename + extName));
 
         } catch (IOException ignored) {}
 
@@ -89,8 +91,48 @@ public class ContentController {
         model.addAttribute("content", content[0].toArray());
         model.addAttribute("page", page);
 
+        File dir = new File("C:\\Users\\lee.changjun\\Desktop\\noticeBoard\\src\\main\\resources\\static\\images\\content\\" + content[0].toArray()[4]);
+        String file = null;
+
+        if(dir.isDirectory()) {
+            String[] fileExts = {"jpg", "png", "gif"};
+
+            for(String ext : fileExts) {
+                File[] files = this.searchFile(dir, ext);
+
+                if(files.length > 0) {
+                    file = Arrays.toString(files)
+                            .substring(
+                                    Arrays.toString(files)
+                                            .lastIndexOf("\\")+1,
+                                    files[0]
+                                            .toString()
+                                            .length()+1
+                            );
+                    break;
+                };
+            }
+        };
+
+        String path = "/images/content/";
+
+        model.addAttribute("imagePath", path + content[0].toArray()[4] + "/");
+        model.addAttribute("file", file);
+
         return "/content/detail";
     };
+
+    public File[] searchFile(File dir, String fileExt) {
+        final String ext = fileExt.toLowerCase();
+        File[] files = dir.listFiles(file1 -> {
+            if (file1.isDirectory()) {
+                return false;
+            }
+            return file1.getName().toLowerCase().endsWith("." + ext);
+        });
+
+        return files;
+    }
 
     @GetMapping("/content/{contentCode}/likes")
     public String likes(Model model, @PathVariable("contentCode") String contentCode) {
