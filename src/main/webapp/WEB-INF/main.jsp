@@ -149,6 +149,7 @@
                     <option value="15" <%=pagination.getLimit() == 15 ? "selected" : ""%>>15개</option>
                     <option value="20" <%=pagination.getLimit() == 20 ? "selected" : ""%>>20개</option>
                 </select>
+                <a href="/content/content-write" id="write" class="btn btn-outline-dark">글쓰기</a>
                 <nav>
                     <ul class="pagination">
                         <%
@@ -191,7 +192,6 @@
                 %>
                 </tbody>
             </table>
-            <a href="/content/content-write" id="write" class="btn btn-outline-dark">글쓰기</a>
         </section>
     </article>
 </div>
