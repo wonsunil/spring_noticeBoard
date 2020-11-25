@@ -7,8 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import sunil.noticeBoard.model.Content;
+import sunil.noticeBoard.model.Follow;
+import sunil.noticeBoard.model.Likes;
 import sunil.noticeBoard.model.User;
 import sunil.noticeBoard.service.ContentService;
+import sunil.noticeBoard.service.FollowService;
+import sunil.noticeBoard.service.LikesService;
 import sunil.noticeBoard.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +26,12 @@ public class UserController {
 
     @Autowired
     ContentService contentService;
+
+    @Autowired
+    FollowService followService;
+
+    @Autowired
+    LikesService likesService;
 
     @GetMapping("/user/account/login")
     public String goToLoginPageGet(HttpSession session) {
@@ -96,6 +106,18 @@ public class UserController {
         Content[] contents = contentList.toArray(new Content[0]);
 
         model.addAttribute("contents", contents);
+
+        List<Follow> followerList = followService.getFollower(email);
+        List<Follow> followingList = followService.getFollowing(email);
+
+        model.addAttribute("follower", followerList.toArray(new Follow[0]));
+        model.addAttribute("following", followingList.toArray(new Follow[0]));
+
+        List<Likes> likedList = likesService.getLikedByEmail(email);
+
+        model.addAttribute("likedContents", likedList.toArray(new Likes[0]));
+
+        model.addAttribute("page", MainController.page);
 
         return "user/profile";
     };

@@ -1,10 +1,17 @@
 <%@ page import="sunil.noticeBoard.model.Content" %>
+<%@ page import="sunil.noticeBoard.model.Follow" %>
+<%@ page import="sunil.noticeBoard.model.Likes" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <%
     Content[] contentArray = (Content[]) request.getAttribute("contents");
 
     String[] user = (String[]) request.getAttribute("user");
+
+    Follow[] follower = (Follow[]) request.getAttribute("follower");
+    Follow[] following = (Follow[]) request.getAttribute("following");
+
+    Likes[] likes = (Likes[]) request.getAttribute("likedContents");
 %>
 
 <html>
@@ -23,9 +30,9 @@
                 <li id="email">${user[0]}</li>
             </ul>
             <ul id="user-activity">
-                <li id="follower">0 followers</li>
-                <li id="following">0 following</li>
-                <li id="likes">👍0</li>
+                <li id="follower"><%=follower.length%> followers</li>
+                <li id="following"><%=following.length%> following</li>
+                <li id="likes"><%=likes.length%> 👍</li>
             </ul>
         </div>
         <div id="profile-content">
@@ -66,6 +73,7 @@
             </ul>
         </div>
     </section>
+    <button><a href="/main?page=${page.currentPage}">메인</a></button>
 </article>
 </body>
 </html>
