@@ -16,6 +16,6 @@ public class Likes {
     };
 
     public String[] toArray() {
-        return new String[]{this.email};
+        return new String[]{this.email, this.contentCode};
     };
 };

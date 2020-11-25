@@ -13,6 +13,11 @@ public class LikesServiceImpl implements LikesService{
     LikesMapper mapper;
 
     @Override
+    public List<Likes> getLikedByEmail(String email) {
+        return mapper.getLikedByEmail(email);
+    };
+
+    @Override
     public List<Likes> getLikes(String contentCode) {
           return mapper.getLikes(contentCode);
     };

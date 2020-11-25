@@ -7,5 +7,6 @@ import java.util.List;
 
 @Service
 public interface LikesService {
+    List<Likes> getLikedByEmail(String email);
     List<Likes> getLikes(String contentCode);
 };
