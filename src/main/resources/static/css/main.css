@@ -11,6 +11,11 @@ header{
     font-size: 18px;
 }
 
+.carousel.slide{ height: 82% !important; }
+.carousel-inner{ height: 100%; }
+.carousel-item{ height: inherit; }
+.carousel-inner img{ margin-top: -13%; }
+
 nav > a{
     border-right: 1px solid white;
     padding-right: 30px;
