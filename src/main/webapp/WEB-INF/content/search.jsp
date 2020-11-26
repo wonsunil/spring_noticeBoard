@@ -35,10 +35,11 @@
                 <%
                     for(Content content : contents) {
                 %>
-                <li class="list-group-item">
-                    <a href="/user/profile/<%=content.toArray()[1]%>"><%=content.toArray()[1]%></a>
-                    <a href="/content/detail/<%=content.toArray()[4]%>"><%=content.toArray()[4]%></a>
-                </li>
+                <div class="list-group-item">
+                    <li><%=content.toArray()[0]%></li>
+                    <li><a href="/user/profile/<%=content.toArray()[1]%>"><%=content.toArray()[1]%></a></li>
+                    <li><a href="/content/detail/<%=content.toArray()[4]%>"><%=content.toArray()[2]%></a></li>
+                </div>
             <%
                     }
                 }else if(contents != null && contents.length == 0) {
