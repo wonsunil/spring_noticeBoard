@@ -1,13 +1,11 @@
 <%@ page import="sunil.noticeBoard.model.User" %>
-<%@ page import="sunil.noticeBoard.model.Follow" %>
 <%@ page import="sunil.noticeBoard.service.FollowService" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <%
-    User[] users = (User[]) request.getAttribute("user");
-
     FollowService followService = (FollowService) request.getAttribute("service");
 
+    User[] users = (User[]) request.getAttribute("user");
     String email = (String) session.getAttribute("email");
 %>
 
@@ -67,7 +65,7 @@
                 <%
                     }else if(users != null && users.length == 0) {
                 %>
-                    <li><strong>해당 이메일 또는 이름을 사용중인 유저가 없습니다!</strong></li>
+                <li><strong>해당 이메일 또는 이름을 사용중인 유저가 없습니다!</strong></li>
                 <%
                     }else if(users == null) {
                 %>
@@ -75,9 +73,6 @@
                 <%
                     };
                 %>
-            </section>
-            <section id="associate-result">
-
             </section>
         </div>
     </div>
