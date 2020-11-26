@@ -42,11 +42,4 @@ public class RestContentController {
 
         return true;
     };
-
-    @GetMapping("/content/search")
-    public Content[] searchContent(@RequestParam String contentName) {
-        List<Content> contentList = contentService.getSearchByContentName(contentName);
-
-        return contentList.toArray(new Content[0]);
-    };
 };

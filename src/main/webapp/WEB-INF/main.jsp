@@ -151,6 +151,7 @@
                 </select>
                 <a href="/content/content-write" id="write" class="btn btn-outline-dark">글쓰기</a>
                 <a href="/user/search" class="btn btn-outline-dark">유저검색</a>
+                <a href="/content/search" class="btn btn-outline-dark">게시글 검색</a>
                 <nav>
                     <ul class="pagination">
                         <%

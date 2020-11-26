@@ -156,4 +156,18 @@ public class ContentController {
 
         return "/content/detail";
     };
+
+    @GetMapping("/content/search")
+    public String search() {
+        return "/content/search";
+    };
+
+    @GetMapping("/content/search/{contentName}")
+    public String searchName(Model model, @PathVariable("contentName") String contentName) {
+        List<Content> contentList = contentService.getSearchByContentName(contentName);
+
+        model.addAttribute("contents", contentList.toArray(new Content[0]));
+
+        return "/content/search";
+    };
 }
