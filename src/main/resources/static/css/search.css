@@ -56,3 +56,5 @@ nav > div > button{
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.list-group-item > img{ width: 30px; height: 30px; }

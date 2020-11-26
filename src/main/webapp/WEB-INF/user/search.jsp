@@ -3,17 +3,14 @@
 
 <%
     User[] users = (User[]) request.getAttribute("user");
-    String[] user = new String[0];
-
-    if(users != null && users.length > 0) {
-        user = users[0].toArray();
-    };
 %>
 
 <html>
 <head>
     <title>User search</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/search.css">
+    <script src="/js/search.js"></script>
 </head>
 <body>
     <header>
@@ -34,8 +31,20 @@
             <section id="search-result">
                 <%
                     if(users != null && users.length > 0) {
-                        out.println(user[0]);
                 %>
+                <ul class="list-group">
+                <%
+                    for(User u : users) {
+                %>
+                    <li class="list-group-item">
+                        <img src="<%=u.toArray()[5]%>" alt="" class="profile-img">
+                        <a href="/user/profile/<%=u.toArray()[0]%>"><%=u.toArray()[0]%>
+                        </a>
+                    </li>
+                <%
+                    }
+                %>
+                </ul>
                 <%
                     }else if(users != null && users.length == 0) {
                 %>
