@@ -51,7 +51,7 @@
                                 followService.getFollowWhether(email, u.toArray()[0])
                             ) {
                         %>
-                        <button>팔로우 끊기</button>
+                        <button><a href="/user/unfollow/<%=u.toArray()[0]%>">팔로우 끊기</a></button>
                         <%
                             }else if(email == null || !email.equals(u.toArray()[0])) {
                         %>

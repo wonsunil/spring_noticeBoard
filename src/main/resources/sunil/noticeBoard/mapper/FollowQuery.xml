@@ -11,4 +11,7 @@
     <select id="getFollowWhether" resultType="sunil.noticeBoard.model.Follow">
         SELECT * FROM FOLLOW WHERE FOLLOWER = #{follower} AND FOLLOWING = #{following}
     </select>
+    <delete id="unfollow">
+        DELETE FROM FOLLOW WHERE FOLLOWER = #{email} AND FOLLOWING = #{following}
+    </delete>
 </mapper>

@@ -29,4 +29,9 @@ public class FollowServiceImpl implements FollowService {
 
         return followArray.length != 0;
     };
+
+    @Override
+    public void unfollow(String email, String following) {
+        mapper.unfollow(email, following);
+    };
 };

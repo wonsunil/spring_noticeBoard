@@ -14,4 +14,9 @@ public interface FollowService {
             @Param("follower") String follower,
             @Param("following") String following
     );
+
+    void unfollow(
+            @Param("email") String email,
+            @Param("following") String following
+    );
 };
