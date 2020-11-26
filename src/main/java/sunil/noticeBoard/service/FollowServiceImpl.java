@@ -34,4 +34,9 @@ public class FollowServiceImpl implements FollowService {
     public void unfollow(String email, String following) {
         mapper.unfollow(email, following);
     };
+
+    @Override
+    public void follow(String email, String target) {
+        mapper.follow(email, target);
+    };
 };

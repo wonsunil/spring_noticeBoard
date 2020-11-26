@@ -19,4 +19,8 @@ public interface FollowService {
             @Param("email") String email,
             @Param("following") String following
     );
+    void follow(
+            @Param("email") String email,
+            @Param("target") String target
+    );
 };

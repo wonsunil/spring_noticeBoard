@@ -10,4 +10,5 @@ public interface FollowMapper {
     List<Follow> getFollowWhether(String follower, String following);
 
     void unfollow(String email, String following);
+    void follow(String email, String target);
 };

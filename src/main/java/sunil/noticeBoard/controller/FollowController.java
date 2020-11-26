@@ -14,9 +14,20 @@ public class FollowController {
     FollowService followService;
 
     @GetMapping("/user/unfollow/{following}")
-    public String unfollow(@PathVariable("following") String following, HttpSession session) {
+    public String unfollow(HttpSession session, @PathVariable("following") String following) {
         followService.unfollow((String) session.getAttribute("email"), following);
 
         return "redirect:/user/search";
+    };
+
+    @GetMapping("user/follow/{target}")
+    public String follow(HttpSession session, @PathVariable("target") String target) {
+        String email = (String) session.getAttribute("email");
+
+        if(email == null) return "redirect:/user/account/login";
+
+        followService.follow(email, target);
+
+        return "redirect:/main";
     };
 }

@@ -55,7 +55,7 @@
                         <%
                             }else if(email == null || !email.equals(u.toArray()[0])) {
                         %>
-                        <button>팔로우</button>
+                        <button><a href="/user/follow/<%=u.toArray()[0]%>">팔로우</a></button>
                         <%
                             };
                         %>

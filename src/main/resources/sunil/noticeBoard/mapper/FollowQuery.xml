@@ -14,4 +14,7 @@
     <delete id="unfollow">
         DELETE FROM FOLLOW WHERE FOLLOWER = #{email} AND FOLLOWING = #{following}
     </delete>
+    <insert id="follow">
+        INSERT INTO FOLLOW VALUES (#{email}, #{target})
+    </insert>
 </mapper>
