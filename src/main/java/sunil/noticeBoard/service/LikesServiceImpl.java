@@ -29,4 +29,14 @@ public class LikesServiceImpl implements LikesService{
 
         return likeArray.length != 0;
     };
+
+    @Override
+    public void like(String email, String contentCode) {
+        mapper.like(email, contentCode);
+    };
+
+    @Override
+    public void unlike(String email, String contentCode) {
+        mapper.unlike(email, contentCode);
+    };
 };

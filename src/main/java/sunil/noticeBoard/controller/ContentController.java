@@ -171,4 +171,26 @@ public class ContentController {
 
         return "/content/search";
     };
+
+    @GetMapping("/content/like/{contentCode}")
+    public String likeContent(HttpSession session, @PathVariable("contentCode") String contentCode) {
+        String email = (String) session.getAttribute("email");
+
+        if(email == null) return "redirect:/user/account/login";
+
+        likesService.like(email, contentCode);
+
+        return "redirect:/content/search";
+    };
+
+    @GetMapping("/content/unlike/{contentCode}")
+    public String unlikeContent(HttpSession session, @PathVariable("contentCode") String contentCode) {
+        String email = (String) session.getAttribute("email");
+
+        if(email == null) return "redirect:/user/account/login";
+
+        likesService.unlike(email, contentCode);
+
+        return "redirect:/content/search";
+    };
 }

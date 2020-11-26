@@ -11,4 +11,10 @@
     <select id="getLikeWhether" resultType="sunil.noticeBoard.model.Likes">
         SELECT * FROM LIKES WHERE EMAIL = #{email} AND CONTENT_CODE = #{contentCode}
     </select>
+    <insert id="like">
+        INSERT INTO LIKES VALUES (#{email}, #{contentCode})
+    </insert>
+    <delete id="unlike">
+        DELETE FROM LIKES WHERE EMAIL = #{email} AND CONTENT_CODE = #{contentCode}
+    </delete>
 </mapper>

@@ -15,4 +15,13 @@ public interface LikesService {
             @Param("email") String email,
             @Param("contentCode") String contentCode
     );
+
+    void like(
+            @Param("email") String email,
+            @Param("contentCode") String contentCode
+    );
+    void unlike(
+            @Param("email") String email,
+            @Param("contentCode") String contentCode
+    );
 };

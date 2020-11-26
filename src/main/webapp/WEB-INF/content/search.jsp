@@ -46,14 +46,14 @@
                     <li><a href="/content/detail/<%=content.toArray()[4]%>"><%=content.toArray()[2]%></a></li>
                     <%
                         if(email != null && !email.equals(content.toArray()[0]) &&
-                                likesService.getLikeWhether(email, content.toArray()[0])
+                                likesService.getLikeWhether(email, content.toArray()[4])
                         ) {
                     %>
-                    <button><a href="/content/unlike/<%=content.toArray()[0]%>">좋아요 해제</a></button>
+                    <button><a href="/content/unlike/<%=content.toArray()[4]%>">좋아요 해제</a></button>
                     <%
                     }else if(email == null || !email.equals(content.toArray()[0])) {
                     %>
-                    <button><a href="/content/like/<%=content.toArray()[0]%>">좋아요</a></button>
+                    <button><a href="/content/like/<%=content.toArray()[4]%>">좋아요</a></button>
                     <%
                         };
                     %>
