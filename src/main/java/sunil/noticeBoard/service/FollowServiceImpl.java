@@ -21,4 +21,12 @@ public class FollowServiceImpl implements FollowService {
     public List<Follow> getFollowing(String email) {
         return mapper.getFollowing(email);
     };
+
+    @Override
+    public Boolean getFollowWhether(String follower, String following) {
+        List<Follow> followingList = mapper.getFollowWhether(follower, following);
+        Follow[] followArray = followingList.toArray(new Follow[0]);
+
+        return followArray.length != 0;
+    };
 };

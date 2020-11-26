@@ -141,10 +141,20 @@ public class UserController {
         return "/user/search";
     };
     @GetMapping("/user/search/name/{name}")
-    public String searchName(Model model, @PathVariable("name") String name) {
+    public String searchName(Model model, HttpSession session, @PathVariable("name") String name) {
         List<User> userList = userService.getUserByName(name);
 
         model.addAttribute("user", userList.toArray(new User[0]));
+
+        String email = (String) session.getAttribute("email");
+
+        if(email != null) {
+            List<Follow> followingList = followService.getFollowing(email);
+
+            model.addAttribute("following", followingList.toArray(new Follow[0]));
+        };
+
+        model.addAttribute("service", followService);
 
         return "/user/search";
     };

@@ -10,4 +10,8 @@ import java.util.List;
 public interface FollowService {
     List<Follow> getFollower(@Param("email") String email);
     List<Follow> getFollowing(@Param("email") String email);
+    Boolean getFollowWhether(
+            @Param("follower") String follower,
+            @Param("following") String following
+    );
 };

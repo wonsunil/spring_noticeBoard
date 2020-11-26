@@ -1,8 +1,14 @@
 <%@ page import="sunil.noticeBoard.model.User" %>
+<%@ page import="sunil.noticeBoard.model.Follow" %>
+<%@ page import="sunil.noticeBoard.service.FollowService" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <%
     User[] users = (User[]) request.getAttribute("user");
+
+    FollowService followService = (FollowService) request.getAttribute("service");
+
+    String email = (String) session.getAttribute("email");
 %>
 
 <html>
@@ -40,6 +46,19 @@
                         <img src="<%=u.toArray()[5]%>" alt="" class="profile-img">
                         <a href="/user/profile/<%=u.toArray()[0]%>"><%=u.toArray()[0]%>
                         </a>
+                        <%
+                            if(email != null && !email.equals(u.toArray()[0]) &&
+                                followService.getFollowWhether(email, u.toArray()[0])
+                            ) {
+                        %>
+                        <button>팔로우 끊기</button>
+                        <%
+                            }else if(email == null || !email.equals(u.toArray()[0])) {
+                        %>
+                        <button>팔로우</button>
+                        <%
+                            };
+                        %>
                     </li>
                 <%
                     }
