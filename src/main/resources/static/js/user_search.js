@@ -17,6 +17,7 @@ window.onload = _ => {
 
         location.href = "/user/search/" + typeCheck(value) + "/" + value;
     });
+
     const $searchButton = document.querySelector("header button");
     $searchButton.addEventListener("click", _ => {
         const value = $searchInput.value;
