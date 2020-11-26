@@ -21,4 +21,12 @@ public class LikesServiceImpl implements LikesService{
     public List<Likes> getLikes(String contentCode) {
           return mapper.getLikes(contentCode);
     };
+
+    @Override
+    public Boolean getLikeWhether(String email, String contentCode) {
+        List<Likes> likeList = mapper.getLikeWhether(email, contentCode);
+        Likes[] likeArray = likeList.toArray(new Likes[0]);
+
+        return likeArray.length != 0;
+    };
 };

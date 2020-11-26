@@ -1,8 +1,12 @@
 <%@ page import="sunil.noticeBoard.model.Content" %>
+<%@ page import="sunil.noticeBoard.service.LikesService" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <%
+    LikesService likesService = (LikesService) request.getAttribute("service");
     Content[] contents = (Content[]) request.getAttribute("contents");
+
+    String email = (String) session.getAttribute("email");
 %>
 
 <html>
@@ -10,6 +14,7 @@
     <title>User search</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/search.css">
+    <script src="/js/content_search.js"></script>
 </head>
 <body>
 <header>
@@ -39,6 +44,19 @@
                     <li><%=content.toArray()[0]%></li>
                     <li><a href="/user/profile/<%=content.toArray()[1]%>"><%=content.toArray()[1]%></a></li>
                     <li><a href="/content/detail/<%=content.toArray()[4]%>"><%=content.toArray()[2]%></a></li>
+                    <%
+                        if(email != null && !email.equals(content.toArray()[0]) &&
+                                likesService.getLikeWhether(email, content.toArray()[0])
+                        ) {
+                    %>
+                    <button><a href="/content/unlike/<%=content.toArray()[0]%>">좋아요 해제</a></button>
+                    <%
+                    }else if(email == null || !email.equals(content.toArray()[0])) {
+                    %>
+                    <button><a href="/content/like/<%=content.toArray()[0]%>">좋아요</a></button>
+                    <%
+                        };
+                    %>
                 </div>
             <%
                     }

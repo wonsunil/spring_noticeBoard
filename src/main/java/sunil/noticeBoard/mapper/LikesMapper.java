@@ -7,4 +7,5 @@ import java.util.List;
 public interface LikesMapper {
     List<Likes> getLikedByEmail(String email);
     List<Likes> getLikes(String contentCode);
+    List<Likes> getLikeWhether(String email, String contentCode);
 };

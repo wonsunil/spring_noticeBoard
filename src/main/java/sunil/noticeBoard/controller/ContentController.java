@@ -167,6 +167,7 @@ public class ContentController {
         List<Content> contentList = contentService.getSearchByContentName(contentName);
 
         model.addAttribute("contents", contentList.toArray(new Content[0]));
+        model.addAttribute("service", likesService);
 
         return "/content/search";
     };

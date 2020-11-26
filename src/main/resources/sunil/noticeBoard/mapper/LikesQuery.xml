@@ -8,4 +8,7 @@
     <select id="getLikes" resultType="sunil.noticeBoard.model.Likes">
         SELECT EMAIL FROM LIKES WHERE CONTENT_CODE = #{contentCode}
     </select>
+    <select id="getLikeWhether" resultType="sunil.noticeBoard.model.Likes">
+        SELECT * FROM LIKES WHERE EMAIL = #{email} AND CONTENT_CODE = #{contentCode}
+    </select>
 </mapper>
