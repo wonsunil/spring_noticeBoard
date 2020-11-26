@@ -8,6 +8,9 @@
     <select id="getUserByEmail" resultType="sunil.noticeBoard.model.User">
         SELECT EMAIL, NAME, PHONE, RANK, PROFILE_CONTENT, PROFILE_IMAGE FROM USER_INFO WHERE EMAIL = #{email}
     </select>
+    <select id="getUserByName" resultType="sunil.noticeBoard.model.User">
+        SELECT EMAIL, NAME, PHONE, RANK, PROFILE_CONTENT, PROFILE_IMAGE FROM USER_INFO WHERE NAME = #{name}
+    </select>
     <select id="getUserColumnByCondition" resultType="sunil.noticeBoard.model.User">
         SELECT #{columnName} FROM USER_INFO WHERE #{condition} = #{value}
     </select>

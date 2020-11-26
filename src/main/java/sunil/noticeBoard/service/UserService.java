@@ -10,6 +10,7 @@ import java.util.List;
 public interface UserService {
     List<User> getAllUser();
     List<User> getUserByEmail(@Param("email") String email);
+    List<User> getUserByName(@Param("name") String name);
     List<User> getUserColumnByCondition(
             String columnName, String condition, String value
     );

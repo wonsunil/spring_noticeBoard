@@ -28,6 +28,13 @@ public class UserServiceImpl implements UserService {
     };
 
     @Override
+    public List<User> getUserByName(String name) {
+        List<User> user = mapper.getUserByName(name);
+
+        return user;
+    };
+
+    @Override
     public List<User> getUserColumnByCondition(
             String columnName, String condition, String value
     ) {

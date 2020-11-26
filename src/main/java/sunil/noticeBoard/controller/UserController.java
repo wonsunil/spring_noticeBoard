@@ -126,4 +126,26 @@ public class UserController {
     public String block() {
         return "redirect:/main";
     };
+
+    @GetMapping("/user/search")
+    public String search() {
+        return "/user/search";
+    };
+
+    @GetMapping("/user/search/email/{email}")
+    public String searchEmail(Model model, @PathVariable("email") String email) {
+        List<User> userList = userService.getUserByEmail(email);
+
+        model.addAttribute("user", userList.toArray(new User[0]));
+
+        return "/user/search";
+    };
+    @GetMapping("/user/search/name/{name}")
+    public String searchName(Model model, @PathVariable("name") String name) {
+        List<User> userList = userService.getUserByName(name);
+
+        model.addAttribute("user", userList.toArray(new User[0]));
+
+        return "/user/search";
+    };
 }

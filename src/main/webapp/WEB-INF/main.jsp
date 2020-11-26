@@ -150,6 +150,7 @@
                     <option value="20" <%=pagination.getLimit() == 20 ? "selected" : ""%>>20개</option>
                 </select>
                 <a href="/content/content-write" id="write" class="btn btn-outline-dark">글쓰기</a>
+                <a href="/user/search" class="btn btn-outline-dark">유저검색</a>
                 <nav>
                     <ul class="pagination">
                         <%
