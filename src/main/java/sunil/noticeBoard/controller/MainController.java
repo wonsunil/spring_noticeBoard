@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import sunil.noticeBoard.Pagination;
 import sunil.noticeBoard.model.Content;
 import sunil.noticeBoard.model.Follow;
+import sunil.noticeBoard.service.UserService;
 import sunil.noticeBoard.service.ContentService;
 import sunil.noticeBoard.service.FollowService;
-import sunil.noticeBoard.service.UserService;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
