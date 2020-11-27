@@ -3,7 +3,7 @@
 
 <mapper namespace="sunil.noticeBoard.mapper.ContentMapper">
     <select id="getAllContent" resultType="sunil.noticeBoard.model.Content">
-        SELECT * FROM CONTENT_INFO ORDER BY CONTENT_CODE DESC
+        SELECT * FROM CONTENT_INFO ORDER BY UPDATED_DATE DESC
     </select>
     <select id="getContentByEmail" resultType="sunil.noticeBoard.model.Content">
         SELECT * FROM CONTENT_INFO WHERE WRITER=#{email} ORDER BY TO_NUMBER(TRANSLATE(CONTENT_CODE, 'ABCDEFGHIJKMNLOPQRSTUVWXYZabcedfghijkmnlopqrstuvwzyx@_.', 0)) ASC
