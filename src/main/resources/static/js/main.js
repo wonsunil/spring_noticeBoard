@@ -24,9 +24,6 @@ window.onload = function() {
     document.body.addEventListener("click", event => {
         if(document.querySelector("#alert") !== null) event.preventDefault();
     });
-    const xhr = new XMLHttpRequest();
-
-    xhr.responseType = "json";
 
     const $write = document.querySelector("#write");
     $write.addEventListener("click", function(event) {
