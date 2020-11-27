@@ -34,10 +34,7 @@ textarea{
     color: black;
 }
 
-#content > img{
-    width: 300px;
-    height: 300px;
-}
+#content > img{ width: 300px; height: 300px; }
 
 #more{ position: absolute; bottom: 0; left: 15%; }
 
@@ -49,9 +46,7 @@ textarea{
 }
 #more > div:last-child > button > a { color: black; text-decoration: none; }
 
-#more > div:first-child{
-    display: flex;
-}
+#more > div:first-child{ display: flex; }
 
 .box{
     width: auto;
@@ -89,19 +84,7 @@ textarea{
     display: block;
 }
 
-.profile{
-    display: flex;
-    margin-bottom: 50px;
-}
-.profile-img{
-    width: 100px;
-    height: 100px;
-}
-.profile > li{
-    font-size: 18px;
-    line-height: 100px;
-}
-.profile a{
-    text-decoration: none;
-    color: black;
-}
+.profile{ display: flex; margin-bottom: 50px; }
+.profile-img{ width: 100px; height: 100px; }
+.profile > li{ font-size: 18px; line-height: 100px; }
+.profile a{ text-decoration: none; color: black; }
