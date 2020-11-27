@@ -30,7 +30,7 @@
             <a class="navbar-brand" href="/main">Notice Board</a>
             <div class="collapse navbar-collapse" id="navbarsExample03">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active"><a class="nav-link" href="/main">Home <span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item active"><a class="nav-link" href="/main?page=<%=pagination.getCurrentPage()%>">Home <span class="sr-only">(current)</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/search">Search</a></li>
                     <li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a></li>
                 </ul>
