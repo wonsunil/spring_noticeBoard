@@ -148,6 +148,9 @@
                     <option value="10" <%=pagination.getLimit() == 10 ? "selected" : ""%>>10개</option>
                     <option value="15" <%=pagination.getLimit() == 15 ? "selected" : ""%>>15개</option>
                     <option value="20" <%=pagination.getLimit() == 20 ? "selected" : ""%>>20개</option>
+                    <option value="25" <%=pagination.getLimit() == 25 ? "selected" : ""%>>25개</option>
+                    <option value="30" <%=pagination.getLimit() == 30 ? "selected" : ""%>>30개</option>
+                    <option value="35" <%=pagination.getLimit() == 35 ? "selected" : ""%>>35개</option>
                 </select>
                 <a href="/content/content-write" id="write" class="btn btn-outline-dark">글쓰기</a>
                 <a href="/user/search" class="btn btn-outline-dark">유저검색</a>
@@ -177,11 +180,11 @@
                 <tbody>
                 <%
                     try {
-                        for (int i = pagination.getStartIndex(), limit = pagination.getLastIndex(); i <= limit; i++) {
+                        for (int i = pagination.getStartIndex(), limit = pagination.getLastIndex(); i < limit; i++) {
                             String[] content = allContents[i].toArray();
                 %>
                     <tr>
-                        <th><%=content[0]%></th>
+                        <th><%=i%><%=content[0]%></th>
                         <th><a href="/user/profile/<%=content[1]%>"><%=content[1]%></a></th>
                         <th><a href="/content/<%=content[4]%>"><%=content[2]%></a></th>
                     </tr>

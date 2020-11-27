@@ -41,10 +41,6 @@ window.onload = function() {
     $selectBox.onchange = ({ target }) => {
         const limit = [...target.children].filter(option => option.selected === true)[0].getAttribute("value");
 
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET", "/pagination/set/" + limit);
-        xhr.send();
-
-        location.href = "/main?page=1";
+        location.href = "/pagination/set/" + limit;
     };
 };
