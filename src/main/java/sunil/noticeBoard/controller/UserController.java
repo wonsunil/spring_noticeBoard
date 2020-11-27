@@ -122,6 +122,13 @@ public class UserController {
         return "user/profile";
     };
 
+    @GetMapping("/user/profile/{email}/follower")
+    public String follower() {
+
+
+        return "user/profile";
+    };
+
     @GetMapping("/user/account/duplicate_check")
     public String block() {
         return "redirect:/main";

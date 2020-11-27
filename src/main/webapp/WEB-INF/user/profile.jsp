@@ -76,4 +76,10 @@
     <button><a href="/main?page=${page.currentPage}">메인</a></button>
 </article>
 </body>
+<script>
+    const $follower = document.querySelector("#follower");
+    const $following = document.querySelector("#following");
+
+
+</script>
 </html>
