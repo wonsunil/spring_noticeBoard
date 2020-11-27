@@ -31,7 +31,7 @@
                 <div class="form-group">
                     <input id="title" name="contentName" placeholder="제목을 입력해주세요!" autocomplete="off">
                 </div>
-                <textarea name="" id="content" name="content" cols="30" rows="10"></textarea>
+                <textarea name="content" id="content" cols="30" rows="10"></textarea>
                 <div class="form-group">
                     <label for="filename">파일 첨부 : </label>
                     <input type="text" id="filename" placeholder="파일명을 입력해주세요.">
