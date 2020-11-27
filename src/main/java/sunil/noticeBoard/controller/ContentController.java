@@ -125,9 +125,8 @@ public class ContentController {
     public File[] searchFile(File dir, String fileExt) {
         final String ext = fileExt.toLowerCase();
         File[] files = dir.listFiles(file1 -> {
-            if (file1.isDirectory()) {
-                return false;
-            }
+            if (file1.isDirectory()) return false;
+
             return file1.getName().toLowerCase().endsWith("." + ext);
         });
 

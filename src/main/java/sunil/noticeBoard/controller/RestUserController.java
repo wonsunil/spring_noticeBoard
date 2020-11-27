@@ -36,11 +36,7 @@ public class RestUserController {
         List<User> userList = userService.getUserByEmail(email);
         User[] user = userList.toArray(new User[0]);
 
-        if(user.length > 0) {
-            return false;
-        };
-
-        return true;
+        return user.length <= 0;
     };
 
     @GetMapping("/user/follower")
