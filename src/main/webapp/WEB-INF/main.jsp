@@ -172,6 +172,7 @@
             <table class="table table-hover table-striped table-bordered text-center">
                 <thead>
                     <tr>
+                        <th>번호</th>
                         <th>게시판</th>
                         <th>작성자</th>
                         <th>제목</th>
@@ -184,7 +185,8 @@
                             String[] content = allContents[i].toArray();
                 %>
                     <tr>
-                        <th><%=i%><%=content[0]%></th>
+                        <th><%=i%></th>
+                        <th><%=content[0]%></th>
                         <th><a href="/user/profile/<%=content[1]%>"><%=content[1]%></a></th>
                         <th><a href="/content/<%=content[4]%>"><%=content[2]%></a></th>
                     </tr>
