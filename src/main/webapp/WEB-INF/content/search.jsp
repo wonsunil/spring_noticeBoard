@@ -43,7 +43,7 @@
                 <div class="list-group-item">
                     <li><%=content.toArray()[0]%></li>
                     <li><a href="/user/profile/<%=content.toArray()[1]%>"><%=content.toArray()[1]%></a></li>
-                    <li><a href="/content/detail/<%=content.toArray()[4]%>"><%=content.toArray()[2]%></a></li>
+                    <li><a href="/content/<%=content.toArray()[4]%>"><%=content.toArray()[2]%></a></li>
                     <%
                         if(email != null && !email.equals(content.toArray()[0]) &&
                                 likesService.getLikeWhether(email, content.toArray()[4])
