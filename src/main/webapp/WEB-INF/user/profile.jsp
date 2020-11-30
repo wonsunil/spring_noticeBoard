@@ -34,7 +34,7 @@
                     if(followers != null && following != null) {
                 %>
                 <a id="follower">
-                    <svg class="octicon octicon-people text-gray-light" height="16" viewBox="0 0 16 16" width="16" aria-hidden="true">
+                    <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
                         <path fill-rule="evenodd"
                               d="M5.5 3.5a2 2 0 100
                               4 2 2 0 000-4zM2 5.5a3.5
@@ -74,16 +74,24 @@
     </section>
     <section id="user-content">
         <div class="container">
-            <ul class="list-group">
-                <%
-                    if(contentArray != null) {
-                        for (Content value : contentArray) {
-                            String[] content = value.toArray();
-                %>
-                <div class="list-group-item border border-dark border-bottom-0">
-                    <li class="writer"><a href="/user/profile/<%=content[1]%>"><%=content[1]%></a></li>
-                    <li class="title"><a href="/content/<%=content[4]%>"><%=content[2]%></a></li>
-                    <div class="more">
+            <table class="table table-hover table-striped table-bordered text-center">
+                <thead>
+                <tr>
+                    <th>작성자</th>
+                    <th>제목</th>
+                    <th>댓글 & 종아요</th>
+                </tr>
+                </thead>
+                <tbody>
+            <%
+                if(contentArray != null) {
+                    for (Content value : contentArray) {
+                        String[] content = value.toArray();
+            %>
+                <tr>
+                    <th class="writer"><a href="/user/profile/<%=content[1]%>"><%=content[1]%></a></th>
+                    <th class="title"><a href="/content/<%=content[4]%>"><%=content[2]%></a></th>
+                    <th class="more">
                         <li class="comments">
                             <span>💬</span><%=content[7]%>
                             <button class="comment"></button>
@@ -92,33 +100,36 @@
                             <span>👍</span><%=content[6]%>
                             <button class="like"></button>
                         </li>
-                    </div>
-                </div>
+                    </th>
+                </tr>
                 <%
                         };
                     };
-                    if(followers != null && following == null) {
-                        for (Follow follower : followers) {
                 %>
-                <div class="list-group-item">
-                    <img src="<%=follower.toArray()[2]%>" alt="프로필 이미지">
-                    <a href="/user/profile/<%=follower.toArray()[0]%>"><%=follower.toArray()[0]%></a>
-                </div>
-                <%
-                        }
-                    }else if(following != null && followers == null) {
-                    for (Follow follow : following) {
-                %>
-                <div class="list-group-item">
-                    <img src="<%=follow.toArray()[2]%>" alt="프로필 이미지">
-                    <a href="/user/profile/<%=follow.toArray()[1]%>"><%=follow.toArray()[1]%>
-                    </a>
-                </div>
-                <%
-                        }
-                    };
-                %>
-            </ul>
+                </tbody>
+            </table>
+            <%
+                if(followers != null && following == null) {
+                    for (Follow follower : followers) {
+            %>
+            <div class="list-group-item">
+                <img src="<%=follower.toArray()[2]%>" alt="프로필 이미지">
+                <a href="/user/profile/<%=follower.toArray()[0]%>"><%=follower.toArray()[0]%></a>
+            </div>
+            <%
+                }
+            }else if(following != null && followers == null) {
+                for (Follow follow : following) {
+            %>
+            <div class="list-group-item">
+                <img src="<%=follow.toArray()[2]%>" alt="프로필 이미지">
+                <a href="/user/profile/<%=follow.toArray()[1]%>"><%=follow.toArray()[1]%>
+                </a>
+            </div>
+            <%
+                    }
+                };
+            %>
         </div>
     </section>
     <%
