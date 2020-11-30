@@ -121,8 +121,7 @@
 </article>
 </body>
 <script>
-    const $follower = document.querySelector("#follower");
-    const $following = document.querySelector("#following");
+
 
 
 </script>
