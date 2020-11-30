@@ -101,15 +101,18 @@
                         for (Follow follower : followers) {
                 %>
                 <div class="list-group-item">
-                    <img src="<%=follower.toArray()[2]%>" alt="">
-                    <li><%=follower.toArray()[0]%></li>
+                    <img src="<%=follower.toArray()[2]%>" alt="프로필 이미지">
+                    <a href="/user/profile/<%=follower.toArray()[0]%>"><%=follower.toArray()[0]%></a>
                 </div>
                 <%
                         }
                     }else if(following != null) {
                         for(int i = 0, limit = following.length; i < limit; i++) {
                 %>
-                <%=following[0].toArray()[0]%>
+                <div class="list-group-item">
+                    <img src="<%=following[i].toArray()[2]%>" alt="프로필 이미지">
+                    <a href="/user/profile/<%=following[i].toArray()[1]%>"><%=following[i].toArray()[1]%></a>
+                </div>
                 <%
                         }
                     };
@@ -117,12 +120,17 @@
             </ul>
         </div>
     </section>
+    <%
+        if(followers != null && following != null) {
+    %>
     <button><a href="/main?page=${page.currentPage}">메인</a></button>
+    <%
+        }else{
+    %>
+    <button><a href="/user/profile/<%=user[0]%>">프로필</a></button>
+    <%
+        };
+    %>
 </article>
 </body>
-<script>
-
-
-
-</script>
 </html>

@@ -14,7 +14,7 @@ html, body{ width: 100%; height: 100%; }
 }
 
 #wrap > button{
-    width: 40px;
+    width: auto;
     height: 40px;
     position: absolute;
     bottom: 0;
@@ -69,10 +69,15 @@ html, body{ width: 100%; height: 100%; }
     display: flex;
     margin-top: 30px;
 }
+.list-group-item{ display: flex; }
+.list-group-item > img{
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
 
+}
 #user-content > div > ul > div:last-child { border-bottom: 1px solid black !important; }
 #user-content > div > ul > div:hover{ background: rgba(0, 0, 0, 0.1); }
-
 .content{ height: 30%; }
 .more{ display: flex; }
 
