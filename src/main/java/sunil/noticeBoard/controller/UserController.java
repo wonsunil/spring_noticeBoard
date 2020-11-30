@@ -139,8 +139,9 @@ public class UserController {
         List<User> userList = userService.getUserByEmail(email);
         List<Follow> followingList = followService.getFollowing(email);
 
-        model.addAttribute("user", userList.toArray(new User[0]));
+        model.addAttribute("user", userList.toArray(new User[0])[0].toArray());
         model.addAttribute("following", followingList.toArray(new Follow[0]));
+        model.addAttribute("page", MainController.page);
 
         return "user/profile";
     };
