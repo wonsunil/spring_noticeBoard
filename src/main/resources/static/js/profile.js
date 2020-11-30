@@ -51,4 +51,18 @@ window.onload = function() {
 
         target.classList.remove("change-img");
     });
+
+    const $follower = document.querySelector("#follower");
+    const $following = document.querySelector("#following");
+
+    $follower?.addEventListener("click", ({ target }) => {
+        if(target.children[1].innerHTML.slice(0, 1) === "0") return false;
+
+        location.href += "/follower";
+    });
+    $following?.addEventListener("click", ({ target }) => {
+        if(target.children[0].innerHTML.slice(0, 1) === "0") return false;
+
+        location.href += "/following";
+    });
 };
