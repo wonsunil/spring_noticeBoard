@@ -34,7 +34,7 @@
                     if(followers != null && following != null) {
                 %>
                 <a id="follower">
-                    <svg class="octicon octicon-people text-gray-light" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true">
+                    <svg class="octicon octicon-people text-gray-light" height="16" viewBox="0 0 16 16" width="16" aria-hidden="true">
                         <path fill-rule="evenodd"
                               d="M5.5 3.5a2 2 0 100
                               4 2 2 0 000-4zM2 5.5a3.5
@@ -97,7 +97,7 @@
                 <%
                         };
                     };
-                    if(followers != null) {
+                    if(followers != null && following == null) {
                         for (Follow follower : followers) {
                 %>
                 <div class="list-group-item">
@@ -106,12 +106,13 @@
                 </div>
                 <%
                         }
-                    }else if(following != null) {
-                        for(int i = 0, limit = following.length; i < limit; i++) {
+                    }else if(following != null && followers == null) {
+                    for (Follow follow : following) {
                 %>
                 <div class="list-group-item">
-                    <img src="<%=following[i].toArray()[2]%>" alt="프로필 이미지">
-                    <a href="/user/profile/<%=following[i].toArray()[1]%>"><%=following[i].toArray()[1]%></a>
+                    <img src="<%=follow.toArray()[2]%>" alt="프로필 이미지">
+                    <a href="/user/profile/<%=follow.toArray()[1]%>"><%=follow.toArray()[1]%>
+                    </a>
                 </div>
                 <%
                         }
