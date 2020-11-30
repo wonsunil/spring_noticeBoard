@@ -123,8 +123,24 @@ public class UserController {
     };
 
     @GetMapping("/user/profile/{email}/follower")
-    public String follower() {
+    public String follower(Model model, @PathVariable("email") String email) {
+        List<User> userList = userService.getUserByEmail(email);
+        List<Follow> followerList = followService.getFollower(email);
 
+        model.addAttribute("user", userList.toArray(new User[0])[0].toArray());
+        model.addAttribute("follower", followerList.toArray(new Follow[0]));
+        model.addAttribute("page", MainController.page);
+
+        return "user/profile";
+    };
+
+    @GetMapping("/user/profile/{email}/following")
+    public String following(Model model, @PathVariable("email") String email) {
+        List<User> userList = userService.getUserByEmail(email);
+        List<Follow> followingList = followService.getFollowing(email);
+
+        model.addAttribute("user", userList.toArray(new User[0]));
+        model.addAttribute("following", followingList.toArray(new Follow[0]));
 
         return "user/profile";
     };
